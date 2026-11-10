@@ -1,0 +1,93 @@
+import { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import type { CardProgress } from '../types'
+import { getWord } from '../data'
+import { getAllProgress } from '../lib/storage'
+import SpeakerButton from '../components/SpeakerButton'
+import StrokeAnimation from '../components/StrokeAnimation'
+import VoiceBanner from '../components/VoiceBanner'
+
+export default function CharacterSheet() {
+  const { id = '' } = useParams()
+  const navigate = useNavigate()
+  const word = getWord(id)
+  const chars = word ? [...word.hanzi] : []
+  const [charIdx, setCharIdx] = useState(0)
+  const [card, setCard] = useState<CardProgress | null>(null)
+
+  useEffect(() => {
+    setCharIdx(0)
+    getAllProgress().then((p) => setCard(p[id] ?? null))
+  }, [id])
+
+  if (!word) {
+    return (
+      <main className="screen">
+        <p>Palabra no encontrada.</p>
+        <Link to="/palabras">Volver a la lista</Link>
+      </main>
+    )
+  }
+
+  return (
+    <main className="screen sheet">
+      <button className="back" onClick={() => navigate(-1)} aria-label="Volver">
+        ← Volver
+      </button>
+
+      <section className="sheet-head">
+        <div className="sheet-hanzi hanzi">{word.hanzi}</div>
+        <div className="sheet-pinyin">
+          {word.pinyin} <SpeakerButton text={word.hanzi} size="lg" />
+        </div>
+        <div className="sheet-meaning">
+          {word.emoji && <span aria-hidden>{word.emoji} </span>}
+          {word.meaning}
+        </div>
+        <small className="muted">
+          {word.category} · {word.pinyinNumeric}
+          {card && ` · caja ${card.box}/5`}
+        </small>
+      </section>
+      <VoiceBanner />
+
+      {word.needsReview && (
+        <div className="banner">⚠️ La descomposición o la mnemotecnia de esta palabra están pendientes de revisión.</div>
+      )}
+
+      <section className="card">
+        <h2>Mnemotecnia</h2>
+        <p>{word.mnemonic}</p>
+      </section>
+
+      <section className="card">
+        <h2>Componentes</h2>
+        <ul className="radicals">
+          {word.radicals.map((r, i) => (
+            <li key={i}>
+              <Link to={`/componentes/${encodeURIComponent(r.char)}`}>
+                <span className="hanzi">{r.char}</span>
+                <span>{r.meaning}</span>
+                <span className="muted chevron">›</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="card">
+        <h2>Orden de trazos</h2>
+        {chars.length > 1 && (
+          <div className="segmented">
+            {chars.map((c, i) => (
+              <button key={i} className={`hanzi ${i === charIdx ? 'active' : ''}`} onClick={() => setCharIdx(i)}>
+                {c}
+              </button>
+            ))}
+          </div>
+        )}
+        <StrokeAnimation char={chars[charIdx]} />
+      </section>
+    </main>
+  )
+}

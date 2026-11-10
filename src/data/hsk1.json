@@ -1,0 +1,3324 @@
+[
+  {
+    "id": "hsk1-001",
+    "hanzi": "爱",
+    "pinyin": "ài",
+    "pinyinNumeric": "ai4",
+    "meaning": "amar; amor",
+    "emoji": "❤️",
+    "radicals": [
+      {
+        "char": "爫",
+        "meaning": "garra, mano"
+      },
+      {
+        "char": "冖",
+        "meaning": "cubierta"
+      },
+      {
+        "char": "友",
+        "meaning": "amigo"
+      }
+    ],
+    "mnemonic": "Una mano (爫) cubre (冖) a un amigo (友) con cariño: amar. En la forma tradicional 愛 había además un corazón (心) en medio.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-002",
+    "hanzi": "八",
+    "pinyin": "bā",
+    "pinyinNumeric": "ba1",
+    "meaning": "ocho",
+    "emoji": "8️⃣",
+    "radicals": [
+      {
+        "char": "八",
+        "meaning": "dos trazos que se separan"
+      }
+    ],
+    "mnemonic": "Dos trazos que se abren y se separan, como algo que se divide: ocho.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-003",
+    "hanzi": "爸爸",
+    "pinyin": "bà ba",
+    "pinyinNumeric": "ba4 ba5",
+    "meaning": "papá",
+    "emoji": "👨",
+    "radicals": [
+      {
+        "char": "父",
+        "meaning": "padre"
+      },
+      {
+        "char": "巴",
+        "meaning": "da el sonido «ba»"
+      }
+    ],
+    "mnemonic": "Arriba 父 (padre) y abajo 巴, que suena «ba». Repetido como lo dicen los niños: ba-ba.",
+    "category": "familia",
+    "level": 1
+  },
+  {
+    "id": "hsk1-004",
+    "hanzi": "杯子",
+    "pinyin": "bēi zi",
+    "pinyinNumeric": "bei1 zi5",
+    "meaning": "vaso; taza",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "木",
+        "meaning": "madera"
+      },
+      {
+        "char": "不",
+        "meaning": "da el sonido «bei»"
+      },
+      {
+        "char": "子",
+        "meaning": "sufijo de sustantivo"
+      }
+    ],
+    "mnemonic": "Un recipiente de madera (木), con 不 aportando el sonido: vaso. 子 es un sufijo frecuente en objetos.",
+    "category": "objeto",
+    "level": 1
+  },
+  {
+    "id": "hsk1-005",
+    "hanzi": "北京",
+    "pinyin": "Běi jīng",
+    "pinyinNumeric": "bei3 jing1",
+    "meaning": "Pekín",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "北",
+        "meaning": "dos personas de espaldas (norte)"
+      },
+      {
+        "char": "京",
+        "meaning": "edificio alto (capital)"
+      }
+    ],
+    "mnemonic": "北 son dos personas espalda con espalda: el norte. 京 es un edificio alto: la capital. «Capital del norte».",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-006",
+    "hanzi": "本",
+    "pinyin": "běn",
+    "pinyinNumeric": "ben3",
+    "meaning": "clasificador para libros; raíz",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "木",
+        "meaning": "árbol"
+      },
+      {
+        "char": "一",
+        "meaning": "marca en la raíz"
+      }
+    ],
+    "mnemonic": "Un árbol (木) con una marca (一) en la parte de abajo: la raíz, el origen. Se usa para contar libros: 一本书.",
+    "category": "medida",
+    "level": 1
+  },
+  {
+    "id": "hsk1-007",
+    "hanzi": "不",
+    "pinyin": "bù",
+    "pinyinNumeric": "bu4",
+    "meaning": "no",
+    "emoji": "🚫",
+    "radicals": [
+      {
+        "char": "一",
+        "meaning": "línea, tope"
+      },
+      {
+        "char": "丿",
+        "meaning": "trazo"
+      },
+      {
+        "char": "丨",
+        "meaning": "trazo"
+      },
+      {
+        "char": "丶",
+        "meaning": "punto"
+      }
+    ],
+    "mnemonic": "Algo que intenta subir y choca contra una línea (一): no.",
+    "category": "adverbio",
+    "level": 1,
+    "needsReview": true
+  },
+  {
+    "id": "hsk1-008",
+    "hanzi": "不客气",
+    "pinyin": "bú kè qi",
+    "pinyinNumeric": "bu2 ke4 qi5",
+    "meaning": "de nada",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "不",
+        "meaning": "no"
+      },
+      {
+        "char": "宀",
+        "meaning": "tejado"
+      },
+      {
+        "char": "各",
+        "meaning": "cada uno"
+      },
+      {
+        "char": "气",
+        "meaning": "aire, vapor"
+      }
+    ],
+    "mnemonic": "No (不) hace falta tratarme como un invitado (客: alguien que llega bajo tu tejado 宀) con tanta ceremonia (气): de nada.",
+    "category": "saludo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-009",
+    "hanzi": "菜",
+    "pinyin": "cài",
+    "pinyinNumeric": "cai4",
+    "meaning": "plato (de comida); verdura",
+    "emoji": "🥬",
+    "radicals": [
+      {
+        "char": "艹",
+        "meaning": "hierba"
+      },
+      {
+        "char": "爫",
+        "meaning": "mano"
+      },
+      {
+        "char": "木",
+        "meaning": "árbol"
+      }
+    ],
+    "mnemonic": "Una mano (爫) recoge hierbas (艹) y plantas (木): verduras, y por extensión platos de comida.",
+    "category": "comida",
+    "level": 1
+  },
+  {
+    "id": "hsk1-010",
+    "hanzi": "茶",
+    "pinyin": "chá",
+    "pinyinNumeric": "cha2",
+    "meaning": "té",
+    "emoji": "🍵",
+    "radicals": [
+      {
+        "char": "艹",
+        "meaning": "hierba"
+      },
+      {
+        "char": "人",
+        "meaning": "persona"
+      },
+      {
+        "char": "木",
+        "meaning": "árbol"
+      }
+    ],
+    "mnemonic": "Una persona (人) entre la hierba (艹) y el árbol (木), recogiendo hojas: té.",
+    "category": "comida",
+    "level": 1
+  },
+  {
+    "id": "hsk1-011",
+    "hanzi": "吃",
+    "pinyin": "chī",
+    "pinyinNumeric": "chi1",
+    "meaning": "comer",
+    "emoji": "🍽️",
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "乞",
+        "meaning": "pedir"
+      }
+    ],
+    "mnemonic": "Una boca (口) que pide (乞) algo: comer.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-012",
+    "hanzi": "出租车",
+    "pinyin": "chū zū chē",
+    "pinyinNumeric": "chu1 zu1 che1",
+    "meaning": "taxi",
+    "emoji": "🚕",
+    "radicals": [
+      {
+        "char": "出",
+        "meaning": "salir"
+      },
+      {
+        "char": "禾",
+        "meaning": "cereal"
+      },
+      {
+        "char": "且",
+        "meaning": "da el sonido"
+      },
+      {
+        "char": "车",
+        "meaning": "coche, carro"
+      }
+    ],
+    "mnemonic": "Un coche (车) que sale (出) en alquiler (租; con 禾 cereal, con el que antiguamente se pagaba): taxi.",
+    "category": "transporte",
+    "level": 1
+  },
+  {
+    "id": "hsk1-013",
+    "hanzi": "打电话",
+    "pinyin": "dǎ diàn huà",
+    "pinyinNumeric": "da3 dian4 hua4",
+    "meaning": "llamar por teléfono",
+    "emoji": "📞",
+    "radicals": [
+      {
+        "char": "扌",
+        "meaning": "mano"
+      },
+      {
+        "char": "丁",
+        "meaning": "clavo"
+      },
+      {
+        "char": "电",
+        "meaning": "electricidad, rayo"
+      },
+      {
+        "char": "讠",
+        "meaning": "palabra"
+      },
+      {
+        "char": "舌",
+        "meaning": "lengua"
+      }
+    ],
+    "mnemonic": "Golpear (打: una mano 扌 sobre un clavo 丁) la electricidad (电) para enviar palabras (话: 讠 palabra + 舌 lengua): llamar por teléfono.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-014",
+    "hanzi": "大",
+    "pinyin": "dà",
+    "pinyinNumeric": "da4",
+    "meaning": "grande",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "人",
+        "meaning": "persona"
+      },
+      {
+        "char": "一",
+        "meaning": "brazos abiertos"
+      }
+    ],
+    "mnemonic": "Una persona (人) con los brazos abiertos (一) enseñando lo grande que es algo.",
+    "category": "adjetivo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-015",
+    "hanzi": "的",
+    "pinyin": "de",
+    "pinyinNumeric": "de5",
+    "meaning": "partícula posesiva («de»)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "白",
+        "meaning": "blanco"
+      },
+      {
+        "char": "勺",
+        "meaning": "cucharón"
+      }
+    ],
+    "mnemonic": "Originalmente significaba «diana, objetivo» (目的): el centro blanco (白). Hoy marca posesión: 我的 = mío.",
+    "category": "partícula",
+    "level": 1
+  },
+  {
+    "id": "hsk1-016",
+    "hanzi": "点",
+    "pinyin": "diǎn",
+    "pinyinNumeric": "dian3",
+    "meaning": "punto; «en punto» (hora)",
+    "emoji": "🕐",
+    "radicals": [
+      {
+        "char": "占",
+        "meaning": "ocupar"
+      },
+      {
+        "char": "灬",
+        "meaning": "fuego (puntos)"
+      }
+    ],
+    "mnemonic": "Cuatro puntitos (灬) bajo 占: punto. Con las horas significa «en punto»: 三点 = las tres.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-017",
+    "hanzi": "电脑",
+    "pinyin": "diàn nǎo",
+    "pinyinNumeric": "dian4 nao3",
+    "meaning": "ordenador",
+    "emoji": "💻",
+    "radicals": [
+      {
+        "char": "电",
+        "meaning": "electricidad, rayo"
+      },
+      {
+        "char": "月",
+        "meaning": "carne, cuerpo"
+      },
+      {
+        "char": "㐫",
+        "meaning": "cabeza"
+      }
+    ],
+    "mnemonic": "Un cerebro (脑: parte del cuerpo 月 + cabeza) eléctrico (电): ordenador.",
+    "category": "objeto",
+    "level": 1
+  },
+  {
+    "id": "hsk1-018",
+    "hanzi": "电视",
+    "pinyin": "diàn shì",
+    "pinyinNumeric": "dian4 shi4",
+    "meaning": "televisión",
+    "emoji": "📺",
+    "radicals": [
+      {
+        "char": "电",
+        "meaning": "electricidad"
+      },
+      {
+        "char": "礻",
+        "meaning": "mostrar"
+      },
+      {
+        "char": "见",
+        "meaning": "ver"
+      }
+    ],
+    "mnemonic": "Ver (视: mostrar 礻 + ver 见) mediante electricidad (电): televisión.",
+    "category": "objeto",
+    "level": 1
+  },
+  {
+    "id": "hsk1-019",
+    "hanzi": "电影",
+    "pinyin": "diàn yǐng",
+    "pinyinNumeric": "dian4 ying3",
+    "meaning": "película; cine",
+    "emoji": "🎬",
+    "radicals": [
+      {
+        "char": "电",
+        "meaning": "electricidad"
+      },
+      {
+        "char": "景",
+        "meaning": "paisaje"
+      },
+      {
+        "char": "彡",
+        "meaning": "rayos de luz"
+      }
+    ],
+    "mnemonic": "Sombras e imágenes (影: paisaje 景 + rayos 彡) eléctricas (电): cine.",
+    "category": "objeto",
+    "level": 1
+  },
+  {
+    "id": "hsk1-020",
+    "hanzi": "东西",
+    "pinyin": "dōng xi",
+    "pinyinNumeric": "dong1 xi5",
+    "meaning": "cosa; objeto",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "东",
+        "meaning": "este (sol tras un árbol)"
+      },
+      {
+        "char": "西",
+        "meaning": "oeste"
+      }
+    ],
+    "mnemonic": "Todo lo que va de este (东) a oeste (西): las cosas. El tradicional 東 es el sol (日) saliendo tras un árbol (木).",
+    "category": "objeto",
+    "level": 1
+  },
+  {
+    "id": "hsk1-021",
+    "hanzi": "都",
+    "pinyin": "dōu",
+    "pinyinNumeric": "dou1",
+    "meaning": "todos; ambos",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "者",
+        "meaning": "persona, el que"
+      },
+      {
+        "char": "阝",
+        "meaning": "ciudad (a la derecha)"
+      }
+    ],
+    "mnemonic": "Todas las personas (者) de la ciudad (阝): todos.",
+    "category": "adverbio",
+    "level": 1
+  },
+  {
+    "id": "hsk1-022",
+    "hanzi": "读",
+    "pinyin": "dú",
+    "pinyinNumeric": "du2",
+    "meaning": "leer; estudiar",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "讠",
+        "meaning": "palabra"
+      },
+      {
+        "char": "卖",
+        "meaning": "vender"
+      }
+    ],
+    "mnemonic": "Las palabras (讠) se «venden» (卖) en voz alta: leer.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-023",
+    "hanzi": "对不起",
+    "pinyin": "duì bu qǐ",
+    "pinyinNumeric": "dui4 bu5 qi3",
+    "meaning": "perdón; lo siento",
+    "emoji": "🙇",
+    "radicals": [
+      {
+        "char": "又",
+        "meaning": "mano"
+      },
+      {
+        "char": "寸",
+        "meaning": "medida"
+      },
+      {
+        "char": "不",
+        "meaning": "no"
+      },
+      {
+        "char": "走",
+        "meaning": "andar"
+      },
+      {
+        "char": "己",
+        "meaning": "uno mismo"
+      }
+    ],
+    "mnemonic": "No (不) puedo levantarme (起) frente a ti (对): lo siento.",
+    "category": "saludo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-024",
+    "hanzi": "多",
+    "pinyin": "duō",
+    "pinyinNumeric": "duo1",
+    "meaning": "mucho",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "夕",
+        "meaning": "tarde, anochecer"
+      }
+    ],
+    "mnemonic": "Dos tardes (夕) apiladas: muchas noches → mucho.",
+    "category": "adjetivo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-025",
+    "hanzi": "多少",
+    "pinyin": "duō shao",
+    "pinyinNumeric": "duo1 shao5",
+    "meaning": "¿cuánto?",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "多",
+        "meaning": "mucho"
+      },
+      {
+        "char": "少",
+        "meaning": "poco"
+      }
+    ],
+    "mnemonic": "¿Mucho (多) o poco (少)? → ¿cuánto?",
+    "category": "pregunta",
+    "level": 1
+  },
+  {
+    "id": "hsk1-026",
+    "hanzi": "儿子",
+    "pinyin": "ér zi",
+    "pinyinNumeric": "er2 zi5",
+    "meaning": "hijo",
+    "emoji": "👦",
+    "radicals": [
+      {
+        "char": "儿",
+        "meaning": "piernas de niño"
+      },
+      {
+        "char": "子",
+        "meaning": "niño"
+      }
+    ],
+    "mnemonic": "Un niño (子) con sus piernecitas (儿): hijo.",
+    "category": "familia",
+    "level": 1
+  },
+  {
+    "id": "hsk1-027",
+    "hanzi": "二",
+    "pinyin": "èr",
+    "pinyinNumeric": "er4",
+    "meaning": "dos",
+    "emoji": "2️⃣",
+    "radicals": [
+      {
+        "char": "一",
+        "meaning": "uno"
+      }
+    ],
+    "mnemonic": "Dos líneas: dos.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-028",
+    "hanzi": "饭店",
+    "pinyin": "fàn diàn",
+    "pinyinNumeric": "fan4 dian4",
+    "meaning": "restaurante; hotel",
+    "emoji": "🏨",
+    "radicals": [
+      {
+        "char": "饣",
+        "meaning": "comida"
+      },
+      {
+        "char": "反",
+        "meaning": "da el sonido"
+      },
+      {
+        "char": "广",
+        "meaning": "edificio"
+      },
+      {
+        "char": "占",
+        "meaning": "ocupar"
+      }
+    ],
+    "mnemonic": "Un edificio (广) donde se sirve comida (饭: 饣): restaurante; también hotel.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-029",
+    "hanzi": "飞机",
+    "pinyin": "fēi jī",
+    "pinyinNumeric": "fei1 ji1",
+    "meaning": "avión",
+    "emoji": "✈️",
+    "radicals": [
+      {
+        "char": "飞",
+        "meaning": "volar (alas)"
+      },
+      {
+        "char": "木",
+        "meaning": "madera"
+      },
+      {
+        "char": "几",
+        "meaning": "mesita"
+      }
+    ],
+    "mnemonic": "Una máquina (机: madera 木 + mesita 几) que vuela (飞): avión.",
+    "category": "transporte",
+    "level": 1
+  },
+  {
+    "id": "hsk1-030",
+    "hanzi": "分钟",
+    "pinyin": "fēn zhōng",
+    "pinyinNumeric": "fen1 zhong1",
+    "meaning": "minuto",
+    "emoji": "⏱️",
+    "radicals": [
+      {
+        "char": "八",
+        "meaning": "separar"
+      },
+      {
+        "char": "刀",
+        "meaning": "cuchillo"
+      },
+      {
+        "char": "钅",
+        "meaning": "metal"
+      },
+      {
+        "char": "中",
+        "meaning": "centro"
+      }
+    ],
+    "mnemonic": "Dividir (分: un cuchillo 刀 que separa 八) la campana del reloj (钟: metal 钅): minuto.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-031",
+    "hanzi": "高兴",
+    "pinyin": "gāo xìng",
+    "pinyinNumeric": "gao1 xing4",
+    "meaning": "contento",
+    "emoji": "😊",
+    "radicals": [
+      {
+        "char": "高",
+        "meaning": "torre alta"
+      },
+      {
+        "char": "兴",
+        "meaning": "elevarse"
+      }
+    ],
+    "mnemonic": "Con el ánimo alto (高) y elevado (兴): contento.",
+    "category": "adjetivo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-032",
+    "hanzi": "个",
+    "pinyin": "gè",
+    "pinyinNumeric": "ge4",
+    "meaning": "clasificador general",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "人",
+        "meaning": "tejado, persona"
+      },
+      {
+        "char": "丨",
+        "meaning": "palito"
+      }
+    ],
+    "mnemonic": "Una persona (人) con un palito (丨) contando cosas una a una: clasificador general.",
+    "category": "medida",
+    "level": 1,
+    "needsReview": true
+  },
+  {
+    "id": "hsk1-033",
+    "hanzi": "工作",
+    "pinyin": "gōng zuò",
+    "pinyinNumeric": "gong1 zuo4",
+    "meaning": "trabajar; trabajo",
+    "emoji": "💼",
+    "radicals": [
+      {
+        "char": "工",
+        "meaning": "herramienta"
+      },
+      {
+        "char": "亻",
+        "meaning": "persona"
+      },
+      {
+        "char": "乍",
+        "meaning": "de repente"
+      }
+    ],
+    "mnemonic": "Una persona (亻) que hace cosas (作) con su herramienta (工): trabajar.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-034",
+    "hanzi": "狗",
+    "pinyin": "gǒu",
+    "pinyinNumeric": "gou3",
+    "meaning": "perro",
+    "emoji": "🐕",
+    "radicals": [
+      {
+        "char": "犭",
+        "meaning": "animal"
+      },
+      {
+        "char": "句",
+        "meaning": "da el sonido"
+      }
+    ],
+    "mnemonic": "犭 indica animal y 句 aporta el sonido «gou»: perro.",
+    "category": "animal",
+    "level": 1
+  },
+  {
+    "id": "hsk1-035",
+    "hanzi": "汉语",
+    "pinyin": "Hàn yǔ",
+    "pinyinNumeric": "han4 yu3",
+    "meaning": "chino (idioma)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "氵",
+        "meaning": "agua (río Han)"
+      },
+      {
+        "char": "又",
+        "meaning": "mano"
+      },
+      {
+        "char": "讠",
+        "meaning": "palabra"
+      },
+      {
+        "char": "吾",
+        "meaning": "yo"
+      }
+    ],
+    "mnemonic": "Las palabras (讠) que yo (吾) digo junto al río Han (汉, con 氵 agua): el idioma chino.",
+    "category": "estudio",
+    "level": 1
+  },
+  {
+    "id": "hsk1-036",
+    "hanzi": "好",
+    "pinyin": "hǎo",
+    "pinyinNumeric": "hao3",
+    "meaning": "bueno; bien",
+    "emoji": "👍",
+    "radicals": [
+      {
+        "char": "女",
+        "meaning": "mujer"
+      },
+      {
+        "char": "子",
+        "meaning": "niño"
+      }
+    ],
+    "mnemonic": "Una mujer (女) con su hijo (子): todo está bien.",
+    "category": "adjetivo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-037",
+    "hanzi": "号",
+    "pinyin": "hào",
+    "pinyinNumeric": "hao4",
+    "meaning": "número; día del mes",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "丂",
+        "meaning": "aliento que sale"
+      }
+    ],
+    "mnemonic": "Una boca (口) que grita un número: número, y también el día del mes (五月三号).",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-038",
+    "hanzi": "喝",
+    "pinyin": "hē",
+    "pinyinNumeric": "he1",
+    "meaning": "beber",
+    "emoji": "🥤",
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "曷",
+        "meaning": "¿qué?"
+      }
+    ],
+    "mnemonic": "Una boca (口) que pregunta «¿qué hay?» (曷) para beber: beber.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-039",
+    "hanzi": "和",
+    "pinyin": "hé",
+    "pinyinNumeric": "he2",
+    "meaning": "y; con",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "禾",
+        "meaning": "cereal"
+      },
+      {
+        "char": "口",
+        "meaning": "boca"
+      }
+    ],
+    "mnemonic": "Cereal (禾) para todas las bocas (口): armonía. Une cosas: 你和我 = tú y yo.",
+    "category": "partícula",
+    "level": 1
+  },
+  {
+    "id": "hsk1-040",
+    "hanzi": "很",
+    "pinyin": "hěn",
+    "pinyinNumeric": "hen3",
+    "meaning": "muy",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "彳",
+        "meaning": "paso"
+      },
+      {
+        "char": "艮",
+        "meaning": "terco"
+      }
+    ],
+    "mnemonic": "Avanzar (彳) con terquedad (艮), con mucha insistencia: muy.",
+    "category": "adverbio",
+    "level": 1,
+    "needsReview": true
+  },
+  {
+    "id": "hsk1-041",
+    "hanzi": "后面",
+    "pinyin": "hòu mian",
+    "pinyinNumeric": "hou4 mian5",
+    "meaning": "detrás",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "后",
+        "meaning": "detrás"
+      },
+      {
+        "char": "面",
+        "meaning": "cara, superficie"
+      }
+    ],
+    "mnemonic": "La cara (面) de atrás (后): detrás.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-042",
+    "hanzi": "回",
+    "pinyin": "huí",
+    "pinyinNumeric": "hui2",
+    "meaning": "volver",
+    "emoji": "🔄",
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "recinto"
+      }
+    ],
+    "mnemonic": "Un recinto dentro de otro, como un remolino que da la vuelta: volver.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-043",
+    "hanzi": "会",
+    "pinyin": "huì",
+    "pinyinNumeric": "hui4",
+    "meaning": "saber hacer; poder (habilidad)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "人",
+        "meaning": "persona"
+      },
+      {
+        "char": "云",
+        "meaning": "decir (antiguo)"
+      }
+    ],
+    "mnemonic": "Personas (人) que se reúnen y hablan (云): reunión; también «saber hacer» algo aprendido.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-044",
+    "hanzi": "火车站",
+    "pinyin": "huǒ chē zhàn",
+    "pinyinNumeric": "huo3 che1 zhan4",
+    "meaning": "estación de tren",
+    "emoji": "🚉",
+    "radicals": [
+      {
+        "char": "火",
+        "meaning": "fuego"
+      },
+      {
+        "char": "车",
+        "meaning": "coche, carro"
+      },
+      {
+        "char": "立",
+        "meaning": "estar de pie"
+      },
+      {
+        "char": "占",
+        "meaning": "ocupar"
+      }
+    ],
+    "mnemonic": "El coche (车) de fuego (火) —el antiguo tren de vapor— se detiene (站: estar de pie 立) en la estación: estación de tren.",
+    "category": "transporte",
+    "level": 1
+  },
+  {
+    "id": "hsk1-045",
+    "hanzi": "几",
+    "pinyin": "jǐ",
+    "pinyinNumeric": "ji3",
+    "meaning": "¿cuántos? (pocos)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "几",
+        "meaning": "mesita"
+      }
+    ],
+    "mnemonic": "Una mesita (几) con pocos objetos encima: ¿cuántos? Se usa para cantidades pequeñas.",
+    "category": "pregunta",
+    "level": 1
+  },
+  {
+    "id": "hsk1-046",
+    "hanzi": "家",
+    "pinyin": "jiā",
+    "pinyinNumeric": "jia1",
+    "meaning": "casa; familia",
+    "emoji": "🏠",
+    "radicals": [
+      {
+        "char": "宀",
+        "meaning": "tejado"
+      },
+      {
+        "char": "豕",
+        "meaning": "cerdo"
+      }
+    ],
+    "mnemonic": "Un cerdo (豕) bajo el tejado (宀): la casa de una familia.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-047",
+    "hanzi": "叫",
+    "pinyin": "jiào",
+    "pinyinNumeric": "jiao4",
+    "meaning": "llamarse; llamar",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "丩",
+        "meaning": "enredo"
+      }
+    ],
+    "mnemonic": "Una boca (口) que grita: llamar. 我叫… = me llamo…",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-048",
+    "hanzi": "今天",
+    "pinyin": "jīn tiān",
+    "pinyinNumeric": "jin1 tian1",
+    "meaning": "hoy",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "今",
+        "meaning": "ahora"
+      },
+      {
+        "char": "大",
+        "meaning": "persona"
+      },
+      {
+        "char": "一",
+        "meaning": "cielo"
+      }
+    ],
+    "mnemonic": "El día (天: el cielo 一 sobre una persona 大) de ahora (今): hoy.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-049",
+    "hanzi": "九",
+    "pinyin": "jiǔ",
+    "pinyinNumeric": "jiu3",
+    "meaning": "nueve",
+    "emoji": "9️⃣",
+    "radicals": [
+      {
+        "char": "九",
+        "meaning": "brazo doblado"
+      }
+    ],
+    "mnemonic": "Un brazo doblado que casi llega al diez: nueve.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-050",
+    "hanzi": "开",
+    "pinyin": "kāi",
+    "pinyinNumeric": "kai1",
+    "meaning": "abrir; conducir",
+    "emoji": "🔓",
+    "radicals": [
+      {
+        "char": "一",
+        "meaning": "barra"
+      },
+      {
+        "char": "廾",
+        "meaning": "dos manos"
+      }
+    ],
+    "mnemonic": "Dos manos (廾) levantan la barra (一) de la puerta: abrir. El tradicional 開 conserva la puerta (門).",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-051",
+    "hanzi": "看",
+    "pinyin": "kàn",
+    "pinyinNumeric": "kan4",
+    "meaning": "mirar; leer",
+    "emoji": "👀",
+    "radicals": [
+      {
+        "char": "手",
+        "meaning": "mano"
+      },
+      {
+        "char": "目",
+        "meaning": "ojo"
+      }
+    ],
+    "mnemonic": "Una mano (手) sobre el ojo (目) para mirar a lo lejos: mirar.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-052",
+    "hanzi": "看见",
+    "pinyin": "kàn jiàn",
+    "pinyinNumeric": "kan4 jian4",
+    "meaning": "ver",
+    "emoji": "👁️",
+    "radicals": [
+      {
+        "char": "手",
+        "meaning": "mano"
+      },
+      {
+        "char": "目",
+        "meaning": "ojo"
+      },
+      {
+        "char": "儿",
+        "meaning": "piernas"
+      }
+    ],
+    "mnemonic": "Mirar (看) y llegar a ver de verdad (见: un ojo 目 sobre piernas 儿): ver.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-053",
+    "hanzi": "块",
+    "pinyin": "kuài",
+    "pinyinNumeric": "kuai4",
+    "meaning": "trozo; yuan (coloquial)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "土",
+        "meaning": "tierra"
+      },
+      {
+        "char": "夬",
+        "meaning": "partir"
+      }
+    ],
+    "mnemonic": "Un trozo partido (夬) de tierra (土): pedazo. Coloquialmente, «yuan»: 十块 = diez yuanes.",
+    "category": "medida",
+    "level": 1
+  },
+  {
+    "id": "hsk1-054",
+    "hanzi": "来",
+    "pinyin": "lái",
+    "pinyinNumeric": "lai2",
+    "meaning": "venir",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "来",
+        "meaning": "espiga de trigo"
+      }
+    ],
+    "mnemonic": "Era el dibujo de una espiga de trigo, que «venía» del cielo como regalo: venir.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-055",
+    "hanzi": "老师",
+    "pinyin": "lǎo shī",
+    "pinyinNumeric": "lao3 shi1",
+    "meaning": "profesor; profesora",
+    "emoji": "🧑‍🏫",
+    "radicals": [
+      {
+        "char": "老",
+        "meaning": "anciano"
+      },
+      {
+        "char": "师",
+        "meaning": "maestro"
+      }
+    ],
+    "mnemonic": "El anciano (老) sabio que enseña (师): profesor.",
+    "category": "persona",
+    "level": 1
+  },
+  {
+    "id": "hsk1-056",
+    "hanzi": "了",
+    "pinyin": "le",
+    "pinyinNumeric": "le5",
+    "meaning": "partícula de acción terminada",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "了",
+        "meaning": "trazo que se cierra"
+      }
+    ],
+    "mnemonic": "Un trazo que baja, se curva y termina: marca que la acción ya terminó.",
+    "category": "partícula",
+    "level": 1,
+    "needsReview": true
+  },
+  {
+    "id": "hsk1-057",
+    "hanzi": "冷",
+    "pinyin": "lěng",
+    "pinyinNumeric": "leng3",
+    "meaning": "frío",
+    "emoji": "🥶",
+    "radicals": [
+      {
+        "char": "冫",
+        "meaning": "hielo"
+      },
+      {
+        "char": "令",
+        "meaning": "orden"
+      }
+    ],
+    "mnemonic": "Hielo (冫) por orden (令): frío.",
+    "category": "adjetivo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-058",
+    "hanzi": "里",
+    "pinyin": "lǐ",
+    "pinyinNumeric": "li3",
+    "meaning": "dentro",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "田",
+        "meaning": "campo"
+      },
+      {
+        "char": "土",
+        "meaning": "tierra"
+      }
+    ],
+    "mnemonic": "Campos (田) y tierra (土): una aldea; lo que está en ella → dentro.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-059",
+    "hanzi": "六",
+    "pinyin": "liù",
+    "pinyinNumeric": "liu4",
+    "meaning": "seis",
+    "emoji": "6️⃣",
+    "radicals": [
+      {
+        "char": "亠",
+        "meaning": "tapa"
+      },
+      {
+        "char": "八",
+        "meaning": "separar"
+      }
+    ],
+    "mnemonic": "Una tapa (亠) sobre dos patas abiertas (八): seis.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-060",
+    "hanzi": "妈妈",
+    "pinyin": "mā ma",
+    "pinyinNumeric": "ma1 ma5",
+    "meaning": "mamá",
+    "emoji": "👩",
+    "radicals": [
+      {
+        "char": "女",
+        "meaning": "mujer"
+      },
+      {
+        "char": "马",
+        "meaning": "caballo (da el sonido «ma»)"
+      }
+    ],
+    "mnemonic": "Una mujer (女) + 马 (caballo), que suena «ma»: mamá.",
+    "category": "familia",
+    "level": 1
+  },
+  {
+    "id": "hsk1-061",
+    "hanzi": "吗",
+    "pinyin": "ma",
+    "pinyinNumeric": "ma5",
+    "meaning": "partícula interrogativa (¿…?)",
+    "emoji": "❓",
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "马",
+        "meaning": "caballo (da el sonido «ma»)"
+      }
+    ],
+    "mnemonic": "Boca (口) + 马, que suena «ma». Añadido al final convierte una frase en pregunta.",
+    "category": "pregunta",
+    "level": 1
+  },
+  {
+    "id": "hsk1-062",
+    "hanzi": "买",
+    "pinyin": "mǎi",
+    "pinyinNumeric": "mai3",
+    "meaning": "comprar",
+    "emoji": "🛒",
+    "radicals": [
+      {
+        "char": "罒",
+        "meaning": "red"
+      },
+      {
+        "char": "贝",
+        "meaning": "concha (dinero)"
+      }
+    ],
+    "mnemonic": "El tradicional 買 es una red (罒) que atrapa conchas (贝), antiguo dinero: comprar.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-063",
+    "hanzi": "猫",
+    "pinyin": "māo",
+    "pinyinNumeric": "mao1",
+    "meaning": "gato",
+    "emoji": "🐈",
+    "radicals": [
+      {
+        "char": "犭",
+        "meaning": "animal"
+      },
+      {
+        "char": "苗",
+        "meaning": "brote (da el sonido «miao»)"
+      }
+    ],
+    "mnemonic": "Un animal (犭) que hace «miao» (苗): gato.",
+    "category": "animal",
+    "level": 1
+  },
+  {
+    "id": "hsk1-064",
+    "hanzi": "没关系",
+    "pinyin": "méi guān xi",
+    "pinyinNumeric": "mei2 guan1 xi5",
+    "meaning": "no pasa nada",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "氵",
+        "meaning": "agua"
+      },
+      {
+        "char": "殳",
+        "meaning": "arma"
+      },
+      {
+        "char": "关",
+        "meaning": "cerrar, relación"
+      },
+      {
+        "char": "系",
+        "meaning": "hilo, vínculo"
+      }
+    ],
+    "mnemonic": "No hay (没) ningún vínculo (关系) con el problema: no pasa nada.",
+    "category": "saludo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-065",
+    "hanzi": "没有",
+    "pinyin": "méi yǒu",
+    "pinyinNumeric": "mei2 you3",
+    "meaning": "no tener; no haber",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "氵",
+        "meaning": "agua (hundirse)"
+      },
+      {
+        "char": "𠂇",
+        "meaning": "mano"
+      },
+      {
+        "char": "月",
+        "meaning": "carne"
+      }
+    ],
+    "mnemonic": "Hundido (没) sin poder tener (有: una mano 𠂇 sujetando carne 月): no tener.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-066",
+    "hanzi": "米饭",
+    "pinyin": "mǐ fàn",
+    "pinyinNumeric": "mi3 fan4",
+    "meaning": "arroz (cocido)",
+    "emoji": "🍚",
+    "radicals": [
+      {
+        "char": "米",
+        "meaning": "granos de arroz"
+      },
+      {
+        "char": "饣",
+        "meaning": "comida"
+      },
+      {
+        "char": "反",
+        "meaning": "da el sonido"
+      }
+    ],
+    "mnemonic": "Granos de arroz (米) convertidos en comida (饭): arroz cocido.",
+    "category": "comida",
+    "level": 1
+  },
+  {
+    "id": "hsk1-067",
+    "hanzi": "名字",
+    "pinyin": "míng zi",
+    "pinyinNumeric": "ming2 zi5",
+    "meaning": "nombre",
+    "emoji": "📛",
+    "radicals": [
+      {
+        "char": "夕",
+        "meaning": "tarde, noche"
+      },
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "宀",
+        "meaning": "tejado"
+      },
+      {
+        "char": "子",
+        "meaning": "niño"
+      }
+    ],
+    "mnemonic": "De noche (夕) no se te ve, así que dices tu nombre con la boca (口). 字: un niño (子) bajo el tejado (宀) aprendiendo caracteres.",
+    "category": "estudio",
+    "level": 1
+  },
+  {
+    "id": "hsk1-068",
+    "hanzi": "明天",
+    "pinyin": "míng tiān",
+    "pinyinNumeric": "ming2 tian1",
+    "meaning": "mañana (el día siguiente)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "日",
+        "meaning": "sol"
+      },
+      {
+        "char": "月",
+        "meaning": "luna"
+      },
+      {
+        "char": "天",
+        "meaning": "cielo, día"
+      }
+    ],
+    "mnemonic": "Sol (日) y luna (月): brillo, claridad. El próximo día (天) claro: mañana.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-069",
+    "hanzi": "哪",
+    "pinyin": "nǎ",
+    "pinyinNumeric": "na3",
+    "meaning": "¿cuál?",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "那",
+        "meaning": "aquel"
+      }
+    ],
+    "mnemonic": "Una boca (口) que pregunta por «aquel» (那): ¿cuál?",
+    "category": "pregunta",
+    "level": 1
+  },
+  {
+    "id": "hsk1-070",
+    "hanzi": "那",
+    "pinyin": "nà",
+    "pinyinNumeric": "na4",
+    "meaning": "aquel; eso",
+    "emoji": "👉",
+    "radicals": [
+      {
+        "char": "冄",
+        "meaning": "barba colgante"
+      },
+      {
+        "char": "阝",
+        "meaning": "ciudad (a la derecha)"
+      }
+    ],
+    "mnemonic": "阝 a la derecha es una ciudad: aquella ciudad lejana → aquel.",
+    "category": "pronombre",
+    "level": 1,
+    "needsReview": true
+  },
+  {
+    "id": "hsk1-071",
+    "hanzi": "呢",
+    "pinyin": "ne",
+    "pinyinNumeric": "ne5",
+    "meaning": "partícula («¿y…?»)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "尼",
+        "meaning": "monja (da el sonido «ni/ne»)"
+      }
+    ],
+    "mnemonic": "Boca (口) + 尼, que da el sonido: partícula. 你呢? = ¿y tú?",
+    "category": "partícula",
+    "level": 1
+  },
+  {
+    "id": "hsk1-072",
+    "hanzi": "能",
+    "pinyin": "néng",
+    "pinyinNumeric": "neng2",
+    "meaning": "poder (capacidad)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "能",
+        "meaning": "oso"
+      }
+    ],
+    "mnemonic": "Era el dibujo de un oso (hoy 熊): fuerte, capaz → poder.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-073",
+    "hanzi": "你",
+    "pinyin": "nǐ",
+    "pinyinNumeric": "ni3",
+    "meaning": "tú",
+    "emoji": "🫵",
+    "radicals": [
+      {
+        "char": "亻",
+        "meaning": "persona"
+      },
+      {
+        "char": "尔",
+        "meaning": "tú (antiguo)"
+      }
+    ],
+    "mnemonic": "Una persona (亻) a la que llamas «tú» (尔): tú.",
+    "category": "pronombre",
+    "level": 1
+  },
+  {
+    "id": "hsk1-074",
+    "hanzi": "年",
+    "pinyin": "nián",
+    "pinyinNumeric": "nian2",
+    "meaning": "año",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "年",
+        "meaning": "persona cargando grano"
+      }
+    ],
+    "mnemonic": "Era una persona cargando grano: la cosecha, que llega una vez al año → año.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-075",
+    "hanzi": "女儿",
+    "pinyin": "nǚ ér",
+    "pinyinNumeric": "nü3 er2",
+    "meaning": "hija",
+    "emoji": "👧",
+    "radicals": [
+      {
+        "char": "女",
+        "meaning": "mujer"
+      },
+      {
+        "char": "儿",
+        "meaning": "niño"
+      }
+    ],
+    "mnemonic": "Una niña (儿) que es mujer (女): hija.",
+    "category": "familia",
+    "level": 1
+  },
+  {
+    "id": "hsk1-076",
+    "hanzi": "朋友",
+    "pinyin": "péng you",
+    "pinyinNumeric": "peng2 you5",
+    "meaning": "amigo; amiga",
+    "emoji": "🤝",
+    "radicals": [
+      {
+        "char": "月",
+        "meaning": "luna"
+      },
+      {
+        "char": "又",
+        "meaning": "mano"
+      }
+    ],
+    "mnemonic": "Dos lunas (月月) juntas y dos manos (友) que se ayudan: amigos.",
+    "category": "persona",
+    "level": 1
+  },
+  {
+    "id": "hsk1-077",
+    "hanzi": "漂亮",
+    "pinyin": "piào liang",
+    "pinyinNumeric": "piao4 liang5",
+    "meaning": "bonito; guapo",
+    "emoji": "✨",
+    "radicals": [
+      {
+        "char": "氵",
+        "meaning": "agua"
+      },
+      {
+        "char": "票",
+        "meaning": "billete"
+      },
+      {
+        "char": "亮",
+        "meaning": "brillante"
+      }
+    ],
+    "mnemonic": "Que flota (漂) y brilla (亮): bonito.",
+    "category": "adjetivo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-078",
+    "hanzi": "苹果",
+    "pinyin": "píng guǒ",
+    "pinyinNumeric": "ping2 guo3",
+    "meaning": "manzana",
+    "emoji": "🍎",
+    "radicals": [
+      {
+        "char": "艹",
+        "meaning": "hierba"
+      },
+      {
+        "char": "平",
+        "meaning": "plano"
+      },
+      {
+        "char": "田",
+        "meaning": "campo"
+      },
+      {
+        "char": "木",
+        "meaning": "árbol"
+      }
+    ],
+    "mnemonic": "Un fruto (果: el fruto 田 sobre el árbol 木) de planta (艹): manzana.",
+    "category": "comida",
+    "level": 1
+  },
+  {
+    "id": "hsk1-079",
+    "hanzi": "七",
+    "pinyin": "qī",
+    "pinyinNumeric": "qi1",
+    "meaning": "siete",
+    "emoji": "7️⃣",
+    "radicals": [
+      {
+        "char": "七",
+        "meaning": "corte"
+      }
+    ],
+    "mnemonic": "Una línea cortada por otra: siete.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-080",
+    "hanzi": "前面",
+    "pinyin": "qián mian",
+    "pinyinNumeric": "qian2 mian5",
+    "meaning": "delante",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "前",
+        "meaning": "delante"
+      },
+      {
+        "char": "面",
+        "meaning": "cara"
+      }
+    ],
+    "mnemonic": "La cara (面) de delante (前): delante.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-081",
+    "hanzi": "钱",
+    "pinyin": "qián",
+    "pinyinNumeric": "qian2",
+    "meaning": "dinero",
+    "emoji": "💰",
+    "radicals": [
+      {
+        "char": "钅",
+        "meaning": "metal"
+      },
+      {
+        "char": "戋",
+        "meaning": "pequeño, troceado"
+      }
+    ],
+    "mnemonic": "Metal (钅) cortado en trocitos (戋): monedas, dinero.",
+    "category": "objeto",
+    "level": 1
+  },
+  {
+    "id": "hsk1-082",
+    "hanzi": "请",
+    "pinyin": "qǐng",
+    "pinyinNumeric": "qing3",
+    "meaning": "por favor; invitar",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "讠",
+        "meaning": "palabra"
+      },
+      {
+        "char": "青",
+        "meaning": "limpio, fresco"
+      }
+    ],
+    "mnemonic": "Palabras (讠) limpias y frescas (青): por favor; invitar.",
+    "category": "saludo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-083",
+    "hanzi": "去",
+    "pinyin": "qù",
+    "pinyinNumeric": "qu4",
+    "meaning": "ir",
+    "emoji": "🚶",
+    "radicals": [
+      {
+        "char": "土",
+        "meaning": "tierra"
+      },
+      {
+        "char": "厶",
+        "meaning": "privado, uno mismo"
+      }
+    ],
+    "mnemonic": "Alguien (厶) se aleja de su tierra (土): ir.",
+    "category": "verbo",
+    "level": 1,
+    "needsReview": true
+  },
+  {
+    "id": "hsk1-084",
+    "hanzi": "热",
+    "pinyin": "rè",
+    "pinyinNumeric": "re4",
+    "meaning": "caliente; calor",
+    "emoji": "🥵",
+    "radicals": [
+      {
+        "char": "执",
+        "meaning": "sujetar"
+      },
+      {
+        "char": "灬",
+        "meaning": "fuego"
+      }
+    ],
+    "mnemonic": "Sujetar (执) algo sobre el fuego (灬): caliente.",
+    "category": "adjetivo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-085",
+    "hanzi": "人",
+    "pinyin": "rén",
+    "pinyinNumeric": "ren2",
+    "meaning": "persona",
+    "emoji": "🧍",
+    "radicals": [
+      {
+        "char": "人",
+        "meaning": "persona caminando"
+      }
+    ],
+    "mnemonic": "Una persona caminando, de perfil, con sus dos piernas.",
+    "category": "persona",
+    "level": 1
+  },
+  {
+    "id": "hsk1-086",
+    "hanzi": "认识",
+    "pinyin": "rèn shi",
+    "pinyinNumeric": "ren4 shi5",
+    "meaning": "conocer (a alguien)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "讠",
+        "meaning": "palabra"
+      },
+      {
+        "char": "人",
+        "meaning": "persona"
+      },
+      {
+        "char": "只",
+        "meaning": "solo"
+      }
+    ],
+    "mnemonic": "Decir (讠) quién es una persona (人) y reconocerla (识): conocer.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-087",
+    "hanzi": "三",
+    "pinyin": "sān",
+    "pinyinNumeric": "san1",
+    "meaning": "tres",
+    "emoji": "3️⃣",
+    "radicals": [
+      {
+        "char": "一",
+        "meaning": "uno"
+      }
+    ],
+    "mnemonic": "Tres líneas: tres.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-088",
+    "hanzi": "商店",
+    "pinyin": "shāng diàn",
+    "pinyinNumeric": "shang1 dian4",
+    "meaning": "tienda",
+    "emoji": "🏪",
+    "radicals": [
+      {
+        "char": "商",
+        "meaning": "comercio"
+      },
+      {
+        "char": "广",
+        "meaning": "edificio"
+      },
+      {
+        "char": "占",
+        "meaning": "ocupar"
+      }
+    ],
+    "mnemonic": "Un edificio (广) dedicado al comercio (商): tienda.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-089",
+    "hanzi": "上",
+    "pinyin": "shàng",
+    "pinyinNumeric": "shang4",
+    "meaning": "arriba; subir",
+    "emoji": "⬆️",
+    "radicals": [
+      {
+        "char": "一",
+        "meaning": "suelo"
+      }
+    ],
+    "mnemonic": "Una marca por encima del suelo (一): arriba.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-090",
+    "hanzi": "上午",
+    "pinyin": "shàng wǔ",
+    "pinyinNumeric": "shang4 wu3",
+    "meaning": "por la mañana",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "上",
+        "meaning": "arriba, antes"
+      },
+      {
+        "char": "午",
+        "meaning": "mediodía"
+      }
+    ],
+    "mnemonic": "La parte de antes (上) del mediodía (午): la mañana.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-091",
+    "hanzi": "少",
+    "pinyin": "shǎo",
+    "pinyinNumeric": "shao3",
+    "meaning": "poco",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "小",
+        "meaning": "pequeño"
+      },
+      {
+        "char": "丿",
+        "meaning": "corte"
+      }
+    ],
+    "mnemonic": "Algo pequeño (小) a lo que además le quitan un trozo (丿): poco.",
+    "category": "adjetivo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-092",
+    "hanzi": "谁",
+    "pinyin": "shéi",
+    "pinyinNumeric": "shei2",
+    "meaning": "¿quién?",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "讠",
+        "meaning": "palabra"
+      },
+      {
+        "char": "隹",
+        "meaning": "pájaro"
+      }
+    ],
+    "mnemonic": "Palabras (讠) + un pájaro (隹): ¿quién canta ahí? → ¿quién?",
+    "category": "pregunta",
+    "level": 1,
+    "needsReview": true
+  },
+  {
+    "id": "hsk1-093",
+    "hanzi": "什么",
+    "pinyin": "shén me",
+    "pinyinNumeric": "shen2 me5",
+    "meaning": "¿qué?",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "亻",
+        "meaning": "persona"
+      },
+      {
+        "char": "十",
+        "meaning": "diez"
+      },
+      {
+        "char": "么",
+        "meaning": "pequeño"
+      }
+    ],
+    "mnemonic": "Una persona (亻) ante diez (十) cosas pequeñas (么): ¿qué?",
+    "category": "pregunta",
+    "level": 1
+  },
+  {
+    "id": "hsk1-094",
+    "hanzi": "十",
+    "pinyin": "shí",
+    "pinyinNumeric": "shi2",
+    "meaning": "diez",
+    "emoji": "🔟",
+    "radicals": [
+      {
+        "char": "十",
+        "meaning": "cruz"
+      }
+    ],
+    "mnemonic": "Una cruz que reúne todas las direcciones: diez, el número completo.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-095",
+    "hanzi": "时候",
+    "pinyin": "shí hou",
+    "pinyinNumeric": "shi2 hou5",
+    "meaning": "momento; cuando",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "日",
+        "meaning": "sol"
+      },
+      {
+        "char": "寸",
+        "meaning": "medida"
+      },
+      {
+        "char": "亻",
+        "meaning": "persona"
+      }
+    ],
+    "mnemonic": "El sol (日) avanza mientras una persona espera (候): tiempo, momento.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-096",
+    "hanzi": "是",
+    "pinyin": "shì",
+    "pinyinNumeric": "shi4",
+    "meaning": "ser",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "日",
+        "meaning": "sol"
+      },
+      {
+        "char": "正",
+        "meaning": "correcto"
+      }
+    ],
+    "mnemonic": "Bajo el sol (日), lo correcto (正, deformado abajo): así es → ser.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-097",
+    "hanzi": "书",
+    "pinyin": "shū",
+    "pinyinNumeric": "shu1",
+    "meaning": "libro",
+    "emoji": "📚",
+    "radicals": [
+      {
+        "char": "聿",
+        "meaning": "pincel"
+      },
+      {
+        "char": "曰",
+        "meaning": "decir"
+      }
+    ],
+    "mnemonic": "El tradicional 書 es un pincel (聿) que escribe lo que se dice (曰): libro.",
+    "category": "estudio",
+    "level": 1
+  },
+  {
+    "id": "hsk1-098",
+    "hanzi": "水",
+    "pinyin": "shuǐ",
+    "pinyinNumeric": "shui3",
+    "meaning": "agua",
+    "emoji": "💧",
+    "radicals": [
+      {
+        "char": "水",
+        "meaning": "corriente de agua"
+      }
+    ],
+    "mnemonic": "Una corriente central con salpicaduras a los lados: agua.",
+    "category": "naturaleza",
+    "level": 1
+  },
+  {
+    "id": "hsk1-099",
+    "hanzi": "水果",
+    "pinyin": "shuǐ guǒ",
+    "pinyinNumeric": "shui3 guo3",
+    "meaning": "fruta",
+    "emoji": "🍇",
+    "radicals": [
+      {
+        "char": "水",
+        "meaning": "agua"
+      },
+      {
+        "char": "田",
+        "meaning": "campo"
+      },
+      {
+        "char": "木",
+        "meaning": "árbol"
+      }
+    ],
+    "mnemonic": "Un fruto (果: 田 sobre el árbol 木) lleno de agua (水): fruta.",
+    "category": "comida",
+    "level": 1
+  },
+  {
+    "id": "hsk1-100",
+    "hanzi": "睡觉",
+    "pinyin": "shuì jiào",
+    "pinyinNumeric": "shui4 jiao4",
+    "meaning": "dormir",
+    "emoji": "😴",
+    "radicals": [
+      {
+        "char": "目",
+        "meaning": "ojo"
+      },
+      {
+        "char": "垂",
+        "meaning": "caer"
+      },
+      {
+        "char": "见",
+        "meaning": "ver"
+      }
+    ],
+    "mnemonic": "Los ojos (目) se caen (垂) de sueño: dormir.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-101",
+    "hanzi": "说",
+    "pinyin": "shuō",
+    "pinyinNumeric": "shuo1",
+    "meaning": "hablar; decir",
+    "emoji": "🗣️",
+    "radicals": [
+      {
+        "char": "讠",
+        "meaning": "palabra"
+      },
+      {
+        "char": "兑",
+        "meaning": "intercambiar"
+      }
+    ],
+    "mnemonic": "Intercambiar (兑) palabras (讠): hablar.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-102",
+    "hanzi": "四",
+    "pinyin": "sì",
+    "pinyinNumeric": "si4",
+    "meaning": "cuatro",
+    "emoji": "4️⃣",
+    "radicals": [
+      {
+        "char": "囗",
+        "meaning": "recinto"
+      },
+      {
+        "char": "儿",
+        "meaning": "piernas"
+      }
+    ],
+    "mnemonic": "Un recinto (囗) con cuatro lados: cuatro.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-103",
+    "hanzi": "岁",
+    "pinyin": "suì",
+    "pinyinNumeric": "sui4",
+    "meaning": "años (de edad)",
+    "emoji": "🎂",
+    "radicals": [
+      {
+        "char": "山",
+        "meaning": "montaña"
+      },
+      {
+        "char": "夕",
+        "meaning": "tarde"
+      }
+    ],
+    "mnemonic": "Una montaña (山) de tardes (夕) acumuladas: los años de edad.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-104",
+    "hanzi": "他",
+    "pinyin": "tā",
+    "pinyinNumeric": "ta1",
+    "meaning": "él",
+    "emoji": "🙋‍♂️",
+    "radicals": [
+      {
+        "char": "亻",
+        "meaning": "persona"
+      },
+      {
+        "char": "也",
+        "meaning": "también"
+      }
+    ],
+    "mnemonic": "Otra persona (亻) también (也): él.",
+    "category": "pronombre",
+    "level": 1
+  },
+  {
+    "id": "hsk1-105",
+    "hanzi": "她",
+    "pinyin": "tā",
+    "pinyinNumeric": "ta1",
+    "meaning": "ella",
+    "emoji": "🙋‍♀️",
+    "radicals": [
+      {
+        "char": "女",
+        "meaning": "mujer"
+      },
+      {
+        "char": "也",
+        "meaning": "también"
+      }
+    ],
+    "mnemonic": "Una mujer (女) también (也): ella.",
+    "category": "pronombre",
+    "level": 1
+  },
+  {
+    "id": "hsk1-106",
+    "hanzi": "太",
+    "pinyin": "tài",
+    "pinyinNumeric": "tai4",
+    "meaning": "demasiado",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "大",
+        "meaning": "grande"
+      },
+      {
+        "char": "丶",
+        "meaning": "punto"
+      }
+    ],
+    "mnemonic": "Grande (大) y todavía un punto (丶) más: demasiado.",
+    "category": "adverbio",
+    "level": 1
+  },
+  {
+    "id": "hsk1-107",
+    "hanzi": "天气",
+    "pinyin": "tiān qì",
+    "pinyinNumeric": "tian1 qi4",
+    "meaning": "tiempo (clima)",
+    "emoji": "🌤️",
+    "radicals": [
+      {
+        "char": "天",
+        "meaning": "cielo"
+      },
+      {
+        "char": "气",
+        "meaning": "aire, vapor"
+      }
+    ],
+    "mnemonic": "El aire (气) del cielo (天): el tiempo que hace.",
+    "category": "naturaleza",
+    "level": 1
+  },
+  {
+    "id": "hsk1-108",
+    "hanzi": "听",
+    "pinyin": "tīng",
+    "pinyinNumeric": "ting1",
+    "meaning": "escuchar",
+    "emoji": "👂",
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "斤",
+        "meaning": "hacha"
+      }
+    ],
+    "mnemonic": "Lo que dice una boca (口) llega a ti: escuchar. El tradicional 聽 tiene una oreja (耳).",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-109",
+    "hanzi": "同学",
+    "pinyin": "tóng xué",
+    "pinyinNumeric": "tong2 xue2",
+    "meaning": "compañero de clase",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "同",
+        "meaning": "igual, juntos"
+      },
+      {
+        "char": "子",
+        "meaning": "niño"
+      },
+      {
+        "char": "冖",
+        "meaning": "techo"
+      }
+    ],
+    "mnemonic": "Los que estudian (学: un niño 子 bajo techo) juntos (同): compañeros de clase.",
+    "category": "persona",
+    "level": 1
+  },
+  {
+    "id": "hsk1-110",
+    "hanzi": "喂",
+    "pinyin": "wèi",
+    "pinyinNumeric": "wei4",
+    "meaning": "¿diga? (al teléfono)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "畏",
+        "meaning": "temer"
+      }
+    ],
+    "mnemonic": "Una boca (口) que llama al teléfono: ¿diga?, ¿hola?",
+    "category": "saludo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-111",
+    "hanzi": "我",
+    "pinyin": "wǒ",
+    "pinyinNumeric": "wo3",
+    "meaning": "yo",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "手",
+        "meaning": "mano"
+      },
+      {
+        "char": "戈",
+        "meaning": "lanza"
+      }
+    ],
+    "mnemonic": "Una mano (手) sujetando una lanza (戈), defendiéndome: yo.",
+    "category": "pronombre",
+    "level": 1
+  },
+  {
+    "id": "hsk1-112",
+    "hanzi": "我们",
+    "pinyin": "wǒ men",
+    "pinyinNumeric": "wo3 men5",
+    "meaning": "nosotros",
+    "emoji": "👥",
+    "radicals": [
+      {
+        "char": "我",
+        "meaning": "yo"
+      },
+      {
+        "char": "亻",
+        "meaning": "persona"
+      },
+      {
+        "char": "门",
+        "meaning": "puerta"
+      }
+    ],
+    "mnemonic": "Yo (我) + 们, que marca plural de personas (亻): nosotros.",
+    "category": "pronombre",
+    "level": 1
+  },
+  {
+    "id": "hsk1-113",
+    "hanzi": "五",
+    "pinyin": "wǔ",
+    "pinyinNumeric": "wu3",
+    "meaning": "cinco",
+    "emoji": "5️⃣",
+    "radicals": [
+      {
+        "char": "二",
+        "meaning": "cielo y tierra"
+      },
+      {
+        "char": "乂",
+        "meaning": "cruce"
+      }
+    ],
+    "mnemonic": "Un cruce (乂) entre el cielo y la tierra (二): cinco.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-114",
+    "hanzi": "喜欢",
+    "pinyin": "xǐ huan",
+    "pinyinNumeric": "xi3 huan5",
+    "meaning": "gustar",
+    "emoji": "😍",
+    "radicals": [
+      {
+        "char": "士",
+        "meaning": "erudito"
+      },
+      {
+        "char": "口",
+        "meaning": "boca"
+      },
+      {
+        "char": "又",
+        "meaning": "mano"
+      },
+      {
+        "char": "欠",
+        "meaning": "bostezo, boca abierta"
+      }
+    ],
+    "mnemonic": "Alegría (喜, un tambor y una boca que ríe) y boca abierta (欠) de placer: gustar.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-115",
+    "hanzi": "下",
+    "pinyin": "xià",
+    "pinyinNumeric": "xia4",
+    "meaning": "abajo; bajar",
+    "emoji": "⬇️",
+    "radicals": [
+      {
+        "char": "一",
+        "meaning": "techo"
+      }
+    ],
+    "mnemonic": "Una marca por debajo de la línea (一): abajo.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-116",
+    "hanzi": "下午",
+    "pinyin": "xià wǔ",
+    "pinyinNumeric": "xia4 wu3",
+    "meaning": "por la tarde",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "下",
+        "meaning": "abajo, después"
+      },
+      {
+        "char": "午",
+        "meaning": "mediodía"
+      }
+    ],
+    "mnemonic": "La parte de después (下) del mediodía (午): la tarde.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-117",
+    "hanzi": "下雨",
+    "pinyin": "xià yǔ",
+    "pinyinNumeric": "xia4 yu3",
+    "meaning": "llover",
+    "emoji": "🌧️",
+    "radicals": [
+      {
+        "char": "下",
+        "meaning": "bajar"
+      },
+      {
+        "char": "雨",
+        "meaning": "lluvia"
+      }
+    ],
+    "mnemonic": "Que baje (下) la lluvia (雨: gotas cayendo bajo el cielo): llover.",
+    "category": "naturaleza",
+    "level": 1
+  },
+  {
+    "id": "hsk1-118",
+    "hanzi": "先生",
+    "pinyin": "xiān sheng",
+    "pinyinNumeric": "xian1 sheng5",
+    "meaning": "señor",
+    "emoji": "🤵",
+    "radicals": [
+      {
+        "char": "先",
+        "meaning": "antes"
+      },
+      {
+        "char": "生",
+        "meaning": "nacer"
+      }
+    ],
+    "mnemonic": "El que nació (生) antes (先): señor.",
+    "category": "persona",
+    "level": 1
+  },
+  {
+    "id": "hsk1-119",
+    "hanzi": "现在",
+    "pinyin": "xiàn zài",
+    "pinyinNumeric": "xian4 zai4",
+    "meaning": "ahora",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "王",
+        "meaning": "jade"
+      },
+      {
+        "char": "见",
+        "meaning": "ver"
+      },
+      {
+        "char": "土",
+        "meaning": "tierra"
+      }
+    ],
+    "mnemonic": "Lo que se ve (见) y está (在) aquí mismo: ahora.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-120",
+    "hanzi": "想",
+    "pinyin": "xiǎng",
+    "pinyinNumeric": "xiang3",
+    "meaning": "pensar; querer",
+    "emoji": "💭",
+    "radicals": [
+      {
+        "char": "相",
+        "meaning": "mutuo, mirar"
+      },
+      {
+        "char": "心",
+        "meaning": "corazón"
+      }
+    ],
+    "mnemonic": "Mirar (相) con el corazón (心): pensar, echar de menos, querer.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-121",
+    "hanzi": "小",
+    "pinyin": "xiǎo",
+    "pinyinNumeric": "xiao3",
+    "meaning": "pequeño",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "小",
+        "meaning": "tres granitos"
+      }
+    ],
+    "mnemonic": "Un trazo central con dos granitos a los lados: pequeño.",
+    "category": "adjetivo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-122",
+    "hanzi": "小姐",
+    "pinyin": "xiǎo jie",
+    "pinyinNumeric": "xiao3 jie5",
+    "meaning": "señorita",
+    "emoji": "💁‍♀️",
+    "radicals": [
+      {
+        "char": "小",
+        "meaning": "pequeño"
+      },
+      {
+        "char": "女",
+        "meaning": "mujer"
+      },
+      {
+        "char": "且",
+        "meaning": "además"
+      }
+    ],
+    "mnemonic": "La pequeña (小) mujer (女) de la casa (姐 = hermana mayor): señorita.",
+    "category": "persona",
+    "level": 1
+  },
+  {
+    "id": "hsk1-123",
+    "hanzi": "些",
+    "pinyin": "xiē",
+    "pinyinNumeric": "xie1",
+    "meaning": "algunos",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "此",
+        "meaning": "esto"
+      },
+      {
+        "char": "二",
+        "meaning": "dos"
+      }
+    ],
+    "mnemonic": "Un par (二) de estos (此): algunos.",
+    "category": "medida",
+    "level": 1,
+    "needsReview": true
+  },
+  {
+    "id": "hsk1-124",
+    "hanzi": "写",
+    "pinyin": "xiě",
+    "pinyinNumeric": "xie3",
+    "meaning": "escribir",
+    "emoji": "✍️",
+    "radicals": [
+      {
+        "char": "冖",
+        "meaning": "cubierta"
+      },
+      {
+        "char": "与",
+        "meaning": "dar"
+      }
+    ],
+    "mnemonic": "Bajo una cubierta (冖), dar forma (与) a los trazos: escribir.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-125",
+    "hanzi": "谢谢",
+    "pinyin": "xiè xie",
+    "pinyinNumeric": "xie4 xie5",
+    "meaning": "gracias",
+    "emoji": "🙏",
+    "radicals": [
+      {
+        "char": "讠",
+        "meaning": "palabra"
+      },
+      {
+        "char": "射",
+        "meaning": "disparar"
+      }
+    ],
+    "mnemonic": "Palabras (讠) que se «disparan» (射) hacia alguien con gratitud: gracias.",
+    "category": "saludo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-126",
+    "hanzi": "星期",
+    "pinyin": "xīng qī",
+    "pinyinNumeric": "xing1 qi1",
+    "meaning": "semana",
+    "emoji": "🗓️",
+    "radicals": [
+      {
+        "char": "日",
+        "meaning": "sol"
+      },
+      {
+        "char": "生",
+        "meaning": "nacer"
+      },
+      {
+        "char": "其",
+        "meaning": "eso"
+      },
+      {
+        "char": "月",
+        "meaning": "luna"
+      }
+    ],
+    "mnemonic": "El periodo (期) de los astros (星): semana.",
+    "category": "tiempo",
+    "level": 1,
+    "needsReview": true
+  },
+  {
+    "id": "hsk1-127",
+    "hanzi": "学生",
+    "pinyin": "xué sheng",
+    "pinyinNumeric": "xue2 sheng5",
+    "meaning": "estudiante",
+    "emoji": "🧑‍🎓",
+    "radicals": [
+      {
+        "char": "子",
+        "meaning": "niño"
+      },
+      {
+        "char": "冖",
+        "meaning": "techo"
+      },
+      {
+        "char": "生",
+        "meaning": "nacer, persona"
+      }
+    ],
+    "mnemonic": "Una persona (生) que estudia (学): estudiante.",
+    "category": "persona",
+    "level": 1
+  },
+  {
+    "id": "hsk1-128",
+    "hanzi": "学习",
+    "pinyin": "xué xí",
+    "pinyinNumeric": "xue2 xi2",
+    "meaning": "estudiar; aprender",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "子",
+        "meaning": "niño"
+      },
+      {
+        "char": "冖",
+        "meaning": "techo"
+      },
+      {
+        "char": "习",
+        "meaning": "practicar (alas)"
+      }
+    ],
+    "mnemonic": "Estudiar (学) y practicar (习, como un pájaro que practica con sus alas para volar): aprender.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-129",
+    "hanzi": "学校",
+    "pinyin": "xué xiào",
+    "pinyinNumeric": "xue2 xiao4",
+    "meaning": "escuela",
+    "emoji": "🏫",
+    "radicals": [
+      {
+        "char": "子",
+        "meaning": "niño"
+      },
+      {
+        "char": "冖",
+        "meaning": "techo"
+      },
+      {
+        "char": "木",
+        "meaning": "madera"
+      },
+      {
+        "char": "交",
+        "meaning": "cruzar"
+      }
+    ],
+    "mnemonic": "Edificio de madera (校: 木) donde se estudia (学): escuela.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-130",
+    "hanzi": "一",
+    "pinyin": "yī",
+    "pinyinNumeric": "yi1",
+    "meaning": "uno",
+    "emoji": "1️⃣",
+    "radicals": [
+      {
+        "char": "一",
+        "meaning": "una línea"
+      }
+    ],
+    "mnemonic": "Una sola línea: uno.",
+    "category": "número",
+    "level": 1
+  },
+  {
+    "id": "hsk1-131",
+    "hanzi": "衣服",
+    "pinyin": "yī fu",
+    "pinyinNumeric": "yi1 fu5",
+    "meaning": "ropa",
+    "emoji": "👕",
+    "radicals": [
+      {
+        "char": "衣",
+        "meaning": "túnica"
+      },
+      {
+        "char": "月",
+        "meaning": "cuerpo"
+      }
+    ],
+    "mnemonic": "衣 es el dibujo de una túnica: ropa.",
+    "category": "objeto",
+    "level": 1
+  },
+  {
+    "id": "hsk1-132",
+    "hanzi": "医生",
+    "pinyin": "yī shēng",
+    "pinyinNumeric": "yi1 sheng1",
+    "meaning": "médico; médica",
+    "emoji": "🧑‍⚕️",
+    "radicals": [
+      {
+        "char": "匚",
+        "meaning": "caja"
+      },
+      {
+        "char": "矢",
+        "meaning": "flecha"
+      },
+      {
+        "char": "生",
+        "meaning": "nacer, persona"
+      }
+    ],
+    "mnemonic": "Una caja (匚) donde se guardan flechas (矢) sacadas de heridas: medicina (医). La persona (生) que cura: médico.",
+    "category": "persona",
+    "level": 1
+  },
+  {
+    "id": "hsk1-133",
+    "hanzi": "医院",
+    "pinyin": "yī yuàn",
+    "pinyinNumeric": "yi1 yuan4",
+    "meaning": "hospital",
+    "emoji": "🏥",
+    "radicals": [
+      {
+        "char": "匚",
+        "meaning": "caja"
+      },
+      {
+        "char": "矢",
+        "meaning": "flecha"
+      },
+      {
+        "char": "阝",
+        "meaning": "colina, lugar"
+      },
+      {
+        "char": "完",
+        "meaning": "completo"
+      }
+    ],
+    "mnemonic": "El patio (院) donde se cura (医): hospital.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-134",
+    "hanzi": "椅子",
+    "pinyin": "yǐ zi",
+    "pinyinNumeric": "yi3 zi5",
+    "meaning": "silla",
+    "emoji": "🪑",
+    "radicals": [
+      {
+        "char": "木",
+        "meaning": "madera"
+      },
+      {
+        "char": "奇",
+        "meaning": "extraño (da el sonido)"
+      }
+    ],
+    "mnemonic": "Mueble de madera (木) con 奇 aportando el sonido: silla.",
+    "category": "objeto",
+    "level": 1
+  },
+  {
+    "id": "hsk1-135",
+    "hanzi": "有",
+    "pinyin": "yǒu",
+    "pinyinNumeric": "you3",
+    "meaning": "tener; haber",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "𠂇",
+        "meaning": "mano"
+      },
+      {
+        "char": "月",
+        "meaning": "carne"
+      }
+    ],
+    "mnemonic": "Una mano (𠂇) sujetando un trozo de carne (月): tener.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-136",
+    "hanzi": "月",
+    "pinyin": "yuè",
+    "pinyinNumeric": "yue4",
+    "meaning": "luna; mes",
+    "emoji": "🌙",
+    "radicals": [
+      {
+        "char": "月",
+        "meaning": "luna creciente"
+      }
+    ],
+    "mnemonic": "El dibujo de una luna creciente: luna, y el mes que tarda en dar la vuelta.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-137",
+    "hanzi": "在",
+    "pinyin": "zài",
+    "pinyinNumeric": "zai4",
+    "meaning": "estar (en)",
+    "emoji": "📍",
+    "radicals": [
+      {
+        "char": "才",
+        "meaning": "brote"
+      },
+      {
+        "char": "土",
+        "meaning": "tierra"
+      }
+    ],
+    "mnemonic": "Un brote (才) bien plantado en la tierra (土): estar en un lugar.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-138",
+    "hanzi": "再见",
+    "pinyin": "zài jiàn",
+    "pinyinNumeric": "zai4 jian4",
+    "meaning": "adiós",
+    "emoji": "👋",
+    "radicals": [
+      {
+        "char": "再",
+        "meaning": "otra vez"
+      },
+      {
+        "char": "见",
+        "meaning": "ver"
+      }
+    ],
+    "mnemonic": "Volver (再) a vernos (见): adiós, hasta la vista.",
+    "category": "saludo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-139",
+    "hanzi": "怎么",
+    "pinyin": "zěn me",
+    "pinyinNumeric": "zen3 me5",
+    "meaning": "¿cómo?",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "乍",
+        "meaning": "de repente"
+      },
+      {
+        "char": "心",
+        "meaning": "corazón"
+      },
+      {
+        "char": "么",
+        "meaning": "pequeño"
+      }
+    ],
+    "mnemonic": "El corazón (心) que se pregunta de repente (乍): ¿cómo?",
+    "category": "pregunta",
+    "level": 1
+  },
+  {
+    "id": "hsk1-140",
+    "hanzi": "怎么样",
+    "pinyin": "zěn me yàng",
+    "pinyinNumeric": "zen3 me5 yang4",
+    "meaning": "¿qué tal?",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "心",
+        "meaning": "corazón"
+      },
+      {
+        "char": "木",
+        "meaning": "madera"
+      },
+      {
+        "char": "羊",
+        "meaning": "oveja"
+      }
+    ],
+    "mnemonic": "¿Cómo (怎么) es la forma (样) de las cosas?: ¿qué tal?",
+    "category": "pregunta",
+    "level": 1
+  },
+  {
+    "id": "hsk1-141",
+    "hanzi": "这",
+    "pinyin": "zhè",
+    "pinyinNumeric": "zhe4",
+    "meaning": "este; esto",
+    "emoji": "👇",
+    "radicals": [
+      {
+        "char": "辶",
+        "meaning": "caminar"
+      },
+      {
+        "char": "文",
+        "meaning": "escritura"
+      }
+    ],
+    "mnemonic": "Caminar (辶) hasta lo que está aquí: esto.",
+    "category": "pronombre",
+    "level": 1
+  },
+  {
+    "id": "hsk1-142",
+    "hanzi": "中国",
+    "pinyin": "Zhōng guó",
+    "pinyinNumeric": "zhong1 guo2",
+    "meaning": "China",
+    "emoji": "🇨🇳",
+    "radicals": [
+      {
+        "char": "中",
+        "meaning": "centro"
+      },
+      {
+        "char": "囗",
+        "meaning": "frontera"
+      },
+      {
+        "char": "玉",
+        "meaning": "jade"
+      }
+    ],
+    "mnemonic": "El país (国: jade 玉 dentro de fronteras 囗) del centro (中): China.",
+    "category": "lugar",
+    "level": 1
+  },
+  {
+    "id": "hsk1-143",
+    "hanzi": "中午",
+    "pinyin": "zhōng wǔ",
+    "pinyinNumeric": "zhong1 wu3",
+    "meaning": "mediodía",
+    "emoji": "🕛",
+    "radicals": [
+      {
+        "char": "中",
+        "meaning": "centro"
+      },
+      {
+        "char": "午",
+        "meaning": "mediodía"
+      }
+    ],
+    "mnemonic": "El centro (中) del día (午): mediodía.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-144",
+    "hanzi": "住",
+    "pinyin": "zhù",
+    "pinyinNumeric": "zhu4",
+    "meaning": "vivir (residir); alojarse",
+    "emoji": "🏡",
+    "radicals": [
+      {
+        "char": "亻",
+        "meaning": "persona"
+      },
+      {
+        "char": "主",
+        "meaning": "dueño"
+      }
+    ],
+    "mnemonic": "Una persona (亻) que es dueña (主) de su sitio: vivir en un lugar.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-145",
+    "hanzi": "桌子",
+    "pinyin": "zhuō zi",
+    "pinyinNumeric": "zhuo1 zi5",
+    "meaning": "mesa",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "卓",
+        "meaning": "alto, destacado"
+      },
+      {
+        "char": "木",
+        "meaning": "madera"
+      }
+    ],
+    "mnemonic": "Un mueble de madera (木) alto (卓): mesa.",
+    "category": "objeto",
+    "level": 1
+  },
+  {
+    "id": "hsk1-146",
+    "hanzi": "字",
+    "pinyin": "zì",
+    "pinyinNumeric": "zi4",
+    "meaning": "carácter (escrito)",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "宀",
+        "meaning": "tejado"
+      },
+      {
+        "char": "子",
+        "meaning": "niño"
+      }
+    ],
+    "mnemonic": "Un niño (子) bajo el tejado (宀) aprendiendo a escribir: carácter.",
+    "category": "estudio",
+    "level": 1
+  },
+  {
+    "id": "hsk1-147",
+    "hanzi": "昨天",
+    "pinyin": "zuó tiān",
+    "pinyinNumeric": "zuo2 tian1",
+    "meaning": "ayer",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "日",
+        "meaning": "sol"
+      },
+      {
+        "char": "乍",
+        "meaning": "de repente"
+      }
+    ],
+    "mnemonic": "El sol (日) que se fue de repente (乍): el día (天) anterior, ayer.",
+    "category": "tiempo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-148",
+    "hanzi": "做",
+    "pinyin": "zuò",
+    "pinyinNumeric": "zuo4",
+    "meaning": "hacer",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "亻",
+        "meaning": "persona"
+      },
+      {
+        "char": "古",
+        "meaning": "antiguo"
+      },
+      {
+        "char": "攵",
+        "meaning": "golpear, acción"
+      }
+    ],
+    "mnemonic": "Una persona (亻) en acción (故): hacer.",
+    "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-149",
+    "hanzi": "坐",
+    "pinyin": "zuò",
+    "pinyinNumeric": "zuo4",
+    "meaning": "sentarse",
+    "emoji": null,
+    "radicals": [
+      {
+        "char": "人",
+        "meaning": "persona"
+      },
+      {
+        "char": "土",
+        "meaning": "tierra"
+      }
+    ],
+    "mnemonic": "Dos personas (人人) sentadas en la tierra (土): sentarse.",
+    "category": "verbo",
+    "level": 1
+  }
+]
