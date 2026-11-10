@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import HanziWriter from 'hanzi-writer'
+import { loadStrokeData } from '../lib/strokes'
 
 interface Props {
   char: string
@@ -29,6 +30,9 @@ export default function StrokeAnimation({ char, size = 220 }: Props) {
       radicalColor: color('--accent'),
       strokeAnimationSpeed: 1,
       delayBetweenStrokes: 250,
+      charDataLoader: (c, onLoad, onError) => {
+        loadStrokeData(c).then(onLoad, onError)
+      },
       onLoadCharDataError: () => setError(true),
     })
     writer.current.animateCharacter()

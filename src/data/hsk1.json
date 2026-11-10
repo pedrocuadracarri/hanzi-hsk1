@@ -935,8 +935,7 @@
     ],
     "mnemonic": "Avanzar (彳) con terquedad (艮), con mucha insistencia: muy.",
     "category": "adverbio",
-    "level": 1,
-    "needsReview": true
+    "level": 1
   },
   {
     "id": "hsk1-041",
@@ -1591,8 +1590,7 @@
     ],
     "mnemonic": "阝 a la derecha es una ciudad: aquella ciudad lejana → aquel.",
     "category": "pronombre",
-    "level": 1,
-    "needsReview": true
+    "level": 1
   },
   {
     "id": "hsk1-071",
@@ -1865,8 +1863,7 @@
     ],
     "mnemonic": "Alguien (厶) se aleja de su tierra (土): ir.",
     "category": "verbo",
-    "level": 1,
-    "needsReview": true
+    "level": 1
   },
   {
     "id": "hsk1-084",
@@ -2051,8 +2048,7 @@
     ],
     "mnemonic": "Palabras (讠) + un pájaro (隹): ¿quién canta ahí? → ¿quién?",
     "category": "pregunta",
-    "level": 1,
-    "needsReview": true
+    "level": 1
   },
   {
     "id": "hsk1-093",
@@ -2727,8 +2723,7 @@
     ],
     "mnemonic": "Un par (二) de estos (此): algunos.",
     "category": "medida",
-    "level": 1,
-    "needsReview": true
+    "level": 1
   },
   {
     "id": "hsk1-124",
@@ -2799,8 +2794,7 @@
     ],
     "mnemonic": "El periodo (期) de los astros (星): semana.",
     "category": "tiempo",
-    "level": 1,
-    "needsReview": true
+    "level": 1
   },
   {
     "id": "hsk1-127",
@@ -3319,6 +3313,27 @@
     ],
     "mnemonic": "Dos personas (人人) sentadas en la tierra (土): sentarse.",
     "category": "verbo",
+    "level": 1
+  },
+  {
+    "id": "hsk1-150",
+    "hanzi": "零",
+    "pinyin": "líng",
+    "pinyinNumeric": "ling2",
+    "meaning": "cero",
+    "emoji": "0️⃣",
+    "radicals": [
+      {
+        "char": "雨",
+        "meaning": "lluvia"
+      },
+      {
+        "char": "令",
+        "meaning": "orden (da el sonido «ling»)"
+      }
+    ],
+    "mnemonic": "Originalmente eran gotitas de lluvia (雨) sueltas, casi nada; 令 aporta el sonido «ling»: cero.",
+    "category": "número",
     "level": 1
   }
 ]

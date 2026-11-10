@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { getSettings } from './settings'
 
 export type VoiceStatus = 'checking' | 'ok' | 'missing' | 'unsupported'
 
@@ -32,7 +33,7 @@ export function speak(text: string) {
   speechSynthesis.cancel()
   const u = new SpeechSynthesisUtterance(text)
   u.lang = 'zh-CN'
-  u.rate = 0.8
+  u.rate = getSettings().rate
   const voice = findZhVoice()
   if (voice) u.voice = voice
   speechSynthesis.speak(u)

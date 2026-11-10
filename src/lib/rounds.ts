@@ -15,6 +15,25 @@ export function eligibleWords(words: Word[], mode: MatchMode): Word[] {
   return mode === 'emoji' ? words.filter((w) => w.emoji) : words
 }
 
+/** Opciones incorrectas para un test: otras palabras cuya respuesta sea distinta
+ *  (y distinta entre sí), preferiblemente de la misma categoría para que cueste más. */
+export function pickDistractors(word: Word, pool: Word[], n: number, key: (w: Word) => string, rng: Rng = Math.random): Word[] {
+  const used = new Set([key(word)])
+  const candidates = [
+    ...shuffle(pool.filter((w) => w.category === word.category), rng),
+    ...shuffle(pool.filter((w) => w.category !== word.category), rng),
+  ]
+  const out: Word[] = []
+  for (const w of candidates) {
+    if (out.length >= n) break
+    const k = key(w)
+    if (w.id === word.id || used.has(k)) continue
+    used.add(k)
+    out.push(w)
+  }
+  return out
+}
+
 interface RoundOptions {
   words: Word[]
   progress: Record<string, CardProgress>

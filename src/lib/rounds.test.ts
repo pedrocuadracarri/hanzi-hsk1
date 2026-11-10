@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { CardProgress, Word } from '../types'
-import { answerFor, buildRound } from './rounds'
+import { answerFor, buildRound, pickDistractors } from './rounds'
 import { seeded } from './random'
 import { newCard } from './srs'
 import { LEVELS } from '../data'
@@ -22,6 +22,18 @@ const w = (id: string, extra: Partial<Word> = {}): Word => ({
 })
 
 const words = Array.from({ length: 12 }, (_, i) => w(String(i)))
+
+describe('pickDistractors', () => {
+  it('devuelve n opciones distintas de la respuesta y entre sí', () => {
+    const target = LEVELS[1].find((x) => x.hanzi === '他')!
+    for (let seed = 0; seed < 20; seed++) {
+      const d = pickDistractors(target, LEVELS[1], 3, (x) => x.pinyin, seeded(seed))
+      expect(d).toHaveLength(3)
+      const keys = [target, ...d].map((x) => x.pinyin)
+      expect(new Set(keys).size).toBe(4) // nunca sale 她 (también «tā»)
+    }
+  })
+})
 
 describe('buildRound', () => {
   it('sin progreso devuelve 5 palabras nuevas en orden del temario', () => {

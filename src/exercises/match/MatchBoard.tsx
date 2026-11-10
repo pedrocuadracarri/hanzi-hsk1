@@ -1,21 +1,32 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { MatchMode, Word } from '../../types'
-import { answerFor } from '../../lib/rounds'
 import { shuffle } from '../../lib/random'
 import { speak } from '../../lib/speech'
+import { getSettings } from '../../lib/settings'
 import SpeakerButton from '../../components/SpeakerButton'
 
+export interface MatchPair {
+  id: string
+  /** Lado izquierdo (hanzi o componente) */
+  left: string
+  /** Texto pequeño bajo el lado izquierdo (p. ej. pinyin de ayuda) */
+  leftSub?: string
+  /** Lado derecho (emoji, pinyin, significado…) */
+  right: string
+  /** Texto a pronunciar; si falta, no hay audio */
+  speak?: string
+}
+
 interface Props {
-  words: Word[]
-  mode: MatchMode
-  /** Se llama una vez por palabra al emparejarla: correct = acertada a la primera */
-  onAnswer: (word: Word, correct: boolean) => void
+  pairs: MatchPair[]
+  rightClass?: string
+  /** Se llama una vez por pareja: firstTry = acertada sin fallos */
+  onMatch?: (id: string, firstTry: boolean) => void
   onFinish: (mistakes: Set<string>) => void
 }
 
-export default function MatchBoard({ words, mode, onAnswer, onFinish }: Props) {
-  const left = useMemo(() => shuffle(words), [words])
-  const right = useMemo(() => shuffle(words), [words])
+export default function MatchBoard({ pairs, rightClass = '', onMatch, onFinish }: Props) {
+  const left = useMemo(() => shuffle(pairs), [pairs])
+  const right = useMemo(() => shuffle(pairs), [pairs])
   const [selLeft, setSelLeft] = useState<string | null>(null)
   const [selRight, setSelRight] = useState<string | null>(null)
   const [matched, setMatched] = useState<Set<string>>(new Set())
@@ -25,22 +36,24 @@ export default function MatchBoard({ words, mode, onAnswer, onFinish }: Props) {
   useEffect(() => {
     if (!selLeft || !selRight) return
     if (selLeft === selRight) {
-      const word = words.find((w) => w.id === selLeft)!
-      speak(word.hanzi)
-      onAnswer(word, !mistakes.current.has(word.id))
-      const next = new Set(matched).add(word.id)
+      const pair = pairs.find((p) => p.id === selLeft)!
+      if (pair.speak && getSettings().autoplay) speak(pair.speak)
+      if (navigator.vibrate) navigator.vibrate(15)
+      onMatch?.(pair.id, !mistakes.current.has(pair.id))
+      const next = new Set(matched).add(pair.id)
       setMatched(next)
       setSelLeft(null)
       setSelRight(null)
-      if (next.size === words.length) setTimeout(() => onFinish(mistakes.current), 500)
+      if (next.size === pairs.length) setTimeout(() => onFinish(mistakes.current), 600)
     } else {
       mistakes.current.add(selLeft).add(selRight)
+      if (navigator.vibrate) navigator.vibrate([40, 40, 40])
       setWrong({ l: selLeft, r: selRight })
       const t = setTimeout(() => {
         setWrong(null)
         setSelLeft(null)
         setSelRight(null)
-      }, 600)
+      }, 650)
       return () => clearTimeout(t)
     }
   }, [selLeft, selRight])
@@ -60,31 +73,34 @@ export default function MatchBoard({ words, mode, onAnswer, onFinish }: Props) {
   return (
     <div className="board">
       <div className="col">
-        {left.map((w) => (
+        {left.map((p) => (
           <div
-            key={w.id}
+            key={p.id}
             role="button"
             tabIndex={0}
-            className={`tile tile-hanzi ${state(w.id, 'l')}`}
-            onClick={() => pick(w.id, 'l')}
-            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && pick(w.id, 'l')}
-            aria-disabled={matched.has(w.id)}
+            className={`tile tile-hanzi ${state(p.id, 'l')}`}
+            onClick={() => pick(p.id, 'l')}
+            onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && pick(p.id, 'l')}
+            aria-disabled={matched.has(p.id)}
           >
-            <span className="hanzi">{w.hanzi}</span>
-            <SpeakerButton text={w.hanzi} />
+            <span className="tile-stack">
+              <span className="hanzi">{p.left}</span>
+              {p.leftSub && <small className="tile-sub">{p.leftSub}</small>}
+            </span>
+            {p.speak && <SpeakerButton text={p.speak} />}
           </div>
         ))}
       </div>
       <div className="col">
-        {right.map((w) => (
+        {right.map((p) => (
           <button
-            key={w.id}
+            key={p.id}
             type="button"
-            className={`tile tile-${mode} ${state(w.id, 'r')}`}
-            onClick={() => pick(w.id, 'r')}
-            disabled={matched.has(w.id)}
+            className={`tile ${rightClass} ${state(p.id, 'r')}`}
+            onClick={() => pick(p.id, 'r')}
+            disabled={matched.has(p.id)}
           >
-            {answerFor(w, mode)}
+            {p.right}
           </button>
         ))}
       </div>

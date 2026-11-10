@@ -1,24 +1,18 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import type { Box, CardProgress, Streak } from '../types'
-import { ALL_WORDS, getWord } from '../data'
-import { getAllProgress, getStreak, resetProgress } from '../lib/storage'
+import type { Box } from '../types'
+import { ALL_WORDS, CATEGORY_LABELS, CATEGORY_ORDER, getWord } from '../data'
 import { isDue, isLearned } from '../lib/srs'
-import { EMPTY_STREAK, visibleStreak } from '../lib/streak'
-import { toDay } from '../lib/dates'
+import { visibleStreak } from '../lib/streak'
+import { addDays, toDay } from '../lib/dates'
+import { useProgress } from '../lib/useProgress'
+import { useSettings } from '../lib/settings'
 
 const BOXES: Box[] = [1, 2, 3, 4, 5]
+const WEEKDAYS = ['D', 'L', 'M', 'X', 'J', 'V', 'S']
 
 export default function Progress() {
-  const [progress, setProgress] = useState<Record<string, CardProgress>>({})
-  const [streak, setStreak] = useState<Streak>(EMPTY_STREAK)
-
-  const load = () => {
-    getAllProgress().then(setProgress)
-    getStreak().then(setStreak)
-  }
-  useEffect(load, [])
-
+  const { progress, streak, daily } = useProgress()
+  const { dailyGoal } = useSettings()
   const today = toDay()
   const cards = Object.values(progress)
   const learned = cards.filter(isLearned).length
@@ -26,12 +20,10 @@ export default function Progress() {
   const total = ALL_WORDS.length
   const perBox = BOXES.map((b) => cards.filter((c) => c.box === b).length)
   const maxBox = Math.max(1, ...perBox)
-
-  const reset = async () => {
-    if (!confirm('¿Borrar todo el progreso? No se puede deshacer.')) return
-    await resetProgress()
-    load()
-  }
+  const last14 = Array.from({ length: 14 }, (_, i) => addDays(today, i - 13))
+  const totalAnswers = cards.reduce((a, c) => a + c.correct + c.wrong, 0)
+  const accuracy = totalAnswers ? Math.round((cards.reduce((a, c) => a + c.correct, 0) / totalAnswers) * 100) : 0
+  const hardest = [...cards].filter((c) => c.wrong > 0).sort((a, b) => b.wrong - a.wrong).slice(0, 8)
 
   return (
     <main className="screen">
@@ -40,26 +32,43 @@ export default function Progress() {
       <div className="stats">
         <div className="stat card">
           <strong>🔥 {visibleStreak(streak, today)}</strong>
-          <span>racha (mejor: {streak.best})</span>
+          <span>racha (mejor {streak.best})</span>
         </div>
         <div className="stat card">
           <strong>{due.length}</strong>
           <span>pendientes hoy</span>
         </div>
         <div className="stat card">
-          <strong>{cards.length}</strong>
-          <span>vistas</span>
+          <strong>{accuracy}%</strong>
+          <span>aciertos</span>
         </div>
       </div>
 
       <section className="card">
         <h2 className="section-title">
-          Aprendidas: {learned} / {total}
+          Aprendidas: {learned} / {total} <small className="muted">· vistas: {cards.length}</small>
         </h2>
         <div className="bar" aria-hidden>
           <div className="bar-fill" style={{ width: `${(learned / total) * 100}%` }} />
         </div>
-        <p className="muted small-left">Una palabra cuenta como aprendida al llegar a la caja 3.</p>
+        <p className="muted small-left">Una palabra cuenta como aprendida al llegar a la caja 3 (la has acertado varios días).</p>
+      </section>
+
+      <section className="card">
+        <h2 className="section-title">Últimos 14 días</h2>
+        <div className="calendar">
+          {last14.map((d) => {
+            const n = daily[d] ?? 0
+            const lvl = n === 0 ? 0 : n >= dailyGoal ? 3 : n >= dailyGoal / 2 ? 2 : 1
+            const wd = new Date(d + 'T12:00:00').getDay()
+            return (
+              <div key={d} className="cal-day" title={`${d}: ${n} respuestas`}>
+                <span className={`cal-cell lvl${lvl} ${d === today ? 'today' : ''}`}>{n || ''}</span>
+                <small className="muted">{WEEKDAYS[wd]}</small>
+              </div>
+            )
+          })}
+        </div>
       </section>
 
       <section className="card">
@@ -73,33 +82,57 @@ export default function Progress() {
             </div>
           ))}
         </div>
-        <p className="muted small-left">Caja 1: cada día · 2: 1 día · 3: 3 días · 4: 1 semana · 5: 2 semanas</p>
+        <p className="muted small-left">Caja 1: cada día · 2: al día siguiente · 3: a los 3 días · 4: a la semana · 5: a las 2 semanas. Si fallas, vuelve a la 1.</p>
       </section>
 
-      {due.length > 0 && (
+      <section className="card">
+        <h2 className="section-title">Por temas</h2>
+        <ul className="cat-list">
+          {CATEGORY_ORDER.map((c) => {
+            const ws = ALL_WORDS.filter((w) => w.category === c)
+            const l = ws.filter((w) => progress[w.id] && isLearned(progress[w.id])).length
+            return (
+              <li key={c}>
+                <span>{CATEGORY_LABELS[c]}</span>
+                <span className="muted">
+                  {l}/{ws.length}
+                </span>
+                <div className="bar bar-thin">
+                  <div className="bar-fill" style={{ width: `${(l / ws.length) * 100}%` }} />
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+      </section>
+
+      {hardest.length > 0 && (
         <section className="card">
-          <h2 className="section-title">Pendientes hoy</h2>
+          <h2 className="section-title">Las que más te cuestan</h2>
           <div className="chips">
-            {due.map((c) => {
+            {hardest.map((c) => {
               const w = getWord(c.wordId)
               return (
                 w && (
-                  <Link key={c.wordId} to={`/palabra/${w.id}`} className="chip hanzi">
-                    {w.hanzi}
+                  <Link key={c.wordId} to={`/palabra/${w.id}`} className="chip">
+                    <span className="hanzi">{w.hanzi}</span> <small>{w.meaning}</small>
                   </Link>
                 )
               )
             })}
           </div>
-          <Link to="/emparejar" className="btn btn-primary big-cta" style={{ marginTop: 12 }}>
-            Repasar ahora
-          </Link>
         </section>
       )}
 
-      <button className="btn" onClick={reset}>
-        Borrar progreso
-      </button>
+      {due.length > 0 && (
+        <Link to="/emparejar" className="btn btn-primary big-cta">
+          Repasar {due.length} pendientes
+        </Link>
+      )}
+
+      <Link to="/ajustes" className="btn btn-center">
+        ⚙️ Ajustes, sincronización y copia de seguridad
+      </Link>
     </main>
   )
 }

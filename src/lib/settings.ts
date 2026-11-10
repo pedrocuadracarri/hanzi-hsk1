@@ -1,0 +1,51 @@
+import { useSyncExternalStore } from 'react'
+
+/** Preferencias de este dispositivo (no se sincronizan) */
+export interface Settings {
+  /** Velocidad de la voz: 0.5 – 1.1 */
+  rate: number
+  /** Reproducir audio automáticamente al acertar */
+  autoplay: boolean
+  /** Mostrar pinyin bajo el hanzi como ayuda (excepto en ejercicios de pinyin) */
+  pinyinHint: boolean
+  /** Respuestas diarias objetivo */
+  dailyGoal: number
+}
+
+export const DEFAULT_SETTINGS: Settings = { rate: 0.8, autoplay: true, pinyinHint: true, dailyGoal: 20 }
+
+const KEY = 'hanzi-settings'
+const listeners = new Set<() => void>()
+
+function read(): Settings {
+  try {
+    const raw = localStorage.getItem(KEY)
+    return raw ? { ...DEFAULT_SETTINGS, ...JSON.parse(raw) } : DEFAULT_SETTINGS
+  } catch {
+    return DEFAULT_SETTINGS
+  }
+}
+
+let current = read()
+
+export const getSettings = () => current
+
+export function updateSettings(patch: Partial<Settings>) {
+  current = { ...current, ...patch }
+  try {
+    localStorage.setItem(KEY, JSON.stringify(current))
+  } catch {
+    /* almacenamiento no disponible: se mantiene en memoria */
+  }
+  listeners.forEach((l) => l())
+}
+
+export function useSettings(): Settings {
+  return useSyncExternalStore(
+    (l) => {
+      listeners.add(l)
+      return () => listeners.delete(l)
+    },
+    getSettings,
+  )
+}
