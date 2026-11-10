@@ -967,8 +967,12 @@
     "emoji": "🔄",
     "radicals": [
       {
-        "char": "口",
+        "char": "囗",
         "meaning": "recinto"
+      },
+      {
+        "char": "口",
+        "meaning": "recinto pequeño"
       }
     ],
     "mnemonic": "Un recinto dentro de otro, como un remolino que da la vuelta: volver.",

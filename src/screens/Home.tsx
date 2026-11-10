@@ -6,6 +6,7 @@ import { toDay } from '../lib/dates'
 import { useProgress } from '../lib/useProgress'
 import { useSettings } from '../lib/settings'
 import SpeakerButton from '../components/SpeakerButton'
+import InstallButton from '../components/InstallButton'
 
 function guideStarted(): boolean {
   try {
@@ -89,6 +90,8 @@ export default function Home() {
           <span>🎵</span>Tonos
         </Link>
       </div>
+
+      <InstallButton />
 
       <Link to={`/palabra/${wod.id}`} className="card wod">
         <small className="muted">Palabra del día</small>

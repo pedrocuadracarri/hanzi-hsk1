@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import type { CardProgress } from '../types'
-import { getWord } from '../data'
+import { ALL_WORDS, CATEGORY_LABELS, getWord } from '../data'
+import { splitNumeric } from '../lib/pinyin'
 import { getAllProgress } from '../lib/storage'
 import SpeakerButton from '../components/SpeakerButton'
 import StrokeAnimation from '../components/StrokeAnimation'
@@ -45,8 +46,17 @@ export default function CharacterSheet() {
           {word.meaning}
         </div>
         <small className="muted">
-          {word.category} · {word.pinyinNumeric}
-          {card && ` · caja ${card.box}/5`}
+          {word.pinyinNumeric
+            .split(' ')
+            .map((s) => {
+              const t = splitNumeric(s).tone
+              return t === 5 ? 'neutro' : `${t}.º tono`
+            })
+            .join(' + ')}
+        </small>
+        <small className="muted">
+          {CATEGORY_LABELS[word.category]}
+          {card ? ` · caja ${card.box}/5 · ${card.correct}✓ ${card.wrong}✗` : ' · aún no practicada'}
         </small>
       </section>
       <VoiceBanner />
@@ -88,6 +98,24 @@ export default function CharacterSheet() {
         )}
         <StrokeAnimation char={chars[charIdx]} />
       </section>
+
+      <nav className="rate-row">
+        {(() => {
+          const i = ALL_WORDS.findIndex((w) => w.id === word.id)
+          const prev = ALL_WORDS[(i - 1 + ALL_WORDS.length) % ALL_WORDS.length]
+          const next = ALL_WORDS[(i + 1) % ALL_WORDS.length]
+          return (
+            <>
+              <Link to={`/palabra/${prev.id}`} replace className="btn btn-center">
+                ← <span className="hanzi">{prev.hanzi}</span>
+              </Link>
+              <Link to={`/palabra/${next.id}`} replace className="btn btn-center">
+                <span className="hanzi">{next.hanzi}</span> →
+              </Link>
+            </>
+          )
+        })()}
+      </nav>
     </main>
   )
 }
