@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import type { Word } from '../types'
 import { ALL_WORDS } from '../data'
 import { addToneMark, splitNumeric } from '../lib/pinyin'
 import { shuffle } from '../lib/random'
@@ -10,8 +11,31 @@ import ProgressDots from '../components/ProgressDots'
 import { useHotkeys } from '../lib/useHotkeys'
 import { getToneStats, recordTone } from '../lib/toneStats'
 
+const tonesOf = (w: Word) => w.pinyinNumeric.split(' ').map((s) => splitNumeric(s).tone)
+const basesOf = (w: Word) => w.pinyinNumeric.split(' ').map((s) => splitNumeric(s).base)
+
 /** Palabras de una sílaba con tono 1–4 */
-const POOL = ALL_WORDS.filter((w) => [...w.hanzi].length === 1 && splitNumeric(w.pinyinNumeric).tone < 5)
+const POOL1 = ALL_WORDS.filter((w) => [...w.hanzi].length === 1 && tonesOf(w)[0] < 5)
+/** Dos sílabas sin tono neutro ni 3+3 (que se pronuncia 2+3 y confundiría) */
+const POOL2 = ALL_WORDS.filter((w) => {
+  const t = tonesOf(w)
+  return t.length === 2 && t.every((x) => x < 5) && !(t[0] === 3 && t[1] === 3)
+})
+
+type Mode = 1 | 2
+const same = (a: number[], b: number[]) => a.join() === b.join()
+
+/** 4 combinaciones de tono: la correcta y otras que cambian una sola sílaba */
+function comboOptions(answer: number[]): number[][] {
+  if (answer.length === 1) return [[1], [2], [3], [4]]
+  const cands: number[][] = []
+  for (let x = 1; x <= 4; x++) {
+    if (x !== answer[0]) cands.push([x, answer[1]])
+    if (x !== answer[1]) cands.push([answer[0], x])
+  }
+  const picked = shuffle(cands.filter((c) => !(c[0] === 3 && c[1] === 3))).slice(0, 3)
+  return shuffle([answer, ...picked])
+}
 const QUESTIONS = 8
 export const TONE_NAMES = ['', '1.º alto y plano', '2.º sube', '3.º baja y sube', '4.º cae fuerte']
 
@@ -41,15 +65,22 @@ function ToneStatsCard() {
 }
 
 export default function Tones() {
+  const [mode, setMode] = useState<Mode>(1)
   const [round, setRound] = useState(0)
-  const words = useMemo(() => shuffle(POOL).slice(0, QUESTIONS), [round])
+  const questions = useMemo(
+    () =>
+      shuffle(mode === 1 ? POOL1 : POOL2)
+        .slice(0, QUESTIONS)
+        .map((w) => ({ w, answer: tonesOf(w), options: comboOptions(tonesOf(w)) })),
+    [round, mode],
+  )
   const [q, setQ] = useState(0)
   const [picked, setPicked] = useState<number | null>(null)
-  /** Tono elegido en cada pregunta respondida */
+  /** Índice de la opción elegida en cada pregunta */
   const [answers, setAnswers] = useState<number[]>([])
 
-  const w = words[q]
-  const { base, tone } = w ? splitNumeric(w.pinyinNumeric) : { base: '', tone: 0 }
+  const cur = questions[q]
+  const w = cur?.w
 
   useEffect(() => {
     if (w) {
@@ -58,11 +89,13 @@ export default function Tones() {
     }
   }, [w])
 
-  const choose = (t: number) => {
-    if (picked) return
-    setPicked(t)
-    setAnswers([...answers, t])
-    recordTone(tone, t === tone)
+  const label = (word: Word, combo: number[]) => basesOf(word).map((b, i) => addToneMark(b, combo[i])).join(' ')
+
+  const choose = (i: number) => {
+    if (picked !== null || !cur) return
+    setPicked(i)
+    setAnswers([...answers, i])
+    if (mode === 1) recordTone(cur.answer[0], same(cur.options[i], cur.answer))
   }
   const next = () => {
     setPicked(null)
@@ -72,24 +105,37 @@ export default function Tones() {
     setRound(round + 1)
     setQ(0)
     setAnswers([])
+    setPicked(null)
+  }
+  const switchMode = (m: Mode) => {
+    setMode(m)
+    restart()
   }
 
-  const correct = words.map((x, i) => answers[i] === splitNumeric(x.pinyinNumeric).tone)
+  const correct = questions.map((x, i) => answers[i] !== undefined && same(x.options[answers[i]], x.answer))
   const score = correct.filter(Boolean).length
   const finished = q >= QUESTIONS
 
   useHotkeys({
-    '1': () => !finished && choose(1),
-    '2': () => !finished && choose(2),
-    '3': () => !finished && choose(3),
-    '4': () => !finished && choose(4),
+    '1': () => !finished && choose(0),
+    '2': () => !finished && choose(1),
+    '3': () => !finished && choose(2),
+    '4': () => !finished && choose(3),
     ' ': () => !finished && w && speak(w.hanzi),
-    Enter: () => (finished ? restart() : picked && next()),
+    Enter: () => (finished ? restart() : picked !== null && next()),
   })
 
   return (
     <main className="screen">
       <ExerciseHeader title="Tonos" help="Escucha y elige el tono. Es lo más difícil al principio: ¡no te agobies!" />
+      <div className="segmented" role="tablist" aria-label="Modo">
+        <button role="tab" aria-selected={mode === 1} className={mode === 1 ? 'active' : ''} onClick={() => switchMode(1)}>
+          1 sílaba
+        </button>
+        <button role="tab" aria-selected={mode === 2} className={mode === 2 ? 'active' : ''} onClick={() => switchMode(2)}>
+          2 sílabas
+        </button>
+      </div>
       <VoiceBanner />
       {finished ? (
         <div className="result card pop">
@@ -100,18 +146,18 @@ export default function Tones() {
             {score >= 6 ? '¡Tienes buen oído!' : 'Los tonos cuestan a todo el mundo. Repasa la guía de tonos y vuelve a intentarlo.'}
           </p>
           <ul className="result-list">
-            {words.map((x, i) => (
-              <li key={x.id}>
-                <button className="result-row" onClick={() => speak(x.hanzi)}>
-                  <span className="hanzi">{x.hanzi}</span>
-                  <span>{x.pinyin}</span>
-                  <span className="muted">{correct[i] ? x.meaning : `elegiste ${addToneMark(splitNumeric(x.pinyinNumeric).base, answers[i])}`}</span>
+            {questions.map((x, i) => (
+              <li key={x.w.id}>
+                <button className="result-row" onClick={() => speak(x.w.hanzi)}>
+                  <span className="hanzi">{x.w.hanzi}</span>
+                  <span>{x.w.pinyin}</span>
+                  <span className="muted">{correct[i] ? x.w.meaning : `elegiste ${label(x.w, x.options[answers[i]])}`}</span>
                   <span>{correct[i] ? '✅' : '❌'}</span>
                 </button>
               </li>
             ))}
           </ul>
-          <ToneStatsCard />
+          {mode === 1 && <ToneStatsCard />}
           <button className="btn btn-primary" onClick={restart}>
             Otra ronda
           </button>
@@ -120,6 +166,7 @@ export default function Tones() {
           </Link>
         </div>
       ) : (
+        cur &&
         w && (
           <>
             <ProgressDots total={QUESTIONS} current={q} results={correct} />
@@ -130,20 +177,21 @@ export default function Tones() {
               </small>
             </button>
             <div className="options">
-              {[1, 2, 3, 4].map((t) => {
-                const cls = !picked ? '' : t === tone ? 'ok' : t === picked ? 'bad' : 'dim'
+              {cur.options.map((combo, i) => {
+                const isAnswer = same(combo, cur.answer)
+                const cls = picked === null ? '' : isAnswer ? 'ok' : i === picked ? 'bad' : 'dim'
                 return (
-                  <button key={t} className={`option ${cls}`} onClick={() => choose(t)}>
-                    <span className="kbd-hint kbd-corner">{t}</span>
-                    <span className="option-pinyin">{addToneMark(base, t)}</span>
-                    <small className="muted">{TONE_NAMES[t]}</small>
+                  <button key={combo.join()} className={`option ${cls}`} onClick={() => choose(i)}>
+                    <span className="kbd-hint kbd-corner">{i + 1}</span>
+                    <span className="option-pinyin">{label(w, combo)}</span>
+                    <small className="muted">{combo.length === 1 ? TONE_NAMES[combo[0]] : combo.map((t) => `${t}.º`).join(' + ')}</small>
                   </button>
                 )
               })}
             </div>
-            {picked && (
+            {picked !== null && (
               <button className="btn btn-primary" onClick={next}>
-                {picked === tone ? '¡Correcto! Siguiente' : `Era ${w.pinyin}. Siguiente`}
+                {same(cur.options[picked], cur.answer) ? '¡Correcto! Siguiente' : `Era ${w.pinyin}. Siguiente`}
               </button>
             )}
           </>

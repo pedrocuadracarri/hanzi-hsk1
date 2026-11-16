@@ -15,17 +15,25 @@ Estado de Hanzi HSK 1 y lo que viene. Prioridad de arriba abajo dentro de cada b
 - **Dictado** en Escribir: oyes la palabra y la trazas sin ver significado ni pinyin.
 - **Estadísticas por tono** en el resumen de Tonos (qué tono te cuesta más).
 - Guía con barra de lecciones leídas y aviso «Sigue con…» en Inicio.
+- **Frases de ejemplo** para las 150 palabras (ficha, presentación, tarjetas) y ejercicio **Ordenar frases**.
+- Guía ampliada: pictogramas interactivos (del dibujo al carácter), **Gramática básica** (8 estructuras con recuerdo activo), **Números, fechas y horas** interactiva y **Camino a B1**.
+- **Colores de tono** en pinyin y caracteres; **Tonos de 2 sílabas**; preguntas de frases en el Repaso mixto.
+- Truco del día en Inicio y celebración al cumplir el objetivo diario.
 
 ## 🔜 Siguiente
 
-- **Frases de ejemplo** por palabra (con audio), reutilizando solo vocabulario HSK 1.
 - **Escuchar por pinyin**: variante que muestre pinyin en vez de caracteres para quien aún no lee hanzi.
 - **Revisar las entradas `needsReview`** del JSON (descomposición/mnemotecnia dudosa).
 - **Recordatorio diario** opcional (notificación de la PWA) si no has llegado al objetivo.
 
+## 🎯 Hacia B1 (HSK 3–4)
+
+- **HSK 2** (300 palabras): `hsk2.json` + selector de nivel; misma estructura de datos, frases y mnemotecnia.
+- **HSK 3** (600 palabras) con lecturas cortas graduadas.
+- **Diálogos** cortos con audio por situaciones (restaurante, taxi, tienda) y preguntas de comprensión.
+- **Lecciones de gramática** por nivel (了/过, comparativos con 比, complementos de resultado…).
+
 ## 💡 Más adelante
 
-- HSK 2 (`hsk2.json` + selector de nivel).
 - Audio grabado para palabras donde la voz sintética suena mal.
 - Estadísticas por ejercicio.
-- Tonos con palabras de dos sílabas (combinaciones y cambios de tono).
