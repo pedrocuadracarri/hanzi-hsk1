@@ -27,6 +27,10 @@ export default function Progress() {
   // Lo atrasado se acumula en «hoy»
   const forecast = next7.map((d, i) => cards.filter((c) => (i === 0 ? c.due <= d : c.due === d)).length)
   const maxForecast = Math.max(1, ...forecast)
+  // Ritmo aproximado: palabras vistas entre días con actividad en las últimas dos semanas
+  const activeDays = last14.filter((d) => (daily[d] ?? 0) > 0).length
+  const perDay = activeDays ? cards.length / Math.max(activeDays, 1) : 0
+  const daysToHsk1 = perDay > 0 ? Math.ceil((total - cards.length) / perDay) : null
   const hardest = [...cards].filter((c) => c.wrong > 0).sort((a, b) => b.wrong - a.wrong).slice(0, 8)
 
   return (
@@ -56,6 +60,37 @@ export default function Progress() {
           <div className="bar-fill" style={{ width: `${(learned / total) * 100}%` }} />
         </div>
         <p className="muted small-left">Una palabra cuenta como aprendida al llegar a la caja 3 (la has acertado varios días).</p>
+      </section>
+
+      <section className="card">
+        <h2 className="section-title">🗺️ Tu camino a B1</h2>
+        <div className="path">
+          {(
+            [
+              ['HSK 1', 150, learned],
+              ['HSK 2', 300, 0],
+              ['HSK 3 · B1', 600, 0],
+            ] as const
+          ).map(([lvl, n, l]) => (
+            <div key={lvl} className="path-step">
+              <small>{lvl}</small>
+              <div className="bar bar-thin">
+                <div className="bar-fill" style={{ width: `${(l / n) * 100}%` }} />
+              </div>
+              <small className="muted">
+                {l}/{n}
+              </small>
+            </div>
+          ))}
+        </div>
+        <p className="muted small-left">
+          {daysToHsk1 !== null && cards.length < total
+            ? `A tu ritmo (≈${Math.round(perDay)} palabras nuevas por día de estudio) verás todo el HSK 1 en unos ${daysToHsk1} días de práctica.`
+            : cards.length >= total
+              ? '¡Ya has visto todo el HSK 1! Lleva todas a la caja 3 y estarás listo para el HSK 2.'
+              : 'Empieza hoy: con 5–10 palabras al día, el HSK 1 se completa en un mes.'}{' '}
+          <Link to="/aprender/b1">Ver el plan →</Link>
+        </p>
       </section>
 
       <section className="card">

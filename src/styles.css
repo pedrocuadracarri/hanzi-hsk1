@@ -565,3 +565,7 @@ section > .section-title { margin: 8px 0; }
 .piece-main { font-size: 1.6rem; }
 .piece-op { color: var(--muted); font-weight: 700; }
 .bubble-N { align-self: stretch; max-width: 100%; border-radius: 12px; }
+
+.path { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.path-step { display: flex; flex-direction: column; gap: 4px; }
+.path-step .bar-thin { height: 8px; }
