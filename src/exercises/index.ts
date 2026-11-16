@@ -10,6 +10,8 @@ export interface ExerciseInfo {
   beginner?: boolean
   /** Actualiza el repaso espaciado */
   srs: boolean
+  /** Sección en la lista de Practicar */
+  group: 'basico' | 'oido' | 'uso'
 }
 
 export const EXERCISES: ExerciseInfo[] = [
@@ -20,6 +22,7 @@ export const EXERCISES: ExerciseInfo[] = [
     path: '/repaso',
     icon: '🔀',
     srs: true,
+    group: 'basico',
   },
   {
     id: 'match',
@@ -29,6 +32,7 @@ export const EXERCISES: ExerciseInfo[] = [
     icon: '🧩',
     beginner: true,
     srs: true,
+    group: 'basico',
   },
   {
     id: 'flashcards',
@@ -38,6 +42,7 @@ export const EXERCISES: ExerciseInfo[] = [
     icon: '🃏',
     beginner: true,
     srs: true,
+    group: 'basico',
   },
   {
     id: 'listen',
@@ -46,6 +51,7 @@ export const EXERCISES: ExerciseInfo[] = [
     path: '/escuchar',
     icon: '👂',
     srs: true,
+    group: 'oido',
   },
   {
     id: 'write',
@@ -54,6 +60,7 @@ export const EXERCISES: ExerciseInfo[] = [
     path: '/escribir',
     icon: '✍️',
     srs: true,
+    group: 'uso',
   },
   {
     id: 'type-pinyin',
@@ -62,6 +69,7 @@ export const EXERCISES: ExerciseInfo[] = [
     path: '/escribir-pinyin',
     icon: '⌨️',
     srs: true,
+    group: 'oido',
   },
   {
     id: 'sentences',
@@ -70,6 +78,7 @@ export const EXERCISES: ExerciseInfo[] = [
     path: '/frases',
     icon: '🧱',
     srs: true,
+    group: 'uso',
   },
   {
     id: 'exam',
@@ -78,6 +87,7 @@ export const EXERCISES: ExerciseInfo[] = [
     path: '/examen',
     icon: '🏅',
     srs: false,
+    group: 'uso',
   },
   {
     id: 'tones',
@@ -86,5 +96,6 @@ export const EXERCISES: ExerciseInfo[] = [
     path: '/tonos',
     icon: '🎵',
     srs: false,
+    group: 'oido',
   },
 ]
