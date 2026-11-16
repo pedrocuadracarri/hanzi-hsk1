@@ -23,6 +23,10 @@ export default function Progress() {
   const last14 = Array.from({ length: 14 }, (_, i) => addDays(today, i - 13))
   const totalAnswers = cards.reduce((a, c) => a + c.correct + c.wrong, 0)
   const accuracy = totalAnswers ? Math.round((cards.reduce((a, c) => a + c.correct, 0) / totalAnswers) * 100) : 0
+  const next7 = Array.from({ length: 7 }, (_, i) => addDays(today, i))
+  // Lo atrasado se acumula en «hoy»
+  const forecast = next7.map((d, i) => cards.filter((c) => (i === 0 ? c.due <= d : c.due === d)).length)
+  const maxForecast = Math.max(1, ...forecast)
   const hardest = [...cards].filter((c) => c.wrong > 0).sort((a, b) => b.wrong - a.wrong).slice(0, 8)
 
   return (
@@ -70,6 +74,21 @@ export default function Progress() {
           })}
         </div>
       </section>
+
+      {cards.length > 0 && (
+        <section className="card">
+          <h2 className="section-title">Repasos de la próxima semana</h2>
+          <div className="boxes forecast">
+            {next7.map((d, i) => (
+              <div key={d} className="box-col" title={`${d}: ${forecast[i]} palabras`}>
+                <span className="box-count">{forecast[i]}</span>
+                <div className="box-bar" style={{ height: `${(forecast[i] / maxForecast) * 100}%` }} />
+                <span className="muted">{i === 0 ? 'hoy' : WEEKDAYS[new Date(d + 'T12:00:00').getDay()]}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="card">
         <h2 className="section-title">Cajas de repaso</h2>
@@ -125,7 +144,7 @@ export default function Progress() {
       )}
 
       {due.length > 0 && (
-        <Link to="/emparejar" className="btn btn-primary big-cta">
+        <Link to="/emparejar?modo=meaning" className="btn btn-primary big-cta">
           Repasar {due.length} pendientes
         </Link>
       )}

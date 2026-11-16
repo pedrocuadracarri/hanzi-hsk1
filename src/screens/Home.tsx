@@ -72,7 +72,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Link to="/emparejar" className="btn btn-primary big-cta">
+      <Link to={due > 0 ? '/emparejar?modo=meaning' : '/emparejar'} className="btn btn-primary big-cta">
         {due > 0 ? `Repasar ${due} pendientes` : seen === 0 ? 'Aprender mis primeras palabras' : 'Aprender palabras nuevas'}
       </Link>
 

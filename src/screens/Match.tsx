@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import type { MatchMode } from '../types'
 import { ALL_WORDS } from '../data'
 import { answerFor, buildRound } from '../lib/rounds'
@@ -84,8 +85,31 @@ function MatchComponents() {
   return <MatchBoard key={key} pairs={pairs} rightClass="tile-meaning" onFinish={(m) => setDone(Math.min(5, m.size))} />
 }
 
+const MODE_KEY = 'hanzi-match-mode'
+const isMode = (m: string | null): m is Mode => MODES.some((x) => x.id === m)
+
+function savedMode(): Mode {
+  try {
+    const m = localStorage.getItem(MODE_KEY)
+    return isMode(m) ? m : 'emoji'
+  } catch {
+    return 'emoji'
+  }
+}
+
 export default function Match() {
-  const [mode, setMode] = useState<Mode>('emoji')
+  // ?modo=meaning fuerza un modo (p. ej. el repaso, que necesita todas las palabras, no solo las que tienen emoji)
+  const [params] = useSearchParams()
+  const forced = params.get('modo')
+  const [mode, setModeState] = useState<Mode>(isMode(forced) ? forced : savedMode)
+  const setMode = (m: Mode) => {
+    setModeState(m)
+    try {
+      localStorage.setItem(MODE_KEY, m)
+    } catch {
+      /* sin almacenamiento */
+    }
+  }
   return (
     <main className="screen">
       <ExerciseHeader title="Emparejar" help="Toca un carácter y después su pareja." />

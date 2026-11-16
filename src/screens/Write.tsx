@@ -9,6 +9,7 @@ import ExerciseHeader from '../components/ExerciseHeader'
 import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import SpeakerButton from '../components/SpeakerButton'
+import ProgressDots from '../components/ProgressDots'
 
 const SIZE = 280
 
@@ -109,6 +110,7 @@ export default function Write() {
       {s.stage === 'done' && <RoundResult words={s.words} results={s.results} onNext={s.restart} />}
       {s.stage === 'play' && word && (
         <>
+          <ProgressDots total={s.words.length} current={wi} results={s.words.map((x) => s.results.get(x.id))} />
           <div className="write-prompt card">
             <div className="intro-meaning">
               {word.emoji} {word.meaning}

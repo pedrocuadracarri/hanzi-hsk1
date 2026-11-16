@@ -6,6 +6,8 @@ import { shuffle } from '../lib/random'
 import { speak } from '../lib/speech'
 import ExerciseHeader from '../components/ExerciseHeader'
 import VoiceBanner from '../components/VoiceBanner'
+import ProgressDots from '../components/ProgressDots'
+import { useHotkeys } from '../lib/useHotkeys'
 
 /** Palabras de una sílaba con tono 1–4 */
 const POOL = ALL_WORDS.filter((w) => [...w.hanzi].length === 1 && splitNumeric(w.pinyinNumeric).tone < 5)
@@ -17,7 +19,8 @@ export default function Tones() {
   const words = useMemo(() => shuffle(POOL).slice(0, QUESTIONS), [round])
   const [q, setQ] = useState(0)
   const [picked, setPicked] = useState<number | null>(null)
-  const [score, setScore] = useState(0)
+  /** Tono elegido en cada pregunta respondida */
+  const [answers, setAnswers] = useState<number[]>([])
 
   const w = words[q]
   const { base, tone } = w ? splitNumeric(w.pinyinNumeric) : { base: '', tone: 0 }
@@ -32,18 +35,36 @@ export default function Tones() {
   const choose = (t: number) => {
     if (picked) return
     setPicked(t)
-    if (t === tone) setScore(score + 1)
+    setAnswers([...answers, t])
   }
   const next = () => {
     setPicked(null)
     setQ(q + 1)
   }
+  const restart = () => {
+    setRound(round + 1)
+    setQ(0)
+    setAnswers([])
+  }
+
+  const correct = words.map((x, i) => answers[i] === splitNumeric(x.pinyinNumeric).tone)
+  const score = correct.filter(Boolean).length
+  const finished = q >= QUESTIONS
+
+  useHotkeys({
+    '1': () => !finished && choose(1),
+    '2': () => !finished && choose(2),
+    '3': () => !finished && choose(3),
+    '4': () => !finished && choose(4),
+    ' ': () => !finished && w && speak(w.hanzi),
+    Enter: () => (finished ? restart() : picked && next()),
+  })
 
   return (
     <main className="screen">
       <ExerciseHeader title="Tonos" help="Escucha y elige el tono. Es lo más difícil al principio: ¡no te agobies!" />
       <VoiceBanner />
-      {q >= QUESTIONS ? (
+      {finished ? (
         <div className="result card pop">
           <h2>
             {score} / {QUESTIONS}
@@ -51,14 +72,19 @@ export default function Tones() {
           <p className="muted">
             {score >= 6 ? '¡Tienes buen oído!' : 'Los tonos cuestan a todo el mundo. Repasa la guía de tonos y vuelve a intentarlo.'}
           </p>
-          <button
-            className="btn btn-primary"
-            onClick={() => {
-              setRound(round + 1)
-              setQ(0)
-              setScore(0)
-            }}
-          >
+          <ul className="result-list">
+            {words.map((x, i) => (
+              <li key={x.id}>
+                <button className="result-row" onClick={() => speak(x.hanzi)}>
+                  <span className="hanzi">{x.hanzi}</span>
+                  <span>{x.pinyin}</span>
+                  <span className="muted">{correct[i] ? x.meaning : `elegiste ${addToneMark(splitNumeric(x.pinyinNumeric).base, answers[i])}`}</span>
+                  <span>{correct[i] ? '✅' : '❌'}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button className="btn btn-primary" onClick={restart}>
             Otra ronda
           </button>
           <Link to="/aprender/tonos" className="btn btn-center">
@@ -68,13 +94,11 @@ export default function Tones() {
       ) : (
         w && (
           <>
-            <p className="muted center">
-              {q + 1} / {QUESTIONS}
-            </p>
+            <ProgressDots total={QUESTIONS} current={q} results={correct} />
             <button className="listen-big" onClick={() => speak(w.hanzi)}>
               <span className="hanzi">{w.hanzi}</span>
               <small>
-                {w.emoji} {w.meaning} · toca para repetir 🔊
+                {w.emoji} {w.meaning} · toca para repetir 🔊 <span className="kbd-hint">(espacio)</span>
               </small>
             </button>
             <div className="options">
@@ -82,6 +106,7 @@ export default function Tones() {
                 const cls = !picked ? '' : t === tone ? 'ok' : t === picked ? 'bad' : 'dim'
                 return (
                   <button key={t} className={`option ${cls}`} onClick={() => choose(t)}>
+                    <span className="kbd-hint kbd-corner">{t}</span>
                     <span className="option-pinyin">{addToneMark(base, t)}</span>
                     <small className="muted">{TONE_NAMES[t]}</small>
                   </button>

@@ -8,8 +8,11 @@ PWA gratuita y sin backend para aprender los 150 caracteres del HSK 1, en españ
 - **Practicar**: Emparejar (emoji, significado, pinyin, piezas), Tarjetas, Escuchar, Escribir con el dedo y Tonos. Las palabras nuevas se presentan antes de practicarlas.
 - **Repaso espaciado** Leitner de 5 cajas: lo que fallas vuelve antes.
 - **Palabras y Componentes**: fichas con mnemotecnia, piezas, audio y animación de trazos; buscador.
-- **Progreso**: racha, objetivo diario, calendario, cajas, temas y palabras difíciles.
+- **Progreso**: racha, objetivo diario, calendario, previsión de repasos, cajas, temas y palabras difíciles.
+- **Atajos de teclado** en el PC (espacio, ←/→, 1–4) y tema claro/oscuro en Ajustes.
 - **Sincronización** entre dispositivos con un Gist privado de GitHub (opcional), o exportar/importar un archivo.
+
+Lo que viene: [ROADMAP.md](ROADMAP.md).
 
 ## Desarrollo
 

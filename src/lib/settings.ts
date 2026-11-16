@@ -10,9 +10,11 @@ export interface Settings {
   pinyinHint: boolean
   /** Respuestas diarias objetivo */
   dailyGoal: number
+  /** Tema de color: el del sistema o forzado */
+  theme: 'auto' | 'light' | 'dark'
 }
 
-export const DEFAULT_SETTINGS: Settings = { rate: 0.8, autoplay: true, pinyinHint: true, dailyGoal: 20 }
+export const DEFAULT_SETTINGS: Settings = { rate: 0.8, autoplay: true, pinyinHint: true, dailyGoal: 20, theme: 'auto' }
 
 const KEY = 'hanzi-settings'
 const listeners = new Set<() => void>()
@@ -28,6 +30,14 @@ function read(): Settings {
 
 let current = read()
 
+function applyTheme() {
+  if (typeof document === 'undefined') return
+  const root = document.documentElement
+  if (current.theme === 'auto') root.removeAttribute('data-theme')
+  else root.setAttribute('data-theme', current.theme)
+}
+applyTheme()
+
 export const getSettings = () => current
 
 export function updateSettings(patch: Partial<Settings>) {
@@ -37,6 +47,7 @@ export function updateSettings(patch: Partial<Settings>) {
   } catch {
     /* almacenamiento no disponible: se mantiene en memoria */
   }
+  applyTheme()
   listeners.forEach((l) => l())
 }
 

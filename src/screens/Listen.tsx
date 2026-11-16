@@ -9,6 +9,8 @@ import ExerciseHeader from '../components/ExerciseHeader'
 import VoiceBanner from '../components/VoiceBanner'
 import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
+import ProgressDots from '../components/ProgressDots'
+import { useHotkeys } from '../lib/useHotkeys'
 
 const QUESTIONS = 6
 
@@ -52,26 +54,32 @@ export default function Listen() {
     if (ok) setTimeout(next, 900)
   }
 
+  const playing = s.stage === 'play' && !!word
+  useHotkeys({
+    ...Object.fromEntries(options.map((o, i) => [String(i + 1), () => playing && choose(o.id)])),
+    ' ': () => playing && speak(word.hanzi),
+    Enter: () => playing && picked && picked !== word.id && next(),
+  })
+
   let body = null
   if (s.stage === 'intro') body = <NewWordsIntro words={s.newWords} onDone={s.play} />
   else if (s.stage === 'done') body = <RoundResult words={s.words} results={s.results} onNext={s.restart} />
   else if (s.stage === 'play' && word)
     body = (
       <>
-        <div className="progress-dots">
-          {s.words.map((w, i) => (
-            <span key={w.id} className={i < q ? 'done' : i === q ? 'now' : ''} />
-          ))}
-        </div>
+        <ProgressDots total={s.words.length} current={q} results={s.words.map((w) => s.results.get(w.id))} />
         <button className="listen-big" onClick={() => speak(word.hanzi)} aria-label="Escuchar otra vez">
           🔊
-          <small>Toca para repetir</small>
+          <small>
+            Toca para repetir <span className="kbd-hint">(espacio)</span>
+          </small>
         </button>
         <div className="options">
-          {options.map((o) => {
+          {options.map((o, i) => {
             const cls = !picked ? '' : o.id === word.id ? 'ok' : o.id === picked ? 'bad' : 'dim'
             return (
               <button key={o.id} className={`option ${cls}`} onClick={() => choose(o.id)}>
+                <span className="kbd-hint kbd-corner">{i + 1}</span>
                 <span className="hanzi">{o.hanzi}</span>
                 {(settings.pinyinHint || picked) && <small>{o.pinyin}</small>}
                 {picked && <small className="muted">{o.meaning}</small>}

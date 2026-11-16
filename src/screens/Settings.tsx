@@ -220,6 +220,29 @@ export default function Settings() {
       </section>
 
       <section className="card settings-section">
+        <h2 className="section-title">🎨 Apariencia</h2>
+        <div className="segmented" role="radiogroup" aria-label="Tema">
+          {(
+            [
+              ['auto', 'Sistema'],
+              ['light', '☀️ Claro'],
+              ['dark', '🌙 Oscuro'],
+            ] as const
+          ).map(([id, label]) => (
+            <button
+              key={id}
+              role="radio"
+              aria-checked={s.theme === id}
+              className={s.theme === id ? 'active' : ''}
+              onClick={() => updateSettings({ theme: id })}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="card settings-section">
         <h2 className="section-title">🎓 Aprendizaje</h2>
         <label className="toggle">
           <input type="checkbox" checked={s.pinyinHint} onChange={(e) => updateSettings({ pinyinHint: e.target.checked })} />
