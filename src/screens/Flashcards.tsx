@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { ALL_WORDS } from '../data'
+import { useSearchParams } from 'react-router-dom'
+import { ALL_WORDS, CATEGORY_LABELS } from '../data'
 import { buildRound } from '../lib/rounds'
 import { speak } from '../lib/speech'
 import { getSettings } from '../lib/settings'
@@ -14,9 +15,12 @@ import { TonedPinyin } from '../components/Toned'
 import { useHotkeys } from '../lib/useHotkeys'
 
 export default function Flashcards() {
+  // ?tema=comida: solo palabras de ese tema
+  const tema = useSearchParams()[0].get('tema')
+  const pool = tema ? ALL_WORDS.filter((w) => w.category === tema) : ALL_WORDS
   const s = useWordSession(
-    (progress, today) => buildRound({ words: ALL_WORDS, progress, mode: 'meaning', today, size: 10 }),
-    [],
+    (progress, today) => buildRound({ words: pool, progress, mode: 'meaning', today, size: 10 }),
+    [tema],
     { intro: false },
   )
   const [i, setI] = useState(0)
@@ -52,7 +56,10 @@ export default function Flashcards() {
 
   return (
     <main className="screen">
-      <ExerciseHeader title="Tarjetas" help="¿Recuerdas qué significa? Piénsalo, gira la tarjeta y sé sincero." />
+      <ExerciseHeader
+        title={tema && tema in CATEGORY_LABELS ? `Tarjetas · ${CATEGORY_LABELS[tema as keyof typeof CATEGORY_LABELS]}` : 'Tarjetas'}
+        help="¿Recuerdas qué significa? Piénsalo, gira la tarjeta y sé sincero."
+      />
       {s.stage === 'done' && <RoundResult words={s.words} results={s.results} onNext={s.restart} />}
       {s.stage === 'play' && w && (
         <>

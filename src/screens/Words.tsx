@@ -67,8 +67,13 @@ export default function Words() {
       {groups.length === 0 && <p className="muted">No hay resultados.</p>}
       {groups.map(([cat, ws]) => (
         <section key={cat}>
-          <h2 className="section-title">
-            {CATEGORY_LABELS[cat]} <small className="muted">{ws.length}</small>
+          <h2 className="section-title cat-title">
+            <span>
+              {CATEGORY_LABELS[cat]} <small className="muted">{ws.length}</small>
+            </span>
+            <Link to={`/tarjetas?tema=${encodeURIComponent(cat)}`} className="cat-practice">
+              🃏 Practicar
+            </Link>
           </h2>
           <div className="word-grid">
             {ws.map((w) => {
