@@ -1,9 +1,10 @@
 import type { Word } from '../types'
 import { getExample, sentenceText } from '../data/examples'
 import SpeakerButton from './SpeakerButton'
+import RecordCompare from './RecordCompare'
 
 /** Frase de ejemplo con la palabra resaltada, pinyin, traducción y audio */
-export default function ExampleSentence({ word }: { word: Word }) {
+export default function ExampleSentence({ word, record = false }: { word: Word; record?: boolean }) {
   const ex = getExample(word.id)
   if (!ex) return null
   const text = sentenceText(ex)
@@ -23,6 +24,7 @@ export default function ExampleSentence({ word }: { word: Word }) {
       </div>
       <span className="example-py">{ex.py}</span>
       <span className="muted">{ex.es}</span>
+      {record && <RecordCompare text={text} />}
     </div>
   )
 }

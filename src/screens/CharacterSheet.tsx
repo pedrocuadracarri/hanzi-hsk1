@@ -8,6 +8,7 @@ import SpeakerButton from '../components/SpeakerButton'
 import StrokeAnimation from '../components/StrokeAnimation'
 import VoiceBanner from '../components/VoiceBanner'
 import ExampleSentence from '../components/ExampleSentence'
+import RecordCompare from '../components/RecordCompare'
 import { TonedHanzi, TonedPinyin } from '../components/Toned'
 
 export default function CharacterSheet() {
@@ -63,6 +64,7 @@ export default function CharacterSheet() {
           {card ? ` · caja ${card.box}/5 · ${card.correct}✓ ${card.wrong}✗` : ' · aún no practicada'}
         </small>
       </section>
+      <RecordCompare text={word.hanzi} />
       <VoiceBanner />
 
       {word.needsReview && (
@@ -76,7 +78,7 @@ export default function CharacterSheet() {
 
       <section className="card">
         <h2>En una frase</h2>
-        <ExampleSentence word={word} />
+        <ExampleSentence word={word} record />
       </section>
 
       {(() => {

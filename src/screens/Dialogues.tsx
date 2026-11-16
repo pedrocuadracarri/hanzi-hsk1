@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { DIALOGUES } from '../data/dialogues'
 import { speak, speakAll } from '../lib/speech'
 import VoiceBanner from '../components/VoiceBanner'
+import RecordCompare from '../components/RecordCompare'
 
 /** Diálogos con audio: primero se escucha, luego se lee y se comprueba */
 export default function Dialogues() {
@@ -12,11 +13,14 @@ export default function Dialogues() {
   const [pinyin, setPinyin] = useState(true)
   const [playing, setPlaying] = useState<number | null>(null)
   const [answer, setAnswer] = useState<number | null>(null)
+  /** Última frase tocada: es la que se practica al grabarse */
+  const [last, setLast] = useState(0)
 
   useEffect(() => {
     setShown(new Set())
     setAnswer(null)
     setPlaying(null)
+    setLast(0)
     return () => window.speechSynthesis?.cancel()
   }, [id])
 
@@ -50,6 +54,7 @@ export default function Dialogues() {
   const next = DIALOGUES[idx + 1]
   const toggle = (i: number) => {
     speak(d.lines[i].zh)
+    setLast(i)
     setShown((s) => new Set(s).add(i))
   }
 
@@ -81,6 +86,13 @@ export default function Dialogues() {
           </button>
         ))}
       </div>
+
+      <section className="card">
+        <strong className="small-left">🗣️ Ahora tú: toca una frase de arriba y repítela</strong>
+        <p className="hanzi center record-target">{d.lines[last].zh}</p>
+        <RecordCompare text={d.lines[last].zh} />
+        <p className="muted small-left">Se graba hasta 6 segundos. Compara tu entonación con el modelo.</p>
+      </section>
 
       <section className="card dialogue-q">
         <strong>❓ {d.question.q}</strong>

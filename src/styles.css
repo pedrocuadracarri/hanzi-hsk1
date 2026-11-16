@@ -548,3 +548,9 @@ section > .section-title { margin: 8px 0; }
 .dialogue-q { display: flex; flex-direction: column; gap: 10px; }
 .option-row { min-height: 52px; font-weight: 600; }
 .dialogue-link { border-color: var(--sel); }
+
+/* Grabarse */
+.record { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; }
+.rec-dot::before { content: '●'; color: var(--bad); margin-right: 4px; animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0.2; } }
+.record-target { font-size: 1.4rem; margin: 6px 0 0; }
