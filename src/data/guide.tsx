@@ -96,18 +96,23 @@ export const LESSONS: Lesson[] = [
             <strong>Tono</strong>: la «melodía» de cada sílaba. Cambia el significado: mā (mamá) no es mǎ (caballo).
           </li>
         </ul>
-        <h3>Rutina recomendada (10–15 minutos al día)</h3>
+        <h3>Rutina recomendada (15–20 minutos al día)</h3>
         <ol className="bullets">
-          <li>Lee las lecciones de esta guía, sobre todo Pinyin y Tonos. Vuelve a ellas cuando quieras.</li>
           <li>
-            Haz rondas de <Link to="/emparejar">Emparejar</Link> en modo Emoji: cada palabra nueva se presenta antes de
-            practicarla.
+            Sigue el <strong>📋 Plan de hoy</strong> de Inicio: te dice qué toca en cada momento.
           </li>
           <li>
-            Repasa con <Link to="/tarjetas">Tarjetas</Link> y <Link to="/escuchar">Escuchar</Link>.
+            Primero, lo pendiente: <Link to="/repaso">Repaso mixto</Link>. El repaso es lo que fija la memoria.
           </li>
           <li>
-            Cuando conozcas unas cuantas, prueba a <Link to="/escribir">Escribir</Link>.
+            Luego, palabras nuevas con <Link to="/emparejar">Emparejar</Link>: cada una se presenta (con su historia y una
+            frase) antes de practicarla.
+          </li>
+          <li>
+            Usa las palabras en contexto: <Link to="/frases">Ordenar frases</Link> y <Link to="/dialogos">Diálogos</Link>.
+          </li>
+          <li>
+            Entrena el oído con <Link to="/tonos">Tonos</Link> y la mano con <Link to="/escribir">Escribir</Link>.
           </li>
           <li>Vuelve cada día: lo pendiente de repaso sale primero y la racha 🔥 te ayuda a mantener el hábito.</li>
         </ol>
