@@ -1,5 +1,6 @@
 export interface DialogueLine {
-  who: 'A' | 'B'
+  /** A/B hablan; N = narración (lecturas) */
+  who: 'A' | 'B' | 'N'
   zh: string
   py: string
   es: string
@@ -130,5 +131,47 @@ export const DIALOGUES: Dialogue[] = [
       { who: 'A', zh: '我能说一点儿，也能看一些字。', py: 'Wǒ néng shuō yìdiǎnr, yě néng kàn yìxiē zì.', es: 'Puedo hablar un poco y leer algunos caracteres.' },
     ],
     question: { q: '¿Qué pregunta el alumno?', options: ['Cómo se pronuncia una palabra', 'Cómo se escribe un carácter', 'Qué hora es'], answer: 1 },
+  },
+  {
+    id: 'lectura-familia',
+    icon: '🏠',
+    title: 'Lectura: mi familia',
+    lines: [
+      { who: 'N', zh: '我叫大明，我是中国人。', py: 'Wǒ jiào Dà Míng, wǒ shì Zhōngguó rén.', es: 'Me llamo Da Ming, soy chino.' },
+      { who: 'N', zh: '我家在北京。', py: 'Wǒ jiā zài Běijīng.', es: 'Mi casa está en Pekín.' },
+      { who: 'N', zh: '我爸爸是医生，他在医院工作。', py: 'Wǒ bàba shì yīshēng, tā zài yīyuàn gōngzuò.', es: 'Mi papá es médico, trabaja en un hospital.' },
+      { who: 'N', zh: '我妈妈是老师。', py: 'Wǒ māma shì lǎoshī.', es: 'Mi mamá es profesora.' },
+      { who: 'N', zh: '我们家有一个小狗。', py: 'Wǒmen jiā yǒu yí ge xiǎo gǒu.', es: 'En casa tenemos un perrito.' },
+      { who: 'N', zh: '我很爱我的家。', py: 'Wǒ hěn ài wǒ de jiā.', es: 'Quiero mucho a mi familia.' },
+    ],
+    question: { q: '¿Qué hace el padre de Da Ming?', options: ['Es médico', 'Es profesor', 'Es taxista'], answer: 0 },
+  },
+  {
+    id: 'lectura-dia',
+    icon: '☀️',
+    title: 'Lectura: mi día',
+    lines: [
+      { who: 'N', zh: '我上午七点吃饭。', py: 'Wǒ shàngwǔ qī diǎn chī fàn.', es: 'Desayuno a las siete de la mañana.' },
+      { who: 'N', zh: '八点我坐出租车去学校。', py: 'Bā diǎn wǒ zuò chūzūchē qù xuéxiào.', es: 'A las ocho voy a la escuela en taxi.' },
+      { who: 'N', zh: '我在学校学习汉语。', py: 'Wǒ zài xuéxiào xuéxí Hànyǔ.', es: 'En la escuela estudio chino.' },
+      { who: 'N', zh: '中午我和同学去饭店吃米饭。', py: 'Zhōngwǔ wǒ hé tóngxué qù fàndiàn chī mǐfàn.', es: 'A mediodía voy con mis compañeros a comer arroz a un restaurante.' },
+      { who: 'N', zh: '下午我回家看书。', py: 'Xiàwǔ wǒ huí jiā kàn shū.', es: 'Por la tarde vuelvo a casa a leer.' },
+      { who: 'N', zh: '我十一点睡觉。', py: 'Wǒ shíyī diǎn shuìjiào.', es: 'Me acuesto a las once.' },
+    ],
+    question: { q: '¿Cómo va a la escuela?', options: ['En avión', 'En taxi', 'Andando'], answer: 1 },
+  },
+  {
+    id: 'lectura-lluvia',
+    icon: '☔',
+    title: 'Lectura: un día de lluvia',
+    lines: [
+      { who: 'N', zh: '今天是星期六。', py: 'Jīntiān shì xīngqīliù.', es: 'Hoy es sábado.' },
+      { who: 'N', zh: '天气不好，很冷，下雨了。', py: 'Tiānqì bù hǎo, hěn lěng, xiàyǔ le.', es: 'Hace mal tiempo: frío y lluvia.' },
+      { who: 'N', zh: '我不想去商店。', py: 'Wǒ bù xiǎng qù shāngdiàn.', es: 'No quiero ir a la tienda.' },
+      { who: 'N', zh: '我在家喝茶，看电视。', py: 'Wǒ zài jiā hē chá, kàn diànshì.', es: 'En casa tomo té y veo la tele.' },
+      { who: 'N', zh: '我的猫在椅子上睡觉。', py: 'Wǒ de māo zài yǐzi shang shuìjiào.', es: 'Mi gato duerme en la silla.' },
+      { who: 'N', zh: '明天会很热，我想和朋友去看电影。', py: 'Míngtiān huì hěn rè, wǒ xiǎng hé péngyou qù kàn diànyǐng.', es: 'Mañana hará calor; quiero ir al cine con amigos.' },
+    ],
+    question: { q: '¿Dónde duerme el gato?', options: ['En la mesa', 'En la tienda', 'En la silla'], answer: 2 },
   },
 ]

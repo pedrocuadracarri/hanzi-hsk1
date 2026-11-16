@@ -58,7 +58,7 @@ export default function Guide() {
       <Link to="/dialogos" className="exercise card dialogue-link">
         <span className="exercise-icon">💬</span>
         <span>
-          <strong>Diálogos con audio</strong>
+          <strong>Diálogos y lecturas con audio</strong>
           <small className="muted">Restaurante, tienda, taxi, teléfono… escucha y comprueba si lo entiendes</small>
         </span>
       </Link>

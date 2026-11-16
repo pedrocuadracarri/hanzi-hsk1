@@ -564,3 +564,4 @@ section > .section-title { margin: 8px 0; }
 .piece small { font-size: 0.7rem; color: var(--muted); max-width: 90px; }
 .piece-main { font-size: 1.6rem; }
 .piece-op { color: var(--muted); font-weight: 700; }
+.bubble-N { align-self: stretch; max-width: 100%; border-radius: 12px; }
