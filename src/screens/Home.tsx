@@ -133,6 +133,18 @@ export default function Home() {
         <Link to="/tonos" className="quick card">
           <span>🎵</span>Tonos
         </Link>
+        <Link to="/frases" className="quick card">
+          <span>🧱</span>Frases
+        </Link>
+        <Link to="/dialogos" className="quick card">
+          <span>💬</span>Diálogos
+        </Link>
+        <Link to="/examen" className="quick card">
+          <span>🏅</span>Simulacro
+        </Link>
+        <Link to="/aprender" className="quick card">
+          <span>🎓</span>Guía
+        </Link>
       </div>
 
       <InstallButton />

@@ -93,4 +93,42 @@ export const DIALOGUES: Dialogue[] = [
     ],
     question: { q: '¿Adónde va B?', options: ['A la estación de tren', 'Al Hotel Pekín', 'A la escuela'], answer: 1 },
   },
+  {
+    id: 'familia',
+    icon: '👨‍👩‍👧',
+    title: 'La familia',
+    lines: [
+      { who: 'A', zh: '你家有几个人？', py: 'Nǐ jiā yǒu jǐ ge rén?', es: '¿Cuántos sois en tu familia?' },
+      { who: 'B', zh: '我家有四个人：爸爸、妈妈、我和我女儿。', py: 'Wǒ jiā yǒu sì ge rén: bàba, māma, wǒ hé wǒ nǚ’ér.', es: 'Somos cuatro: papá, mamá, yo y mi hija.' },
+      { who: 'A', zh: '你女儿几岁？', py: 'Nǐ nǚ’ér jǐ suì?', es: '¿Cuántos años tiene tu hija?' },
+      { who: 'B', zh: '她六岁。她很喜欢猫。', py: 'Tā liù suì. Tā hěn xǐhuan māo.', es: 'Tiene seis años. Le encantan los gatos.' },
+    ],
+    question: { q: '¿Cuántos años tiene la hija?', options: ['4', '6', '10'], answer: 1 },
+  },
+  {
+    id: 'hora',
+    icon: '⏰',
+    title: 'Quedar a una hora',
+    lines: [
+      { who: 'A', zh: '你明天下午做什么？', py: 'Nǐ míngtiān xiàwǔ zuò shénme?', es: '¿Qué haces mañana por la tarde?' },
+      { who: 'B', zh: '我没有工作。', py: 'Wǒ méiyǒu gōngzuò.', es: 'No tengo trabajo (estoy libre).' },
+      { who: 'A', zh: '我们去看电影，怎么样？', py: 'Wǒmen qù kàn diànyǐng, zěnmeyàng?', es: 'Vamos al cine, ¿qué te parece?' },
+      { who: 'B', zh: '好！几点？', py: 'Hǎo! Jǐ diǎn?', es: '¡Vale! ¿A qué hora?' },
+      { who: 'A', zh: '下午三点，在电影院前面。', py: 'Xiàwǔ sān diǎn, zài diànyǐngyuàn qiánmian.', es: 'A las tres de la tarde, delante del cine.' },
+    ],
+    question: { q: '¿A qué hora quedan?', options: ['A las 3 de la tarde', 'A las 10 de la mañana', 'A mediodía'], answer: 0 },
+  },
+  {
+    id: 'clase',
+    icon: '🏫',
+    title: 'En clase',
+    lines: [
+      { who: 'A', zh: '老师，这个字怎么写？', py: 'Lǎoshī, zhège zì zěnme xiě?', es: 'Profe, ¿cómo se escribe este carácter?' },
+      { who: 'B', zh: '你看，先写上面，再写下面。', py: 'Nǐ kàn, xiān xiě shàngmian, zài xiě xiàmian.', es: 'Mira: primero la parte de arriba, luego la de abajo.' },
+      { who: 'A', zh: '谢谢老师！我会写了。', py: 'Xièxie lǎoshī! Wǒ huì xiě le.', es: '¡Gracias, profe! Ya sé escribirlo.' },
+      { who: 'B', zh: '很好！你的汉语怎么样了？', py: 'Hěn hǎo! Nǐ de Hànyǔ zěnmeyàng le?', es: '¡Muy bien! ¿Qué tal va tu chino?' },
+      { who: 'A', zh: '我能说一点儿，也能看一些字。', py: 'Wǒ néng shuō yìdiǎnr, yě néng kàn yìxiē zì.', es: 'Puedo hablar un poco y leer algunos caracteres.' },
+    ],
+    question: { q: '¿Qué pregunta el alumno?', options: ['Cómo se pronuncia una palabra', 'Cómo se escribe un carácter', 'Qué hora es'], answer: 1 },
+  },
 ]
