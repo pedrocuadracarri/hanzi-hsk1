@@ -236,6 +236,16 @@ export const LESSONS: Lesson[] = [
           🎯 Practica con el ejercicio <Link to="/tonos">Tonos</Link>. Al principio a todo el mundo le cuesta: es
           normal.
         </p>
+        <p className="tip">
+          🎨 En la app cada tono tiene su color: <span className="t1">1.º rojo</span>, <span className="t2">2.º naranja</span>,{' '}
+          <span className="t3">3.º verde</span>, <span className="t4">4.º azul</span> y <span className="t5">neutro gris</span>.
+          Tu memoria visual te ayudará a recordar el tono de cada palabra. Puedes quitarlo en{' '}
+          <Link to="/ajustes">Ajustes</Link>.
+        </p>
+        <p className="tip">
+          🙌 Truco físico: dibuja el tono con la mano mientras lo dices (plano, subir, bajar-subir, caer). Parece una tontería,
+          pero funciona.
+        </p>
       </>
     ),
   },
