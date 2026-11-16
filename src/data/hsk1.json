@@ -154,10 +154,9 @@
         "meaning": "punto"
       }
     ],
-    "mnemonic": "Algo que intenta subir y choca contra una línea (一): no.",
+    "mnemonic": "Un pájaro que vuela hacia arriba y choca contra el cielo (一): no puede pasar. ¡No!",
     "category": "adverbio",
-    "level": 1,
-    "needsReview": true
+    "level": 1
   },
   {
     "id": "hsk1-008",
@@ -754,8 +753,7 @@
     ],
     "mnemonic": "Una persona (人) con un palito (丨) contando cosas una a una: clasificador general.",
     "category": "medida",
-    "level": 1,
-    "needsReview": true
+    "level": 1
   },
   {
     "id": "hsk1-033",
@@ -1271,8 +1269,7 @@
     ],
     "mnemonic": "Un trazo que baja, se curva y termina: marca que la acción ya terminó.",
     "category": "partícula",
-    "level": 1,
-    "needsReview": true
+    "level": 1
   },
   {
     "id": "hsk1-057",

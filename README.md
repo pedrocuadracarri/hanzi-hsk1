@@ -6,7 +6,8 @@ PWA gratuita y sin backend para aprender los 150 caracteres del HSK 1, en españ
 
 - **Aprender**: guía para principiantes con audio y partes interactivas: pinyin, tonos, cambios de tono, pictogramas (del dibujo al carácter), orden de trazos, primeras frases, números/fechas/horas, gramática básica y camino a B1.
 - **Practicar**: Repaso mixto, Emparejar (emoji, significado, pinyin, piezas), Tarjetas, Escuchar, Escribir con el dedo (con pistas o dictado), Ordenar frases y Tonos (1 y 2 sílabas).
-- **Frases de ejemplo** con audio para las 150 palabras y **colores de tono**. Las palabras nuevas se presentan antes de practicarlas.
+- **Frases de ejemplo** con audio para las 150 palabras y **colores de tono**.
+- **Diálogos** con audio y comprensión, **grábate y compárate**, **simulacro HSK 1** y **plan de hoy**. Las palabras nuevas se presentan antes de practicarlas.
 - **Repaso espaciado** Leitner de 5 cajas: lo que fallas vuelve antes.
 - **Palabras y Componentes**: fichas con mnemotecnia, piezas, audio y animación de trazos; buscador.
 - **Progreso**: racha, objetivo diario, calendario, previsión de repasos, cajas, temas y palabras difíciles.
@@ -34,4 +35,4 @@ También hay `netlify.toml` listo para Netlify.
 
 ## Datos
 
-`src/data/hsk1.json`: 150 palabras con pinyin (tildes y numérico), significado, emoji, componentes, mnemotecnia y categoría. Las entradas con `needsReview: true` tienen una descomposición o mnemotecnia dudosa. Para añadir HSK 2, crea `hsk2.json` y regístralo en `src/data/index.ts`.
+`src/data/hsk1.json`: 150 palabras con pinyin (tildes y numérico), significado, emoji, componentes, mnemotecnia y categoría. Las entradas con `needsReview: true` (ahora ninguna) marcan descomposiciones o mnemotecnias dudosas. Las frases de ejemplo están en `src/data/examples.json` y los diálogos en `src/data/dialogues.ts`. Para añadir HSK 2, crea `hsk2.json` y regístralo en `src/data/index.ts`.
