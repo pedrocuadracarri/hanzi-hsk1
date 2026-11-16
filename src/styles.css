@@ -532,3 +532,7 @@ section > .section-title { margin: 8px 0; }
 .plan-list li:last-child a { border-bottom: 0; }
 .plan-list .chevron { margin-left: auto; }
 .plan-done a { color: var(--muted); text-decoration: line-through; }
+
+.related .shared { color: var(--accent); }
+.word-cell { position: relative; }
+.word-emoji { position: absolute; top: 4px; right: 6px; font-size: 0.85rem; }

@@ -59,6 +59,7 @@ export default function Words() {
               const cls = p ? (isLearned(p) ? 'learned' : 'seen') : ''
               return (
                 <Link key={w.id} to={`/palabra/${w.id}`} className={`word-cell ${cls}`}>
+                  {w.emoji && <span className="word-emoji" aria-hidden>{w.emoji}</span>}
                   <span className="hanzi">{w.hanzi}</span>
                   <small>{settings.pinyinHint ? <TonedPinyin pinyin={w.pinyin} /> : ''}</small>
                   <small className="word-meaning">{w.meaning}</small>

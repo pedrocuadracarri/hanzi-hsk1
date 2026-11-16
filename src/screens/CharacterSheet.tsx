@@ -79,6 +79,32 @@ export default function CharacterSheet() {
         <ExampleSentence word={word} />
       </section>
 
+      {(() => {
+        const related = ALL_WORDS.filter((w) => w.id !== word.id && [...w.hanzi].some((c) => chars.includes(c)))
+        return (
+          related.length > 0 && (
+            <section className="card">
+              <h2>Familia de palabras</h2>
+              <p className="muted small-left">Comparten carácter: aprende uno y tienes pistas para los demás.</p>
+              <div className="chips related">
+                {related.map((r) => (
+                  <Link key={r.id} to={`/palabra/${r.id}`} replace className="chip">
+                    <span className="hanzi">
+                      {[...r.hanzi].map((c, i) => (
+                        <span key={i} className={chars.includes(c) ? 'shared' : ''}>
+                          {c}
+                        </span>
+                      ))}
+                    </span>{' '}
+                    <small>{r.meaning}</small>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )
+        )
+      })()}
+
       <section className="card">
         <h2>Componentes</h2>
         <ul className="radicals">
