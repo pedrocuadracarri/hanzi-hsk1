@@ -14,20 +14,23 @@ export default function Words() {
   const { progress } = useProgress()
   const settings = useSettings()
   const [q, setQ] = useState('')
+  const [filter, setFilter] = useState<'all' | 'new' | 'learning' | 'learned'>('all')
 
   const groups = useMemo(() => {
     const nq = norm(q.trim())
+    const state = (id: string) => (!progress[id] ? 'new' : isLearned(progress[id]) ? 'learned' : 'learning')
     const match = ALL_WORDS.filter(
       (w) =>
-        !nq ||
+        (filter === 'all' || state(w.id) === filter) &&
+        (!nq ||
         w.hanzi.includes(q.trim()) ||
         norm(w.pinyin).replace(/\s/g, '').includes(nq.replace(/\s/g, '')) ||
-        norm(w.meaning).includes(nq),
+        norm(w.meaning).includes(nq)),
     )
     return CATEGORY_ORDER.map((c) => [c, match.filter((w) => w.category === c)] as [Category, typeof match]).filter(
       ([, ws]) => ws.length,
     )
-  }, [q])
+  }, [q, filter, progress])
 
   return (
     <main className="screen">
@@ -44,6 +47,20 @@ export default function Words() {
         value={q}
         onChange={(e) => setQ(e.target.value)}
       />
+      <div className="segmented" role="tablist" aria-label="Filtrar">
+        {(
+          [
+            ['all', 'Todas'],
+            ['new', 'Nuevas'],
+            ['learning', 'En curso'],
+            ['learned', 'Aprendidas'],
+          ] as const
+        ).map(([id, label]) => (
+          <button key={id} role="tab" aria-selected={filter === id} className={filter === id ? 'active' : ''} onClick={() => setFilter(id)}>
+            {label}
+          </button>
+        ))}
+      </div>
       <p className="muted small-left">
         <span className="legend seen" /> vista · <span className="legend learned" /> aprendida (caja 3+)
       </p>
