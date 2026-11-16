@@ -9,6 +9,7 @@ import RoundResult from '../components/RoundResult'
 import SpeakerButton from '../components/SpeakerButton'
 import ProgressDots from '../components/ProgressDots'
 import ExampleSentence from '../components/ExampleSentence'
+import Pieces from '../components/Pieces'
 import { TonedPinyin } from '../components/Toned'
 import { useHotkeys } from '../lib/useHotkeys'
 
@@ -66,6 +67,7 @@ export default function Flashcards() {
                 <div className="intro-meaning">
                   {w.emoji} {w.meaning}
                 </div>
+                <Pieces word={w} />
                 <p className="intro-mnemonic">💡 {w.mnemonic}</p>
                 <ExampleSentence word={w} />
               </div>

@@ -4,6 +4,7 @@ import { speak } from '../lib/speech'
 import { getSettings } from '../lib/settings'
 import SpeakerButton from './SpeakerButton'
 import ExampleSentence from './ExampleSentence'
+import Pieces from './Pieces'
 import { TonedHanzi, TonedPinyin } from './Toned'
 
 interface Props {
@@ -37,6 +38,7 @@ export default function NewWordsIntro({ words, onDone }: Props) {
         <TonedPinyin pinyin={w.pinyin} /> <SpeakerButton text={w.hanzi} size="lg" />
       </div>
       <div className="intro-meaning">{w.meaning}</div>
+      <Pieces word={w} />
       <p className="intro-mnemonic">💡 {w.mnemonic}</p>
       <ExampleSentence word={w} />
       <button className="btn btn-primary" onClick={() => (last ? onDone() : setI(i + 1))}>

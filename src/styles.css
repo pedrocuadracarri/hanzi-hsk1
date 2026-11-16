@@ -555,3 +555,12 @@ section > .section-title { margin: 8px 0; }
 .rec-dot::before { content: '●'; color: var(--bad); margin-right: 4px; animation: blink 1s infinite; }
 @keyframes blink { 50% { opacity: 0.2; } }
 .record-target { font-size: 1.4rem; margin: 6px 0 0; }
+
+/* Piezas del carácter */
+.pieces { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; }
+.piece-wrap { display: inline-flex; align-items: center; gap: 6px; }
+.piece { display: inline-flex; flex-direction: column; align-items: center; padding: 4px 10px; border-radius: 10px; background: var(--surface-2); }
+.piece .hanzi { font-size: 1.4rem; line-height: 1.2; }
+.piece small { font-size: 0.7rem; color: var(--muted); max-width: 90px; }
+.piece-main { font-size: 1.6rem; }
+.piece-op { color: var(--muted); font-weight: 700; }
