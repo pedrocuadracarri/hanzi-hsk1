@@ -3,6 +3,7 @@ import type { Word } from '../types'
 import { speak } from '../lib/speech'
 import { getSettings } from '../lib/settings'
 import SpeakerButton from './SpeakerButton'
+import ExampleSentence from './ExampleSentence'
 
 interface Props {
   words: Word[]
@@ -34,6 +35,7 @@ export default function NewWordsIntro({ words, onDone }: Props) {
       </div>
       <div className="intro-meaning">{w.meaning}</div>
       <p className="intro-mnemonic">💡 {w.mnemonic}</p>
+      <ExampleSentence word={w} />
       <button className="btn btn-primary" onClick={() => (last ? onDone() : setI(i + 1))}>
         {last ? '¡A practicar!' : 'Siguiente'}
       </button>

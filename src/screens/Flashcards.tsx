@@ -8,6 +8,7 @@ import ExerciseHeader from '../components/ExerciseHeader'
 import RoundResult from '../components/RoundResult'
 import SpeakerButton from '../components/SpeakerButton'
 import ProgressDots from '../components/ProgressDots'
+import ExampleSentence from '../components/ExampleSentence'
 import { useHotkeys } from '../lib/useHotkeys'
 
 export default function Flashcards() {
@@ -65,6 +66,7 @@ export default function Flashcards() {
                   {w.emoji} {w.meaning}
                 </div>
                 <p className="intro-mnemonic">💡 {w.mnemonic}</p>
+                <ExampleSentence word={w} />
               </div>
             ) : (
               <p className="muted">

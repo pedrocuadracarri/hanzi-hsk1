@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { TIPS, tipOfDay } from '../data/tips'
 import { ALL_WORDS } from '../data'
 import { countDue, isLearned } from '../lib/srs'
 import { visibleStreak } from '../lib/streak'
@@ -27,6 +29,8 @@ export default function Home() {
   const todayCount = daily[today] ?? 0
   const goalPct = Math.min(100, (todayCount / settings.dailyGoal) * 100)
   const wod = wordOfDay(today)
+  const [tipIdx, setTipIdx] = useState(() => tipOfDay(today))
+  const tip = TIPS[tipIdx]
   const read = readSet()
   const firstTime = loaded && seen === 0 && read.size === 0
   const nextLesson = read.size > 0 ? LESSONS.find((l) => !read.has(l.id)) : undefined
@@ -100,6 +104,21 @@ export default function Home() {
       </div>
 
       <InstallButton />
+
+      <section className="card tip-card">
+        <div className="tip-head">
+          <small className="muted">💡 Truco</small>
+          <button className="link-btn" onClick={() => setTipIdx((tipIdx + 1) % TIPS.length)}>
+            Otro truco
+          </button>
+        </div>
+        <p>{tip.text}</p>
+        {tip.to && (
+          <Link to={tip.to} className="btn btn-sm tip-cta">
+            {tip.cta} →
+          </Link>
+        )}
+      </section>
 
       <Link to={`/palabra/${wod.id}`} className="card wod">
         <small className="muted">Palabra del día</small>

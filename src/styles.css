@@ -430,3 +430,53 @@ section > .section-title { margin: 8px 0; }
 .options-text .option { min-height: 76px; }
 .quiz-feedback { display: flex; flex-direction: column; gap: 10px; }
 .option small .hanzi { font-size: 1.1rem; }
+
+/* Ordenar frases */
+.sentence-prompt { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.sentence-es { font-size: 1.25rem; }
+.sentence-answer { min-height: 84px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 10px; border: 2px dashed var(--border); border-radius: var(--radius); }
+.sentence-answer.ok { border-style: solid; border-color: var(--ok); background: var(--ok-bg); }
+.sentence-answer.bad { border-style: solid; border-color: var(--bad); background: var(--bad-bg); }
+.sentence-bank { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.word-tile { display: flex; flex-direction: column; align-items: center; min-width: 52px; min-height: 56px; padding: 6px 10px; border: 2px solid var(--border); border-bottom-width: 4px; border-radius: 12px; background: var(--surface); cursor: pointer; transition: transform 0.1s, opacity 0.15s; }
+.word-tile:active { transform: scale(0.95); }
+.word-tile .hanzi { font-size: 1.5rem; line-height: 1.2; }
+.word-tile small { font-size: 0.7rem; color: var(--muted); }
+.word-tile.used { opacity: 0.2; cursor: default; }
+.sentence-feedback { display: flex; flex-direction: column; gap: 6px; align-items: center; text-align: center; }
+.sentence-feedback.ok { border-color: var(--ok); }
+.sentence-feedback.bad { border-color: var(--bad); }
+.sentence-feedback .btn { width: 100%; margin-top: 6px; }
+.sentence-zh { font-size: 1.6rem; }
+
+/* Frase de ejemplo */
+.example { display: flex; flex-direction: column; gap: 2px; width: 100%; padding: 10px 12px; border-radius: 12px; background: var(--surface-2); text-align: left; }
+.example-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.example-zh { font-size: 1.35rem; }
+.example-zh mark { background: transparent; color: var(--accent); font-weight: 700; }
+.example-py { font-size: 0.95rem; }
+
+/* Truco del día */
+.tip-card { display: flex; flex-direction: column; gap: 8px; }
+.tip-card p { margin: 0; line-height: 1.5; }
+.tip-head { display: flex; justify-content: space-between; align-items: center; }
+.tip-cta { align-self: flex-start; }
+
+/* Guía interactiva */
+.reveal { cursor: pointer; }
+.reveal .ex-hanzi { font-size: 1.4rem; min-width: 0; }
+.reveal-hidden { color: var(--sel); font-style: italic; }
+.pattern { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; }
+.pattern-formula { color: var(--accent); }
+.levels { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.level { display: flex; flex-direction: column; gap: 4px; padding: 12px; }
+.level-now { border-color: var(--ok); background: var(--ok-bg); }
+.level-words { font-size: 1.2rem; font-weight: 700; }
+.picto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.picto { display: flex; flex-direction: column; gap: 6px; padding: 12px; }
+.picto-stage { position: relative; width: 100%; aspect-ratio: 1; border: 0; border-radius: 12px; background: var(--surface-2); color: var(--accent); cursor: pointer; padding: 0; }
+.picto-draw { position: absolute; inset: 14%; width: 72%; height: 72%; transition: opacity 0.4s; }
+.picto-hanzi { position: absolute; inset: 0; display: grid; place-items: center; font-size: 4.2rem; color: var(--text); transition: opacity 0.4s; }
+.picto input[type=range] { width: 100%; accent-color: var(--accent); }
+.picto-info { display: flex; align-items: center; justify-content: space-between; }
+.picto-info strong .hanzi { font-size: 1.3rem; }

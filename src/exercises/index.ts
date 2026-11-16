@@ -56,6 +56,14 @@ export const EXERCISES: ExerciseInfo[] = [
     srs: true,
   },
   {
+    id: 'sentences',
+    title: 'Ordenar frases',
+    description: 'Construye frases reales en chino: así se aprende la gramática sin estudiarla',
+    path: '/frases',
+    icon: '🧱',
+    srs: true,
+  },
+  {
     id: 'tones',
     title: 'Tonos',
     description: 'Entrena el oído: ¿qué tono has escuchado?',

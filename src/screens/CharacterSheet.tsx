@@ -7,6 +7,7 @@ import { getAllProgress } from '../lib/storage'
 import SpeakerButton from '../components/SpeakerButton'
 import StrokeAnimation from '../components/StrokeAnimation'
 import VoiceBanner from '../components/VoiceBanner'
+import ExampleSentence from '../components/ExampleSentence'
 
 export default function CharacterSheet() {
   const { id = '' } = useParams()
@@ -68,6 +69,11 @@ export default function CharacterSheet() {
       <section className="card">
         <h2>Mnemotecnia</h2>
         <p>{word.mnemonic}</p>
+      </section>
+
+      <section className="card">
+        <h2>En una frase</h2>
+        <ExampleSentence word={word} />
       </section>
 
       <section className="card">

@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import SpeakerButton from '../components/SpeakerButton'
 import StrokeAnimation from '../components/StrokeAnimation'
+import Pictographs from '../components/Pictographs'
 
 /** Ejemplo con audio: carácter, pinyin y explicación */
 function Ex({ h, p, m }: { h: string; p: string; m: string }) {
@@ -35,6 +36,30 @@ function ToneCurve({ tone }: { tone: 1 | 2 | 3 | 4 }) {
     <svg viewBox="0 0 60 42" className="tone-curve" aria-hidden>
       <path d={paths[tone]} fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
     </svg>
+  )
+}
+
+/** Frase para practicar recuerdo activo: piensa la traducción y toca para comprobar */
+function Reveal({ h, p, m }: { h: string; p: string; m: string }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <li className="ex-row reveal" onClick={() => setOpen(true)}>
+      <span className="ex-text">
+        <span className="hanzi ex-hanzi">{h}</span>
+        <small>{p}</small>
+        <small className={open ? '' : 'reveal-hidden'}>{open ? m : 'Toca para ver la traducción'}</small>
+      </span>
+      <SpeakerButton text={h} />
+    </li>
+  )
+}
+
+function Pattern({ f, children }: { f: string; children: ReactNode }) {
+  return (
+    <div className="pattern card">
+      <strong className="pattern-formula">{f}</strong>
+      <ul className="ex-list">{children}</ul>
+    </div>
   )
 }
 
@@ -247,13 +272,8 @@ export const LESSONS: Lesson[] = [
       <>
         <p>Los caracteres no son dibujos al azar: casi todos están hechos de piezas que se repiten.</p>
         <h3>Pictogramas: dibujos simplificados</h3>
-        <ul className="ex-list">
-          <Ex h="人" p="rén" m="una persona caminando" />
-          <Ex h="木" p="mù" m="un árbol con ramas y raíces" />
-          <Ex h="日" p="rì" m="el sol" />
-          <Ex h="月" p="yuè" m="la luna creciente" />
-          <Ex h="口" p="kǒu" m="una boca" />
-        </ul>
+        <p>Toca cada dibujo (o mueve la barra) para ver cómo se convirtió en carácter:</p>
+        <Pictographs />
         <h3>Combinaciones de ideas</h3>
         <ul className="ex-list">
           <Ex h="好" p="hǎo" m="女 mujer + 子 niño = bueno" />
@@ -338,6 +358,112 @@ export const LESSONS: Lesson[] = [
         <p className="tip">
           🧠 Fíjate: para preguntar basta con añadir <span className="hanzi">吗</span> al final. 你好 = hola → 你好吗? =
           ¿qué tal?
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'gramatica',
+    icon: '🧩',
+    title: 'Gramática básica',
+    summary: 'Las 8 estructuras que sostienen todo el HSK 1',
+    body: () => (
+      <>
+        <p>
+          La gramática china es amable: <strong>no hay conjugaciones, ni género, ni plurales</strong>. Lo importante es el{' '}
+          <strong>orden de las palabras</strong>. Lee cada frase, intenta traducirla tú y toca para comprobar.
+        </p>
+        <Pattern f="1. A 是 B → A es B">
+          <Reveal h="我是学生。" p="wǒ shì xuésheng" m="Soy estudiante." />
+          <Reveal h="她是我妈妈。" p="tā shì wǒ māma" m="Ella es mi mamá." />
+        </Pattern>
+        <Pattern f="2. … 吗？ → pregunta de sí/no">
+          <Reveal h="你是老师吗？" p="nǐ shì lǎoshī ma" m="¿Eres profesor?" />
+          <Reveal h="你喝茶吗？" p="nǐ hē chá ma" m="¿Bebes té?" />
+        </Pattern>
+        <Pattern f="3. Sujeto + 很 + adjetivo (¡sin 是!)">
+          <Reveal h="今天很冷。" p="jīntiān hěn lěng" m="Hoy hace frío." />
+          <Reveal h="我很高兴。" p="wǒ hěn gāoxìng" m="Estoy contento." />
+        </Pattern>
+        <Pattern f="4. 不 / 没 → negar">
+          <Reveal h="我不喝茶。" p="wǒ bù hē chá" m="No bebo té. (不 = no, en general)" />
+          <Reveal h="我没有钱。" p="wǒ méiyǒu qián" m="No tengo dinero. (有 siempre se niega con 没)" />
+        </Pattern>
+        <Pattern f="5. Quién + cuándo + dónde + verbo + qué">
+          <Reveal h="我明天在家学习汉语。" p="wǒ míngtiān zài jiā xuéxí Hànyǔ" m="Mañana estudio chino en casa." />
+          <Reveal h="他上午去医院。" p="tā shàngwǔ qù yīyuàn" m="Él va al hospital por la mañana." />
+        </Pattern>
+        <Pattern f="6. A 的 B → B de A">
+          <Reveal h="我的书" p="wǒ de shū" m="mi libro (el libro de mí)" />
+          <Reveal h="老师的名字" p="lǎoshī de míngzi" m="el nombre del profesor" />
+        </Pattern>
+        <Pattern f="7. Número + clasificador + cosa">
+          <Reveal h="三个人" p="sān ge rén" m="tres personas" />
+          <Reveal h="一本书" p="yì běn shū" m="un libro (本 = para libros)" />
+        </Pattern>
+        <Pattern f="8. Verbo + 了 → acción terminada">
+          <Reveal h="我买了一本书。" p="wǒ mǎi le yì běn shū" m="Compré un libro." />
+          <Reveal h="他来了。" p="tā lái le" m="Ya ha venido." />
+        </Pattern>
+        <p className="tip">
+          🧱 Practica estas estructuras en <Link to="/frases">Ordenar frases</Link>: cada palabra tiene una frase real.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'b1',
+    icon: '🗺️',
+    title: 'Camino a B1',
+    summary: 'Cuánto falta, qué estudiar y cómo organizarte',
+    body: () => (
+      <>
+        <p>
+          El nivel <strong>B1</strong> del Marco Europeo equivale más o menos al <strong>HSK 3–4</strong>: puedes desenvolverte
+          en viajes, hablar de tu vida y entender lo esencial de conversaciones claras.
+        </p>
+        <div className="levels">
+          {(
+            [
+              ['HSK 1', '150', 'A1', 'Presentarte, números, frases muy básicas', true],
+              ['HSK 2', '300', 'A2', 'Compras, rutina, direcciones', false],
+              ['HSK 3', '600', 'B1', 'Conversaciones cotidianas, viajes', false],
+              ['HSK 4', '1 200', 'B2', 'Opiniones, temas variados, nativos a ritmo lento', false],
+            ] as const
+          ).map(([lvl, words, cefr, desc, now]) => (
+            <div key={lvl} className={`level card ${now ? 'level-now' : ''}`}>
+              <strong>
+                {lvl} <span className="badge">{cefr}</span>
+              </strong>
+              <span className="level-words">{words} palabras</span>
+              <small className="muted">{desc}</small>
+              {now && <small className="badge badge-ok">Estás aquí</small>}
+            </div>
+          ))}
+        </div>
+        <h3>Un plan realista</h3>
+        <ul className="bullets">
+          <li>
+            <strong>20–30 minutos al día</strong>: unas 5–10 palabras nuevas + todos los repasos pendientes.
+          </li>
+          <li>
+            A ese ritmo: HSK 1 en ~1 mes, HSK 2 en ~3 meses, HSK 3 en ~8–10 meses. B1 en un año y medio es
+            un objetivo serio y alcanzable.
+          </li>
+          <li>
+            <strong>Escucha cada día</strong> aunque sea 5 minutos: el oído es lo que más tarda.
+          </li>
+          <li>
+            <strong>Habla desde el principio</strong>: repite las frases en voz alta e imita la entonación.
+          </li>
+          <li>
+            Desde HSK 2, añade <strong>lectura graduada</strong> (libros para estudiantes por niveles) y
+            un intercambio de idiomas o clases de conversación.
+          </li>
+        </ul>
+        <p className="tip">
+          🎯 Primer paso: domina las 150 palabras de esta app (todas en la caja 3 o más). Míralo en{' '}
+          <Link to="/progreso">Progreso</Link>.
         </p>
       </>
     ),
