@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import SpeakerButton from '../components/SpeakerButton'
 import StrokeAnimation from '../components/StrokeAnimation'
 import Pictographs from '../components/Pictographs'
+import { NowInChinese, NumberQuiz, NumberSlider } from '../components/NumberLab'
 
 /** Ejemplo con audio: carácter, pinyin y explicación */
 function Ex({ h, p, m }: { h: string; p: string; m: string }) {
@@ -358,6 +359,34 @@ export const LESSONS: Lesson[] = [
         <p className="tip">
           🧠 Fíjate: para preguntar basta con añadir <span className="hanzi">吗</span> al final. 你好 = hola → 你好吗? =
           ¿qué tal?
+        </p>
+      </>
+    ),
+  },
+  {
+    id: 'numeros',
+    icon: '🔢',
+    title: 'Números, fechas y horas',
+    summary: 'Con 11 caracteres cuentas hasta 99 (interactivo)',
+    body: () => (
+      <>
+        <p>
+          Los números chinos son muy lógicos: con <span className="hanzi">零 一 二 三 四 五 六 七 八 九 十</span> ya puedes
+          contar hasta 99. 23 se dice «dos diez tres»: <span className="hanzi">二十三</span>.
+        </p>
+        <h3>Mueve la barra</h3>
+        <NumberSlider />
+        <h3>Ponte a prueba</h3>
+        <NumberQuiz />
+        <h3>Fechas y horas</h3>
+        <p>
+          En chino se va de lo grande a lo pequeño: año → mes → día, y parte del día → hora → minutos. Así se dice
+          ahora mismo:
+        </p>
+        <NowInChinese />
+        <p className="tip">
+          🖐️ Truco: los chinos también cuentan con una mano del 1 al 10 con gestos distintos. ¡Búscalo en vídeo, es
+          útil en mercados!
         </p>
       </>
     ),

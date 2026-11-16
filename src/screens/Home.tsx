@@ -8,6 +8,7 @@ import { toDay } from '../lib/dates'
 import { useProgress } from '../lib/useProgress'
 import { useSettings } from '../lib/settings'
 import SpeakerButton from '../components/SpeakerButton'
+import { TonedPinyin } from '../components/Toned'
 import InstallButton from '../components/InstallButton'
 import { readSet } from '../lib/guideProgress'
 import { LESSONS } from '../data/guide'
@@ -125,7 +126,9 @@ export default function Home() {
         <div className="wod-row">
           <span className="hanzi wod-hanzi">{wod.hanzi}</span>
           <span className="wod-text">
-            <strong>{wod.pinyin}</strong>
+            <strong>
+              <TonedPinyin pinyin={wod.pinyin} />
+            </strong>
             <span>
               {wod.emoji} {wod.meaning}
             </span>

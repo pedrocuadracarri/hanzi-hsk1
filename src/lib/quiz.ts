@@ -1,9 +1,10 @@
 import type { Word } from '../types'
+import { getExample } from '../data/examples'
 import { pickDistractors } from './rounds'
 import { shuffle, type Rng } from './random'
 
 /** Tipos de pregunta del repaso mixto */
-export type QuizKind = 'meaning' | 'reverse' | 'listen' | 'pinyin'
+export type QuizKind = 'meaning' | 'reverse' | 'listen' | 'pinyin' | 'sentence'
 
 export interface QuizQuestion {
   word: Word
@@ -19,6 +20,8 @@ export const QUIZ_KEY: Record<QuizKind, (w: Word) => string> = {
   reverse: (w) => w.meaning,
   listen: (w) => w.pinyin,
   pinyin: (w) => w.pinyin,
+  // Se oye la frase de ejemplo y se elige su traducción
+  sentence: (w) => getExample(w.id)?.es ?? w.meaning,
 }
 
 /**
@@ -27,7 +30,7 @@ export const QUIZ_KEY: Record<QuizKind, (w: Word) => string> = {
  * (aún no se han oído ni practicado el pinyin).
  */
 export function buildQuiz(words: Word[], pool: Word[], isNew: (w: Word) => boolean, rng: Rng = Math.random): QuizQuestion[] {
-  const all: QuizKind[] = shuffle(['meaning', 'reverse', 'listen', 'pinyin'], rng)
+  const all: QuizKind[] = shuffle(['meaning', 'reverse', 'listen', 'pinyin', 'sentence'], rng)
   const easy: QuizKind[] = shuffle(['meaning', 'reverse'], rng)
   let a = 0
   let e = 0

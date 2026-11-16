@@ -12,9 +12,11 @@ export interface Settings {
   dailyGoal: number
   /** Tema de color: el del sistema o forzado */
   theme: 'auto' | 'light' | 'dark'
+  /** Colorear pinyin y caracteres según el tono */
+  toneColors: boolean
 }
 
-export const DEFAULT_SETTINGS: Settings = { rate: 0.8, autoplay: true, pinyinHint: true, dailyGoal: 20, theme: 'auto' }
+export const DEFAULT_SETTINGS: Settings = { rate: 0.8, autoplay: true, pinyinHint: true, dailyGoal: 20, theme: 'auto', toneColors: true }
 
 const KEY = 'hanzi-settings'
 const listeners = new Set<() => void>()

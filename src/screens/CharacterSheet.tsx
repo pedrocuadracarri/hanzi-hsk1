@@ -8,6 +8,7 @@ import SpeakerButton from '../components/SpeakerButton'
 import StrokeAnimation from '../components/StrokeAnimation'
 import VoiceBanner from '../components/VoiceBanner'
 import ExampleSentence from '../components/ExampleSentence'
+import { TonedHanzi, TonedPinyin } from '../components/Toned'
 
 export default function CharacterSheet() {
   const { id = '' } = useParams()
@@ -38,9 +39,11 @@ export default function CharacterSheet() {
       </button>
 
       <section className="sheet-head">
-        <div className="sheet-hanzi hanzi">{word.hanzi}</div>
+        <div className="sheet-hanzi hanzi">
+          <TonedHanzi hanzi={word.hanzi} pinyin={word.pinyin} />
+        </div>
         <div className="sheet-pinyin">
-          {word.pinyin} <SpeakerButton text={word.hanzi} size="lg" />
+          <TonedPinyin pinyin={word.pinyin} /> <SpeakerButton text={word.hanzi} size="lg" />
         </div>
         <div className="sheet-meaning">
           {word.emoji && <span aria-hidden>{word.emoji} </span>}

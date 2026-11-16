@@ -13,6 +13,11 @@
   --bad-bg: #fbe5e2;
   --sel: #2f6fb3;
   --sel-bg: #e2edf9;
+  --t1: #d63031;
+  --t2: #e17b00;
+  --t3: #2e8b57;
+  --t4: #2f6fb3;
+  --t5: #8a8178;
   --radius: 16px;
   --hanzi-font: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
   color-scheme: light dark;
@@ -33,6 +38,11 @@
     --bad-bg: #3d1c19;
     --sel: #7fb2ec;
     --sel-bg: #1c2c40;
+    --t1: #ff7b6e;
+    --t2: #ffb454;
+    --t3: #5cc98a;
+    --t4: #7fb2ec;
+    --t5: #a69c90;
   }
 }
 :root[data-theme="dark"] {
@@ -49,6 +59,11 @@
   --bad-bg: #3d1c19;
   --sel: #7fb2ec;
   --sel-bg: #1c2c40;
+  --t1: #ff7b6e;
+  --t2: #ffb454;
+  --t3: #5cc98a;
+  --t4: #7fb2ec;
+  --t5: #a69c90;
   color-scheme: dark;
 }
 :root[data-theme="light"] { color-scheme: light; }
@@ -480,3 +495,32 @@ section > .section-title { margin: 8px 0; }
 .picto input[type=range] { width: 100%; accent-color: var(--accent); }
 .picto-info { display: flex; align-items: center; justify-content: space-between; }
 .picto-info strong .hanzi { font-size: 1.3rem; }
+
+/* Colores de tono */
+.t1 { color: var(--t1); }
+.t2 { color: var(--t2); }
+.t3 { color: var(--t3); }
+.t4 { color: var(--t4); }
+.t5 { color: var(--t5); }
+.quiz-sentence .hanzi { font-size: 1.8rem; padding: 0 10px; line-height: 1.4; }
+
+/* Celebración del objetivo diario */
+.result { position: relative; overflow: hidden; }
+.confetti { position: absolute; inset: 0; pointer-events: none; }
+.confetti span { position: absolute; top: -10%; left: calc(8% + var(--i) * 16%); font-size: 1.6rem; animation: fall 1.8s ease-in calc(var(--i) * 0.12s) forwards; opacity: 0; }
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(420px) rotate(240deg); opacity: 0; }
+}
+
+/* Números */
+.number-lab { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.number-lab input[type=range] { width: 100%; accent-color: var(--accent); }
+.number-lab .options { width: 100%; }
+.number-lab .option { min-height: 64px; }
+.number-big { display: flex; align-items: center; gap: 16px; }
+.number-digits { font-size: 2.4rem; font-weight: 700; color: var(--muted); }
+.number-hanzi { font-size: 3rem; }
+.number-py { font-size: 1.3rem; display: flex; align-items: center; gap: 6px; }
+.now-row { display: flex; align-items: center; gap: 6px; }
+.now-text { font-size: 1.5rem; }

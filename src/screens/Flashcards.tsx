@@ -9,6 +9,7 @@ import RoundResult from '../components/RoundResult'
 import SpeakerButton from '../components/SpeakerButton'
 import ProgressDots from '../components/ProgressDots'
 import ExampleSentence from '../components/ExampleSentence'
+import { TonedPinyin } from '../components/Toned'
 import { useHotkeys } from '../lib/useHotkeys'
 
 export default function Flashcards() {
@@ -60,7 +61,7 @@ export default function Flashcards() {
             {shown ? (
               <div className="flash-back pop">
                 <div className="intro-pinyin">
-                  {w.pinyin} <SpeakerButton text={w.hanzi} size="lg" />
+                  <TonedPinyin pinyin={w.pinyin} /> <SpeakerButton text={w.hanzi} size="lg" />
                 </div>
                 <div className="intro-meaning">
                   {w.emoji} {w.meaning}

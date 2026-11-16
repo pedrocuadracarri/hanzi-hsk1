@@ -13,6 +13,7 @@ import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import ProgressDots from '../components/ProgressDots'
 import SpeakerButton from '../components/SpeakerButton'
+import { getExample, sentenceText } from '../data/examples'
 
 const QUESTIONS = 8
 
@@ -21,9 +22,27 @@ const PROMPTS: Record<QuizKind, string> = {
   reverse: '¿Cuál es el carácter?',
   listen: '¿Qué palabra has oído?',
   pinyin: '¿Cómo se pronuncia?',
+  sentence: '¿Qué significa la frase?',
+}
+
+/** Lo que se oye en cada pregunta: la palabra, o la frase entera */
+const audioFor = (kind: QuizKind, word: Word) => {
+  const ex = kind === 'sentence' ? getExample(word.id) : undefined
+  return ex ? sentenceText(ex) : word.hanzi
 }
 
 function Prompt({ kind, word }: { kind: QuizKind; word: Word }) {
+  if (kind === 'sentence') {
+    const ex = getExample(word.id)
+    return (
+      <button className="listen-big quiz-sentence" onClick={() => speak(audioFor(kind, word))} aria-label="Escuchar otra vez">
+        <span className="hanzi">{ex ? sentenceText(ex) : word.hanzi}</span>
+        <small>
+          Toca para escucharla 🔊 <span className="kbd-hint">(espacio)</span>
+        </small>
+      </button>
+    )
+  }
   if (kind === 'listen') {
     return (
       <button className="listen-big" onClick={() => speak(word.hanzi)} aria-label="Escuchar otra vez">
@@ -50,6 +69,15 @@ function Prompt({ kind, word }: { kind: QuizKind; word: Word }) {
 }
 
 function OptionLabel({ kind, o, reveal, hint }: { kind: QuizKind; o: Word; reveal: boolean; hint: boolean }) {
+  if (kind === 'sentence') {
+    const ex = getExample(o.id)
+    return (
+      <>
+        <span className="option-text">{ex?.es ?? o.meaning}</span>
+        {reveal && ex && <small className="muted">{ex.py}</small>}
+      </>
+    )
+  }
   if (kind === 'meaning') {
     return (
       <>
@@ -100,8 +128,8 @@ export default function Review() {
   const cur = s.stage === 'play' ? questions[q] : undefined
 
   useEffect(() => {
-    if (cur?.kind !== 'listen') return
-    const t = setTimeout(() => speak(cur.word.hanzi), 300)
+    if (cur?.kind !== 'listen' && cur?.kind !== 'sentence') return
+    const t = setTimeout(() => speak(audioFor(cur.kind, cur.word)), 300)
     return () => clearTimeout(t)
   }, [cur])
 
@@ -116,13 +144,13 @@ export default function Review() {
     setPicked(id)
     const ok = id === cur.word.id
     s.answer(cur.word.id, ok)
-    if (cur.kind !== 'listen' && getSettings().autoplay) speak(cur.word.hanzi)
+    if (cur.kind !== 'listen' && cur.kind !== 'sentence' && getSettings().autoplay) speak(cur.word.hanzi)
     if (ok) setTimeout(next, 1000)
   }
 
   useHotkeys({
     ...Object.fromEntries((cur?.options ?? []).map((o, i) => [String(i + 1), () => choose(o.id)])),
-    ' ': () => cur && speak(cur.word.hanzi),
+    ' ': () => cur && speak(audioFor(cur.kind, cur.word)),
     Enter: () => cur && picked && picked !== cur.word.id && next(),
   })
 
@@ -137,7 +165,7 @@ export default function Review() {
         <ProgressDots total={questions.length} current={q} results={questions.map((x) => s.results.get(x.word.id))} />
         <p className="quiz-question">{PROMPTS[kind]}</p>
         <Prompt kind={kind} word={word} />
-        <div className={`options ${kind === 'meaning' ? 'options-text' : ''}`}>
+        <div className={`options ${kind === 'meaning' || kind === 'sentence' ? 'options-text' : ''}`}>
           {options.map((o, i) => {
             const cls = !picked ? '' : o.id === word.id ? 'ok' : o.id === picked ? 'bad' : 'dim'
             return (
@@ -172,7 +200,7 @@ export default function Review() {
 
   return (
     <main className="screen">
-      <ExerciseHeader title="Repaso mixto" help="Un poco de todo: significado, carácter, oído y pronunciación." />
+      <ExerciseHeader title="Repaso mixto" help="Un poco de todo: significado, carácter, oído, pronunciación y frases." />
       <VoiceBanner />
       {body}
     </main>

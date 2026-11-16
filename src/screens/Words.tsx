@@ -5,6 +5,7 @@ import { ALL_WORDS, CATEGORY_LABELS, CATEGORY_ORDER } from '../data'
 import { isLearned } from '../lib/srs'
 import { useProgress } from '../lib/useProgress'
 import { useSettings } from '../lib/settings'
+import { TonedPinyin } from '../components/Toned'
 
 /** Quita tildes y tonos para buscar sin preocuparse de ellos */
 const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
@@ -59,7 +60,7 @@ export default function Words() {
               return (
                 <Link key={w.id} to={`/palabra/${w.id}`} className={`word-cell ${cls}`}>
                   <span className="hanzi">{w.hanzi}</span>
-                  <small>{settings.pinyinHint ? w.pinyin : ''}</small>
+                  <small>{settings.pinyinHint ? <TonedPinyin pinyin={w.pinyin} /> : ''}</small>
                   <small className="word-meaning">{w.meaning}</small>
                 </Link>
               )

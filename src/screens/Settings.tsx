@@ -249,6 +249,13 @@ export default function Settings() {
           <span>Mostrar pinyin como ayuda bajo los caracteres</span>
         </label>
         <p className="muted small-left">Muy útil al principio. Quítalo cuando quieras retarte.</p>
+        <label className="toggle">
+          <input type="checkbox" checked={s.toneColors} onChange={(e) => updateSettings({ toneColors: e.target.checked })} />
+          <span>
+            Colorear los tonos: <span className="t1">1.º</span> <span className="t2">2.º</span> <span className="t3">3.º</span>{' '}
+            <span className="t4">4.º</span> <span className="t5">neutro</span>
+          </span>
+        </label>
         <div className="field">
           <span>Objetivo diario</span>
           <div className="segmented">

@@ -17,9 +17,9 @@ describe('buildQuiz', () => {
     }
   })
 
-  it('mezcla los cuatro tipos de pregunta', () => {
+  it('mezcla los cinco tipos de pregunta', () => {
     const qs = buildQuiz(pool.slice(0, 8), pool, () => false, seeded(3))
-    expect(new Set(qs.map((q) => q.kind)).size).toBe(4)
+    expect(new Set(qs.map((q) => q.kind)).size).toBe(5)
   })
 
   it('las palabras nuevas solo reciben preguntas visuales', () => {
