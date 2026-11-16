@@ -15,6 +15,7 @@ import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import ProgressDots from '../components/ProgressDots'
 import SlowButton from '../components/SlowButton'
+import { TonedPinyin } from '../components/Toned'
 import SpeakerButton from '../components/SpeakerButton'
 import { getExample, sentenceText } from '../data/examples'
 
@@ -99,7 +100,9 @@ function OptionLabel({ kind, o, reveal, hint }: { kind: QuizKind; o: Word; revea
   if (kind === 'pinyin') {
     return (
       <>
-        <span className="option-pinyin">{o.pinyin}</span>
+        <span className="option-pinyin">
+          <TonedPinyin pinyin={o.pinyin} />
+        </span>
         {reveal && <small className="muted">{o.meaning}</small>}
       </>
     )
@@ -107,7 +110,11 @@ function OptionLabel({ kind, o, reveal, hint }: { kind: QuizKind; o: Word; revea
   return (
     <>
       <span className="hanzi">{o.hanzi}</span>
-      {(hint || reveal) && <small>{o.pinyin}</small>}
+      {(hint || reveal) && (
+        <small>
+          <TonedPinyin pinyin={o.pinyin} />
+        </small>
+      )}
       {reveal && <small className="muted">{o.meaning}</small>}
     </>
   )

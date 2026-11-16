@@ -11,6 +11,7 @@ import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import ProgressDots from '../components/ProgressDots'
 import SlowButton from '../components/SlowButton'
+import { TonedPinyin } from '../components/Toned'
 import { useHotkeys } from '../lib/useHotkeys'
 
 const QUESTIONS = 6
@@ -83,7 +84,11 @@ export default function Listen() {
               <button key={o.id} className={`option ${cls}`} onClick={() => choose(o.id)}>
                 <span className="kbd-hint kbd-corner">{i + 1}</span>
                 <span className="hanzi">{o.hanzi}</span>
-                {(settings.pinyinHint || picked) && <small>{o.pinyin}</small>}
+                {(settings.pinyinHint || picked) && (
+                  <small>
+                    <TonedPinyin pinyin={o.pinyin} />
+                  </small>
+                )}
                 {picked && <small className="muted">{o.meaning}</small>}
               </button>
             )

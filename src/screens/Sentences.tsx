@@ -12,6 +12,7 @@ import VoiceBanner from '../components/VoiceBanner'
 import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import ProgressDots from '../components/ProgressDots'
+import { TonedPinyin } from '../components/Toned'
 
 const QUESTIONS = 5
 
@@ -90,7 +91,11 @@ export default function Sentences() {
           {placed.map((k) => (
             <button key={k} className="word-tile" onClick={() => remove(k)}>
               <span className="hanzi">{tiles[k].text}</span>
-              {settings.pinyinHint && <small>{PINYIN.get(tiles[k].text) ?? ''}</small>}
+              {settings.pinyinHint && (
+                <small>
+                  <TonedPinyin pinyin={PINYIN.get(tiles[k].text) ?? ''} />
+                </small>
+              )}
             </button>
           ))}
         </div>
@@ -104,7 +109,11 @@ export default function Sentences() {
               disabled={placed.includes(t.key)}
             >
               <span className="hanzi">{t.text}</span>
-              {settings.pinyinHint && <small>{PINYIN.get(t.text) ?? ''}</small>}
+              {settings.pinyinHint && (
+                <small>
+                  <TonedPinyin pinyin={PINYIN.get(t.text) ?? ''} />
+                </small>
+              )}
             </button>
           ))}
         </div>
