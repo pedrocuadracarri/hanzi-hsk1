@@ -26,6 +26,10 @@ export const TIPS: Tip[] = [
   { text: 'Pon el pinyin como ayuda al principio, y quítalo en Ajustes cuando reconozcas los caracteres.', to: '/ajustes', cta: 'Ajustes' },
   { text: 'Para B1 (≈ HSK 3–4) necesitarás unas 1 000–1 200 palabras. HSK 1 son 150: ¡la base de todo lo demás!' },
   { text: 'Escucha primero sin leer: en los diálogos, dale a «Escuchar todo» antes de mirar el texto. Entrena el oído de verdad.', to: '/dialogos', cta: 'Diálogos' },
+  { text: '¿No distingues un tono? Pulsa 🐢 Despacio: a media velocidad la curva del tono se oye mucho mejor.', to: '/tonos', cta: 'Tonos' },
+  { text: 'Grábate diciendo la palabra y compárala con el modelo. Oírte a ti mismo es la forma más rápida de corregir la pronunciación.', to: '/dialogos', cta: 'Diálogos' },
+  { text: 'Teclear el pinyin con números (ni3 hao3) te obliga a decidir el tono: es el mejor test de si de verdad lo sabes.', to: '/escribir-pinyin', cta: 'Escribir pinyin' },
+  { text: 'Haz el simulacro cada pocas semanas: ver cómo sube tu nota motiva mucho.', to: '/examen', cta: 'Simulacro' },
   { text: 'Escucha chino aunque no lo entiendas (series, canciones, podcasts lentos). El oído se acostumbra a los tonos.' },
 ]
 
