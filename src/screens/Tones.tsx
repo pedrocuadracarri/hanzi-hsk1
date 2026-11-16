@@ -8,6 +8,7 @@ import { speak } from '../lib/speech'
 import ExerciseHeader from '../components/ExerciseHeader'
 import VoiceBanner from '../components/VoiceBanner'
 import ProgressDots from '../components/ProgressDots'
+import SlowButton from '../components/SlowButton'
 import { useHotkeys } from '../lib/useHotkeys'
 import { getToneStats, recordTone } from '../lib/toneStats'
 import { markDoneToday } from '../lib/todayPlan'
@@ -180,6 +181,7 @@ export default function Tones() {
                 {w.emoji} {w.meaning} · toca para repetir 🔊 <span className="kbd-hint">(espacio)</span>
               </small>
             </button>
+            <SlowButton text={w.hanzi} />
             <div className="options">
               {cur.options.map((combo, i) => {
                 const isAnswer = same(combo, cur.answer)

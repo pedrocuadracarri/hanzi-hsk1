@@ -1,28 +1,29 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { DIALOGUES } from "../data/dialogues";
-import { speak, speakAll } from "../lib/speech";
-import VoiceBanner from "../components/VoiceBanner";
-import RecordCompare from "../components/RecordCompare";
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { DIALOGUES } from '../data/dialogues'
+import { speak, speakAll } from '../lib/speech'
+import VoiceBanner from '../components/VoiceBanner'
+import RecordCompare from '../components/RecordCompare'
+import SlowButton from '../components/SlowButton'
 
 /** Diálogos con audio: primero se escucha, luego se lee y se comprueba */
 export default function Dialogues() {
-  const { id } = useParams();
-  const d = DIALOGUES.find((x) => x.id === id);
-  const [shown, setShown] = useState<Set<number>>(new Set());
-  const [pinyin, setPinyin] = useState(true);
-  const [playing, setPlaying] = useState<number | null>(null);
-  const [answer, setAnswer] = useState<number | null>(null);
+  const { id } = useParams()
+  const d = DIALOGUES.find((x) => x.id === id)
+  const [shown, setShown] = useState<Set<number>>(new Set())
+  const [pinyin, setPinyin] = useState(true)
+  const [playing, setPlaying] = useState<number | null>(null)
+  const [answer, setAnswer] = useState<number | null>(null)
   /** Última frase tocada: es la que se practica al grabarse */
-  const [last, setLast] = useState(0);
+  const [last, setLast] = useState(0)
 
   useEffect(() => {
-    setShown(new Set());
-    setAnswer(null);
-    setPlaying(null);
-    setLast(0);
-    return () => window.speechSynthesis?.cancel();
-  }, [id]);
+    setShown(new Set())
+    setAnswer(null)
+    setPlaying(null)
+    setLast(0)
+    return () => window.speechSynthesis?.cancel()
+  }, [id])
 
   if (!d) {
     return (
@@ -32,23 +33,19 @@ export default function Dialogues() {
         </Link>
         <h1 className="title">Diálogos y lecturas</h1>
         <p className="muted">
-          Conversaciones y textos cortos con las palabras del HSK 1. Escucha
-          primero sin leer, luego lee y comprueba si lo entendiste.
+          Conversaciones y textos cortos con las palabras del HSK 1. Escucha primero sin leer, luego lee y comprueba si
+          lo entendiste.
         </p>
         {(
           [
-            ["💬 Diálogos", DIALOGUES.filter((x) => x.lines[0].who !== "N")],
-            ["📖 Lecturas", DIALOGUES.filter((x) => x.lines[0].who === "N")],
+            ['💬 Diálogos', DIALOGUES.filter((x) => x.lines[0].who !== 'N')],
+            ['📖 Lecturas', DIALOGUES.filter((x) => x.lines[0].who === 'N')],
           ] as const
         ).map(([title, list]) => (
           <section key={title} className="exercise-list">
             <h2 className="section-title">{title}</h2>
             {list.map((x) => (
-              <Link
-                key={x.id}
-                to={`/dialogos/${x.id}`}
-                className="exercise card"
-              >
+              <Link key={x.id} to={`/dialogos/${x.id}`} className="exercise card">
                 <span className="exercise-icon">{x.icon}</span>
                 <span>
                   <strong>{x.title}</strong>
@@ -59,16 +56,16 @@ export default function Dialogues() {
           </section>
         ))}
       </main>
-    );
+    )
   }
 
-  const idx = DIALOGUES.indexOf(d);
-  const next = DIALOGUES[idx + 1];
+  const idx = DIALOGUES.indexOf(d)
+  const next = DIALOGUES[idx + 1]
   const toggle = (i: number) => {
-    speak(d.lines[i].zh);
-    setLast(i);
-    setShown((s) => new Set(s).add(i));
-  };
+    speak(d.lines[i].zh)
+    setLast(i)
+    setShown((s) => new Set(s).add(i))
+  }
 
   return (
     <main className="screen">
@@ -92,20 +89,18 @@ export default function Dialogues() {
           ▶ Escuchar todo
         </button>
         <button className="btn" onClick={() => setPinyin(!pinyin)}>
-          {pinyin ? "Ocultar pinyin" : "Ver pinyin"}
+          {pinyin ? 'Ocultar pinyin' : 'Ver pinyin'}
         </button>
       </div>
-      <p className="muted small-left">
-        Toca cada frase para oírla y ver la traducción.
-      </p>
+      <p className="muted small-left">Toca cada frase para oírla y ver la traducción.</p>
       <div className="chat">
         {d.lines.map((l, i) => (
           <button
             key={i}
-            className={`bubble bubble-${l.who} ${playing === i ? "speaking" : ""}`}
+            className={`bubble bubble-${l.who} ${playing === i ? 'speaking' : ''}`}
             onClick={() => toggle(i)}
           >
-            {l.who !== "N" && <span className="bubble-who">{l.who}</span>}
+            {l.who !== 'N' && <span className="bubble-who">{l.who}</span>}
             <span className="hanzi bubble-zh">{l.zh}</span>
             {pinyin && <small>{l.py}</small>}
             {shown.has(i) && <small className="muted">{l.es}</small>}
@@ -114,44 +109,32 @@ export default function Dialogues() {
       </div>
 
       <section className="card">
-        <strong className="small-left">
-          🗣️ Ahora tú: toca una frase de arriba y repítela
-        </strong>
+        <strong className="small-left">🗣️ Ahora tú: toca una frase de arriba y repítela</strong>
         <p className="hanzi center record-target">{d.lines[last].zh}</p>
+        <div className="record">
+          <SlowButton text={d.lines[last].zh} />
+        </div>
         <RecordCompare text={d.lines[last].zh} />
-        <p className="muted small-left">
-          Se graba hasta 6 segundos. Compara tu entonación con el modelo.
-        </p>
+        <p className="muted small-left">Se graba hasta 6 segundos. Compara tu entonación con el modelo.</p>
       </section>
 
       <section className="card dialogue-q">
         <strong>❓ {d.question.q}</strong>
         <div className="exercise-list">
           {d.question.options.map((o, i) => {
-            const cls =
-              answer === null
-                ? ""
-                : i === d.question.answer
-                  ? "ok"
-                  : i === answer
-                    ? "bad"
-                    : "dim";
+            const cls = answer === null ? '' : i === d.question.answer ? 'ok' : i === answer ? 'bad' : 'dim'
             return (
-              <button
-                key={o}
-                className={`option option-row ${cls}`}
-                onClick={() => answer === null && setAnswer(i)}
-              >
+              <button key={o} className={`option option-row ${cls}`} onClick={() => answer === null && setAnswer(i)}>
                 {o}
               </button>
-            );
+            )
           })}
         </div>
         {answer !== null && (
           <p className="small-left">
             {answer === d.question.answer
-              ? "✅ ¡Lo has entendido!"
-              : "❌ Vuelve a escucharlo y fíjate en los detalles."}
+              ? '✅ ¡Lo has entendido!'
+              : '❌ Vuelve a escucharlo y fíjate en los detalles.'}
           </p>
         )}
       </section>
@@ -166,5 +149,5 @@ export default function Dialogues() {
         </Link>
       )}
     </main>
-  );
+  )
 }

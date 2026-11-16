@@ -14,6 +14,7 @@ import VoiceBanner from '../components/VoiceBanner'
 import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import ProgressDots from '../components/ProgressDots'
+import SlowButton from '../components/SlowButton'
 import SpeakerButton from '../components/SpeakerButton'
 import { getExample, sentenceText } from '../data/examples'
 
@@ -216,6 +217,7 @@ export default function Review() {
         <ProgressDots total={questions.length} current={q} results={questions.map((x) => s.results.get(x.word.id))} />
         <p className="quiz-question">{PROMPTS[kind]}</p>
         <Prompt kind={kind} word={word} />
+        {(kind === 'listen' || kind === 'sentence') && <SlowButton text={audioFor(kind, word)} />}
         <div className={`options ${kind === 'meaning' || kind === 'sentence' ? 'options-text' : ''}`}>
           {options.map((o, i) => {
             const cls = !picked ? '' : o.id === word.id ? 'ok' : o.id === picked ? 'bad' : 'dim'

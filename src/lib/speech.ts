@@ -28,19 +28,19 @@ function waitForVoices(timeoutMs = 2000): Promise<void> {
   })
 }
 
-function utterance(text: string) {
+function utterance(text: string, rate = getSettings().rate) {
   const u = new SpeechSynthesisUtterance(text)
   u.lang = 'zh-CN'
-  u.rate = getSettings().rate
+  u.rate = rate
   const voice = findZhVoice()
   if (voice) u.voice = voice
   return u
 }
 
-export function speak(text: string) {
+export function speak(text: string, { slow = false }: { slow?: boolean } = {}) {
   if (!supported) return
   speechSynthesis.cancel()
-  speechSynthesis.speak(utterance(text))
+  speechSynthesis.speak(utterance(text, slow ? 0.5 : undefined))
 }
 
 /** Lee varias frases seguidas; `onLine` avisa de cuál está sonando */

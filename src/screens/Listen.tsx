@@ -10,6 +10,7 @@ import VoiceBanner from '../components/VoiceBanner'
 import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import ProgressDots from '../components/ProgressDots'
+import SlowButton from '../components/SlowButton'
 import { useHotkeys } from '../lib/useHotkeys'
 
 const QUESTIONS = 6
@@ -74,6 +75,7 @@ export default function Listen() {
             Toca para repetir <span className="kbd-hint">(espacio)</span>
           </small>
         </button>
+        <SlowButton text={word.hanzi} />
         <div className="options">
           {options.map((o, i) => {
             const cls = !picked ? '' : o.id === word.id ? 'ok' : o.id === picked ? 'bad' : 'dim'
