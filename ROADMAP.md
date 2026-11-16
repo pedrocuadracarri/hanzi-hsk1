@@ -25,6 +25,7 @@ Estado de Hanzi HSK 1 y lo que viene. Prioridad de arriba abajo dentro de cada b
 - **Plan de hoy** en Inicio, familia de palabras en la ficha y filtro por estado en Palabras.
 - Revisadas las entradas `needsReview`.
 - **Lecturas graduadas**, lección **Hacer preguntas**, botón 🐢 **Despacio**, ejercicio **Escribir pinyin**, fórmula visual de piezas y «Tu camino a B1» en Progreso.
+- Ejercicios agrupados por objetivo, tarjetas por tema, «Practicar a escribirla» desde la ficha y colores de tono en todos los ejercicios.
 
 ## 🔜 Siguiente
 
