@@ -446,6 +446,54 @@ export const LESSONS: Lesson[] = [
     ),
   },
   {
+    id: 'preguntas',
+    icon: '❓',
+    title: 'Hacer preguntas',
+    summary: 'Las 8 palabras interrogativas y un truco: no se cambia el orden',
+    body: () => (
+      <>
+        <p>
+          Gran truco del chino: para preguntar <strong>no se cambia el orden</strong> de la frase. Pones la palabra
+          interrogativa justo donde iría la respuesta.
+        </p>
+        <div className="pattern card">
+          <strong className="pattern-formula">Respuesta ↔ pregunta</strong>
+          <ul className="ex-list">
+            <Reveal h="你叫什么名字？" p="nǐ jiào shénme míngzi" m="¿Cómo te llamas? → 我叫大明 (me llamo Da Ming)" />
+            <Reveal h="他是谁？" p="tā shì shéi" m="¿Quién es él? → 他是我爸爸 (es mi papá)" />
+          </ul>
+        </div>
+        <Pattern f="什么 shénme · ¿qué?">
+          <Reveal h="你想吃什么？" p="nǐ xiǎng chī shénme" m="¿Qué quieres comer?" />
+        </Pattern>
+        <Pattern f="谁 shéi · ¿quién?">
+          <Reveal h="谁是你的老师？" p="shéi shì nǐ de lǎoshī" m="¿Quién es tu profesor?" />
+        </Pattern>
+        <Pattern f="哪 nǎ · ¿cuál? / ¿qué…?">
+          <Reveal h="你是哪国人？" p="nǐ shì nǎ guó rén" m="¿De qué país eres?" />
+        </Pattern>
+        <Pattern f="几 jǐ · ¿cuántos? (menos de 10)">
+          <Reveal h="你有几个儿子？" p="nǐ yǒu jǐ ge érzi" m="¿Cuántos hijos tienes?" />
+        </Pattern>
+        <Pattern f="多少 duōshao · ¿cuánto? (cantidades grandes, precios)">
+          <Reveal h="这个多少钱？" p="zhège duōshao qián" m="¿Cuánto cuesta esto?" />
+        </Pattern>
+        <Pattern f="怎么 zěnme · ¿cómo? (+ verbo)">
+          <Reveal h="这个字怎么读？" p="zhège zì zěnme dú" m="¿Cómo se lee este carácter?" />
+        </Pattern>
+        <Pattern f="怎么样 zěnmeyàng · ¿qué tal?">
+          <Reveal h="你的汉语怎么样？" p="nǐ de Hànyǔ zěnmeyàng" m="¿Qué tal tu chino?" />
+        </Pattern>
+        <Pattern f="呢 ne · ¿y…? (devolver la pregunta)">
+          <Reveal h="我很好，你呢？" p="wǒ hěn hǎo, nǐ ne" m="Estoy bien, ¿y tú?" />
+        </Pattern>
+        <p className="tip">
+          ⚠️ Con estas palabras <strong>no</strong> se añade 吗: 你叫什么名字？ ✓ · 你叫什么名字吗？ ✗
+        </p>
+      </>
+    ),
+  },
+  {
     id: 'b1',
     icon: '🗺️',
     title: 'Camino a B1',
