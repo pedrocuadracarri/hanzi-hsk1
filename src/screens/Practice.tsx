@@ -6,7 +6,7 @@ export default function Practice() {
     <main className="screen">
       <h1 className="title">Practicar</h1>
       <p className="muted">
-        Todos los ejercicios (salvo Tonos) usan el repaso espaciado: lo que fallas vuelve antes, lo que aciertas se
+        Casi todos los ejercicios (no Tonos ni el Simulacro) usan el repaso espaciado: lo que fallas vuelve antes, lo que aciertas se
         espacia.
       </p>
       <div className="exercise-list">

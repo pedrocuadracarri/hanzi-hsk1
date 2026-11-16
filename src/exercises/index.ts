@@ -64,6 +64,14 @@ export const EXERCISES: ExerciseInfo[] = [
     srs: true,
   },
   {
+    id: 'exam',
+    title: 'Simulacro HSK 1',
+    description: '20 preguntas de todo el temario: ¿aprobarías el examen hoy?',
+    path: '/examen',
+    icon: '🏅',
+    srs: false,
+  },
+  {
     id: 'tones',
     title: 'Tonos',
     description: 'Entrena el oído: ¿qué tono has escuchado?',

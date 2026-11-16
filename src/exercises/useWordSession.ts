@@ -10,7 +10,7 @@ export type Stage = 'loading' | 'intro' | 'play' | 'done'
 export function useWordSession(
   pick: (progress: Record<string, CardProgress>, today: string) => Word[],
   deps: unknown[] = [],
-  { intro = true }: { intro?: boolean } = {},
+  { intro = true, record = true }: { intro?: boolean; record?: boolean } = {},
 ) {
   const [stage, setStage] = useState<Stage>('loading')
   const [words, setWords] = useState<Word[]>([])
@@ -40,8 +40,8 @@ export function useWordSession(
   const answer = useCallback((wordId: string, correct: boolean) => {
     if (results.current.has(wordId)) return
     results.current.set(wordId, correct)
-    void recordAnswer(wordId, correct)
-  }, [])
+    if (record) void recordAnswer(wordId, correct)
+  }, [record])
 
   return {
     stage,

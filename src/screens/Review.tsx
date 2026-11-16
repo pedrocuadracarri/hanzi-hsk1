@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { shuffle } from '../lib/random'
 import type { Word } from '../types'
 import { ALL_WORDS } from '../data'
 import { buildRound } from '../lib/rounds'
@@ -16,6 +18,9 @@ import SpeakerButton from '../components/SpeakerButton'
 import { getExample, sentenceText } from '../data/examples'
 
 const QUESTIONS = 8
+const EXAM_QUESTIONS = 20
+/** El HSK aprueba con un 60 % */
+const PASS = 0.6
 
 const PROMPTS: Record<QuizKind, string> = {
   meaning: '¿Qué significa?',
@@ -109,16 +114,23 @@ function OptionLabel({ kind, o, reveal, hint }: { kind: QuizKind; o: Word; revea
 
 export default function Review() {
   const settings = useSettings()
-  const s = useWordSession((progress, today) =>
-    buildRound({ words: ALL_WORDS, progress, mode: 'meaning', today, size: QUESTIONS }),
+  // Simulacro: 20 palabras al azar de todo el HSK 1, sin presentación ni efecto en el repaso
+  const exam = useLocation().pathname === '/examen'
+  const s = useWordSession(
+    (progress, today) =>
+      exam
+        ? shuffle(ALL_WORDS).slice(0, EXAM_QUESTIONS)
+        : buildRound({ words: ALL_WORDS, progress, mode: 'meaning', today, size: QUESTIONS }),
+    [exam],
+    { intro: !exam, record: !exam },
   )
   const [q, setQ] = useState(0)
   const [picked, setPicked] = useState<string | null>(null)
 
   const questions = useMemo(() => {
     const fresh = new Set(s.newWords.map((w) => w.id))
-    return buildQuiz(s.words, ALL_WORDS, (w) => fresh.has(w.id))
-  }, [s.words, s.newWords])
+    return buildQuiz(s.words, ALL_WORDS, (w) => !exam && fresh.has(w.id))
+  }, [s.words, s.newWords, exam])
 
   useEffect(() => {
     setQ(0)
@@ -156,7 +168,46 @@ export default function Review() {
 
   let body = null
   if (s.stage === 'intro') body = <NewWordsIntro words={s.newWords} onDone={s.play} />
-  else if (s.stage === 'done') body = <RoundResult words={s.words} results={s.results} onNext={s.restart} />
+  else if (s.stage === 'done' && exam) {
+    const ok = s.words.filter((w) => s.results.get(w.id)).length
+    const pct = Math.round((ok / s.words.length) * 100)
+    const failed = s.words.filter((w) => !s.results.get(w.id))
+    body = (
+      <div className="result card pop">
+        <h2>
+          {pct}% · {ok} de {s.words.length}
+        </h2>
+        <div className="bar" aria-hidden>
+          <div className="bar-fill" style={{ width: `${pct}%`, background: pct >= PASS * 100 ? 'var(--ok)' : 'var(--accent)' }} />
+        </div>
+        <p>
+          {pct >= 90
+            ? '🏆 ¡Excelente! Estás listo para el HSK 1. Empieza a mirar el HSK 2.'
+            : pct >= PASS * 100
+              ? '✅ Aprobarías el HSK 1 (hace falta un 60 %). ¡Sigue repasando para asegurarlo!'
+              : '📚 Aún no aprobarías (hace falta un 60 %). Es normal: sigue con el plan diario y repite el simulacro en unas semanas.'}
+        </p>
+        {failed.length > 0 && (
+          <>
+            <strong className="small-left">Para repasar:</strong>
+            <div className="chips">
+              {failed.map((w) => (
+                <Link key={w.id} to={`/palabra/${w.id}`} className="chip">
+                  <span className="hanzi">{w.hanzi}</span> <small>{w.meaning}</small>
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
+        <button className="btn btn-primary" onClick={s.restart}>
+          Otro simulacro
+        </button>
+        <Link to="/practicar" className="btn btn-center">
+          Otro ejercicio
+        </Link>
+      </div>
+    )
+  } else if (s.stage === 'done') body = <RoundResult words={s.words} results={s.results} onNext={s.restart} />
   else if (cur) {
     const { word, kind, options } = cur
     const wrong = picked !== null && picked !== word.id
@@ -200,7 +251,14 @@ export default function Review() {
 
   return (
     <main className="screen">
-      <ExerciseHeader title="Repaso mixto" help="Un poco de todo: significado, carácter, oído, pronunciación y frases." />
+      <ExerciseHeader
+        title={exam ? 'Simulacro HSK 1' : 'Repaso mixto'}
+        help={
+          exam
+            ? '20 preguntas al azar de las 150 palabras. No cuenta para el repaso: es para medir tu nivel.'
+            : 'Un poco de todo: significado, carácter, oído, pronunciación y frases.'
+        }
+      />
       <VoiceBanner />
       {body}
     </main>

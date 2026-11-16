@@ -35,6 +35,7 @@ export default function App() {
         <Route path="/escribir" element={<Write />} />
         <Route path="/tonos" element={<Tones />} />
         <Route path="/repaso" element={<Review />} />
+        <Route path="/examen" element={<Review />} />
         <Route path="/frases" element={<Sentences />} />
         <Route path="/dialogos" element={<Dialogues />} />
         <Route path="/dialogos/:id" element={<Dialogues />} />
