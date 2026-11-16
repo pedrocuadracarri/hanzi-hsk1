@@ -5,7 +5,7 @@ PWA gratuita y sin backend para aprender los 150 caracteres del HSK 1, en españ
 ## Qué incluye
 
 - **Aprender**: guía para principiantes con audio y partes interactivas: pinyin, tonos, cambios de tono, pictogramas (del dibujo al carácter), orden de trazos, primeras frases, números/fechas/horas, gramática básica y camino a B1.
-- **Practicar**: Repaso mixto, Emparejar (emoji, significado, pinyin, piezas), Tarjetas, Escuchar, Escribir con el dedo (con pistas o dictado), Ordenar frases y Tonos (1 y 2 sílabas).
+- **Practicar**: Repaso mixto, Emparejar (emoji, significado, pinyin, piezas), Tarjetas, Escuchar, Escribir con el dedo (con pistas o dictado), Ordenar frases, Escribir pinyin, Simulacro HSK 1 y Tonos (1 y 2 sílabas).
 - **Frases de ejemplo** con audio para las 150 palabras y **colores de tono**.
 - **Diálogos** con audio y comprensión, **grábate y compárate**, **simulacro HSK 1** y **plan de hoy**. Las palabras nuevas se presentan antes de practicarlas.
 - **Repaso espaciado** Leitner de 5 cajas: lo que fallas vuelve antes.

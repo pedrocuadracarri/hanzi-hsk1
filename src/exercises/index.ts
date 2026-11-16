@@ -56,6 +56,14 @@ export const EXERCISES: ExerciseInfo[] = [
     srs: true,
   },
   {
+    id: 'type-pinyin',
+    title: 'Escribir pinyin',
+    description: 'Escucha y teclea cómo suena, con sus tonos (ni3 hao3)',
+    path: '/escribir-pinyin',
+    icon: '⌨️',
+    srs: true,
+  },
+  {
     id: 'sentences',
     title: 'Ordenar frases',
     description: 'Construye frases reales en chino: así se aprende la gramática sin estudiarla',

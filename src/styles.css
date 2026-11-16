@@ -569,3 +569,8 @@ section > .section-title { margin: 8px 0; }
 .path { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .path-step { display: flex; flex-direction: column; gap: 4px; }
 .path-step .bar-thin { height: 8px; }
+
+.type-form { display: flex; flex-direction: column; gap: 10px; }
+.type-input { font-size: 1.3rem; text-align: center; }
+.type-input.ok { border-color: var(--ok); background: var(--ok-bg); }
+.type-input.tones, .type-input.bad { border-color: var(--bad); background: var(--bad-bg); }

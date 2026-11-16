@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addToneMark, splitNumeric, toNumeric } from './pinyin'
+import { addToneMark, normalizePinyin, splitNumeric, toNumeric } from './pinyin'
 import { LEVELS } from '../data'
 
 describe('pinyin', () => {
@@ -29,5 +29,14 @@ describe('pinyin', () => {
   it('toNumeric', () => {
     expect(toNumeric('nǚ ér')).toBe('nü3 er2')
     expect(toNumeric('bà ba')).toBe('ba4 ba5')
+  })
+})
+
+describe('normalizePinyin', () => {
+  it('acepta tildes, números, espacios y tono neutro omitido', () => {
+    expect(normalizePinyin('nǐ hǎo')).toBe('ni3hao3')
+    expect(normalizePinyin('ni3 hao3')).toBe('ni3hao3')
+    expect(normalizePinyin('ba4 ba')).toBe(normalizePinyin('ba4 ba5'))
+    expect(normalizePinyin('nv3 er2')).toBe(normalizePinyin('nü3 er2'))
   })
 })

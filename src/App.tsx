@@ -16,6 +16,7 @@ import Settings from './screens/Settings'
 import Review from './screens/Review'
 import Sentences from './screens/Sentences'
 import Dialogues from './screens/Dialogues'
+import TypePinyin from './screens/TypePinyin'
 import TabBar from './components/TabBar'
 
 export default function App() {
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/repaso" element={<Review />} />
         <Route path="/examen" element={<Review />} />
         <Route path="/frases" element={<Sentences />} />
+        <Route path="/escribir-pinyin" element={<TypePinyin />} />
         <Route path="/dialogos" element={<Dialogues />} />
         <Route path="/dialogos/:id" element={<Dialogues />} />
         <Route path="/aprender" element={<Guide />} />

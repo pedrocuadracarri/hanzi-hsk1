@@ -51,3 +51,10 @@ export function toNumeric(pinyin: string): string {
     })
     .join(' ')
 }
+
+/** «nǐ hǎo», «ni3 hao3» o «ni3hao3» → «ni3hao3». El tono neutro puede omitirse. */
+export function normalizePinyin(s: string): string {
+  const t = s.trim().toLowerCase().replace(/v/g, 'ü').replace(/u:/g, 'ü')
+  const numeric = /[āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ]/.test(t) ? toNumeric(t) : t
+  return numeric.replace(/[\s'’-]/g, '').replace(/5/g, '')
+}
