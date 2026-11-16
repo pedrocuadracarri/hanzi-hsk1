@@ -25,6 +25,7 @@ export const TIPS: Tip[] = [
   { text: 'Repasa antes de aprender nuevas: si tienes pendientes, hazlas primero. El repaso es lo que convierte memoria corta en larga.', to: '/repaso', cta: 'Repaso mixto' },
   { text: 'Pon el pinyin como ayuda al principio, y quítalo en Ajustes cuando reconozcas los caracteres.', to: '/ajustes', cta: 'Ajustes' },
   { text: 'Para B1 (≈ HSK 3–4) necesitarás unas 1 000–1 200 palabras. HSK 1 son 150: ¡la base de todo lo demás!' },
+  { text: 'Escucha primero sin leer: en los diálogos, dale a «Escuchar todo» antes de mirar el texto. Entrena el oído de verdad.', to: '/dialogos', cta: 'Diálogos' },
   { text: 'Escucha chino aunque no lo entiendas (series, canciones, podcasts lentos). El oído se acostumbra a los tonos.' },
 ]
 

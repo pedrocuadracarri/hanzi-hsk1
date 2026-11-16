@@ -55,6 +55,13 @@ export default function Guide() {
           <div className="bar-fill" style={{ width: `${(LESSONS.filter((l) => read.has(l.id)).length / LESSONS.length) * 100}%` }} />
         </div>
       </div>
+      <Link to="/dialogos" className="exercise card dialogue-link">
+        <span className="exercise-icon">💬</span>
+        <span>
+          <strong>Diálogos con audio</strong>
+          <small className="muted">Restaurante, tienda, taxi, teléfono… escucha y comprueba si lo entiendes</small>
+        </span>
+      </Link>
       <div className="exercise-list">
         {LESSONS.map((l, i) => (
           <Link key={l.id} to={`/aprender/${l.id}`} className="exercise card">

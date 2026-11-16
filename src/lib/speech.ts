@@ -28,15 +28,31 @@ function waitForVoices(timeoutMs = 2000): Promise<void> {
   })
 }
 
-export function speak(text: string) {
-  if (!supported) return
-  speechSynthesis.cancel()
+function utterance(text: string) {
   const u = new SpeechSynthesisUtterance(text)
   u.lang = 'zh-CN'
   u.rate = getSettings().rate
   const voice = findZhVoice()
   if (voice) u.voice = voice
-  speechSynthesis.speak(u)
+  return u
+}
+
+export function speak(text: string) {
+  if (!supported) return
+  speechSynthesis.cancel()
+  speechSynthesis.speak(utterance(text))
+}
+
+/** Lee varias frases seguidas; `onLine` avisa de cuál está sonando */
+export function speakAll(texts: string[], onLine?: (i: number | null) => void) {
+  if (!supported) return
+  speechSynthesis.cancel()
+  texts.forEach((t, i) => {
+    const u = utterance(t)
+    u.onstart = () => onLine?.(i)
+    if (i === texts.length - 1) u.onend = () => onLine?.(null)
+    speechSynthesis.speak(u)
+  })
 }
 
 export function useZhVoice(): VoiceStatus {
