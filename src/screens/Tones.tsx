@@ -10,6 +10,7 @@ import VoiceBanner from '../components/VoiceBanner'
 import ProgressDots from '../components/ProgressDots'
 import { useHotkeys } from '../lib/useHotkeys'
 import { getToneStats, recordTone } from '../lib/toneStats'
+import { markDoneToday } from '../lib/todayPlan'
 
 const tonesOf = (w: Word) => w.pinyinNumeric.split(' ').map((s) => splitNumeric(s).tone)
 const basesOf = (w: Word) => w.pinyinNumeric.split(' ').map((s) => splitNumeric(s).base)
@@ -115,6 +116,9 @@ export default function Tones() {
   const correct = questions.map((x, i) => answers[i] !== undefined && same(x.options[answers[i]], x.answer))
   const score = correct.filter(Boolean).length
   const finished = q >= QUESTIONS
+  useEffect(() => {
+    if (finished) markDoneToday('/tonos')
+  }, [finished])
 
   useHotkeys({
     '1': () => !finished && choose(0),

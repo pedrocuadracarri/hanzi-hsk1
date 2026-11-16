@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { TIPS, tipOfDay } from '../data/tips'
+import { doneToday } from '../lib/todayPlan'
 import { ALL_WORDS } from '../data'
 import { countDue, isLearned } from '../lib/srs'
 import { visibleStreak } from '../lib/streak'
@@ -88,6 +89,36 @@ export default function Home() {
       <Link to={due > 0 ? '/repaso' : '/emparejar'} className="btn btn-primary big-cta">
         {due > 0 ? `Repasar ${due} pendientes` : seen === 0 ? 'Aprender mis primeras palabras' : 'Aprender palabras nuevas'}
       </Link>
+
+      {seen > 0 && (
+        <section className="card plan">
+          <small className="muted">📋 Plan de hoy (~15 min)</small>
+          {(() => {
+            const done = doneToday()
+            const steps = [
+              due > 0
+                ? { to: '/repaso', label: `Repasar ${due} pendientes`, ok: false }
+                : { to: '/repaso', label: 'Repaso mixto', ok: done.has('/repaso') },
+              { to: '/emparejar', label: 'Aprender 5 palabras nuevas', ok: done.has('/emparejar') },
+              { to: '/frases', label: 'Ordenar 5 frases', ok: done.has('/frases') },
+              { to: '/tonos', label: 'Entrenar el oído con tonos', ok: done.has('/tonos') },
+            ]
+            return (
+              <ol className="plan-list">
+                {steps.map((st) => (
+                  <li key={st.to} className={st.ok ? 'plan-done' : ''}>
+                    <Link to={st.to}>
+                      <span className="plan-check">{st.ok ? '✅' : '⬜'}</span>
+                      {st.label}
+                      <span className="muted chevron">›</span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            )
+          })()}
+        </section>
+      )}
 
       <div className="quick-grid">
         <Link to="/tarjetas" className="quick card">

@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { markDoneToday } from '../lib/todayPlan'
 import type { Word } from '../types'
 import { useProgress } from '../lib/useProgress'
 import { useSettings } from '../lib/settings'
@@ -14,6 +16,8 @@ interface Props {
 const CHEERS = ['¡Muy bien!', '¡Genial!', '¡Sigue así!', '加油! (¡ánimo!)', '¡Perfecto!']
 
 export default function RoundResult({ words, results, onNext }: Props) {
+  const { pathname } = useLocation()
+  useEffect(() => markDoneToday(pathname), [pathname])
   const { daily, streak } = useProgress()
   const { dailyGoal } = useSettings()
   const today = toDay()
