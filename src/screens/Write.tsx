@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import HanziWriter from 'hanzi-writer'
-import { ALL_WORDS } from '../data'
+import { useSearchParams } from 'react-router-dom'
+import { ALL_WORDS, getWord } from '../data'
 import { buildRound } from '../lib/rounds'
 import { loadStrokeData } from '../lib/strokes'
 import { speak } from '../lib/speech'
@@ -15,8 +16,12 @@ import VoiceBanner from '../components/VoiceBanner'
 const SIZE = 280
 
 export default function Write() {
-  const s = useWordSession((progress, today) =>
-    buildRound({ words: ALL_WORDS, progress, mode: 'meaning', today, size: 4 }),
+  // ?palabra=id: practicar solo esa palabra (desde su ficha)
+  const only = getWord(useSearchParams()[0].get('palabra') ?? '')
+  const s = useWordSession(
+    (progress, today) => (only ? [only] : buildRound({ words: ALL_WORDS, progress, mode: 'meaning', today, size: 4 })),
+    [only?.id],
+    { intro: !only },
   )
   const [wi, setWi] = useState(0)
   const [ci, setCi] = useState(0)

@@ -134,6 +134,9 @@ export default function CharacterSheet() {
           </div>
         )}
         <StrokeAnimation char={chars[charIdx]} />
+        <Link to={`/escribir?palabra=${word.id}`} className="btn btn-center write-link">
+          ✍️ Practicar a escribirla
+        </Link>
       </section>
 
       <nav className="rate-row">
