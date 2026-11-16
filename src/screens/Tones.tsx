@@ -8,11 +8,37 @@ import ExerciseHeader from '../components/ExerciseHeader'
 import VoiceBanner from '../components/VoiceBanner'
 import ProgressDots from '../components/ProgressDots'
 import { useHotkeys } from '../lib/useHotkeys'
+import { getToneStats, recordTone } from '../lib/toneStats'
 
 /** Palabras de una sílaba con tono 1–4 */
 const POOL = ALL_WORDS.filter((w) => [...w.hanzi].length === 1 && splitNumeric(w.pinyinNumeric).tone < 5)
 const QUESTIONS = 8
 export const TONE_NAMES = ['', '1.º alto y plano', '2.º sube', '3.º baja y sube', '4.º cae fuerte']
+
+function ToneStatsCard() {
+  const stats = getToneStats()
+  const tones = ([1, 2, 3, 4] as const).filter((t) => stats[t].total > 0)
+  if (!tones.length) return null
+  const pct = (t: 1 | 2 | 3 | 4) => Math.round((stats[t].ok / stats[t].total) * 100)
+  const worst = tones.reduce((a, b) => (pct(b) < pct(a) ? b : a))
+  return (
+    <div className="tip">
+      <strong className="small-left">Tu oído, tono a tono (todas las rondas)</strong>
+      <ul className="cat-list">
+        {([1, 2, 3, 4] as const).map((t) => (
+          <li key={t}>
+            <span>{TONE_NAMES[t]}</span>
+            <span className="muted">{stats[t].total ? `${pct(t)}%` : '—'}</span>
+            <div className="bar bar-thin">
+              <div className="bar-fill" style={{ width: `${stats[t].total ? pct(t) : 0}%` }} />
+            </div>
+          </li>
+        ))}
+      </ul>
+      {pct(worst) < 80 && <p className="muted small-left">El que más te cuesta: el {TONE_NAMES[worst]}.</p>}
+    </div>
+  )
+}
 
 export default function Tones() {
   const [round, setRound] = useState(0)
@@ -36,6 +62,7 @@ export default function Tones() {
     if (picked) return
     setPicked(t)
     setAnswers([...answers, t])
+    recordTone(tone, t === tone)
   }
   const next = () => {
     setPicked(null)
@@ -84,6 +111,7 @@ export default function Tones() {
               </li>
             ))}
           </ul>
+          <ToneStatsCard />
           <button className="btn btn-primary" onClick={restart}>
             Otra ronda
           </button>

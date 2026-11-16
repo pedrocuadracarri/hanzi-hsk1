@@ -2,24 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { LESSONS } from '../data/guide'
 import VoiceBanner from '../components/VoiceBanner'
-
-const KEY = 'hanzi-guide-read'
-
-function readSet(): Set<string> {
-  try {
-    return new Set(JSON.parse(localStorage.getItem(KEY) ?? '[]'))
-  } catch {
-    return new Set()
-  }
-}
-
-function markRead(id: string) {
-  try {
-    localStorage.setItem(KEY, JSON.stringify([...readSet().add(id)]))
-  } catch {
-    /* sin almacenamiento */
-  }
-}
+import { markRead, readSet } from '../lib/guideProgress'
 
 export default function Guide() {
   const { id } = useParams()
@@ -64,6 +47,14 @@ export default function Guide() {
     <main className="screen">
       <h1 className="title">Aprender</h1>
       <p className="muted">Lecciones cortas para entender cómo funciona el chino. Léelas en orden la primera vez.</p>
+      <div>
+        <p className="muted small-left">
+          {LESSONS.filter((l) => read.has(l.id)).length} de {LESSONS.length} leídas
+        </p>
+        <div className="bar bar-thin" aria-hidden>
+          <div className="bar-fill" style={{ width: `${(LESSONS.filter((l) => read.has(l.id)).length / LESSONS.length) * 100}%` }} />
+        </div>
+      </div>
       <div className="exercise-list">
         {LESSONS.map((l, i) => (
           <Link key={l.id} to={`/aprender/${l.id}`} className="exercise card">

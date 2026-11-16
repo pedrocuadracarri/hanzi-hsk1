@@ -10,6 +10,7 @@ import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import SpeakerButton from '../components/SpeakerButton'
 import ProgressDots from '../components/ProgressDots'
+import VoiceBanner from '../components/VoiceBanner'
 
 const SIZE = 280
 
@@ -21,6 +22,8 @@ export default function Write() {
   const [ci, setCi] = useState(0)
   const [charDone, setCharDone] = useState(false)
   const [error, setError] = useState(false)
+  // Dictado: solo se oye la palabra, sin significado ni pinyin
+  const [dictation, setDictation] = useState(false)
   const box = useRef<HTMLDivElement>(null)
   const writer = useRef<HanziWriter | null>(null)
   const mistakes = useRef(0)
@@ -33,6 +36,13 @@ export default function Write() {
 
   const word = s.words[wi]
   const chars = word ? [...word.hanzi] : []
+
+  useEffect(() => {
+    if (dictation && s.stage === 'play' && word) {
+      const t = setTimeout(() => speak(word.hanzi), 300)
+      return () => clearTimeout(t)
+    }
+  }, [dictation, s.stage, word])
 
   useEffect(() => {
     if (s.stage !== 'play' || !word || !box.current) return
@@ -106,18 +116,35 @@ export default function Write() {
         title="Escribir"
         help="Traza el carácter con el dedo, trazo a trazo y en orden. Si fallas dos veces te enseña la pista."
       />
+      <div className="segmented" role="tablist" aria-label="Modo">
+        <button role="tab" aria-selected={!dictation} className={!dictation ? 'active' : ''} onClick={() => setDictation(false)}>
+          Con pistas
+        </button>
+        <button role="tab" aria-selected={dictation} className={dictation ? 'active' : ''} onClick={() => setDictation(true)}>
+          🎧 Dictado
+        </button>
+      </div>
+      {dictation && <VoiceBanner />}
       {s.stage === 'intro' && <NewWordsIntro words={s.newWords} onDone={s.play} />}
       {s.stage === 'done' && <RoundResult words={s.words} results={s.results} onNext={s.restart} />}
       {s.stage === 'play' && word && (
         <>
           <ProgressDots total={s.words.length} current={wi} results={s.words.map((x) => s.results.get(x.id))} />
           <div className="write-prompt card">
-            <div className="intro-meaning">
-              {word.emoji} {word.meaning}
-            </div>
-            <div className="intro-pinyin">
-              {word.pinyin} <SpeakerButton text={word.hanzi} />
-            </div>
+            {dictation && !charDone ? (
+              <button className="btn" onClick={() => speak(word.hanzi)}>
+                🔊 Escuchar otra vez
+              </button>
+            ) : (
+              <>
+                <div className="intro-meaning">
+                  {word.emoji} {word.meaning}
+                </div>
+                <div className="intro-pinyin">
+                  {word.pinyin} <SpeakerButton text={word.hanzi} />
+                </div>
+              </>
+            )}
             {chars.length > 1 && (
               <div className="write-chars">
                 {chars.map((c, i) => (

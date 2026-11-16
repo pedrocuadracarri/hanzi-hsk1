@@ -421,3 +421,12 @@ section > .section-title { margin: 8px 0; }
 .result-row .hanzi { font-size: 1.5rem; }
 .forecast { height: 110px; grid-template-columns: repeat(7, 1fr); gap: 6px; }
 .forecast .box-bar { background: var(--sel); }
+
+/* Repaso mixto */
+.quiz-question { margin: 0; text-align: center; font-weight: 600; color: var(--muted); }
+.quiz-prompt { cursor: default; padding: 12px; text-align: center; }
+.quiz-meaning { font-size: 1.5rem; }
+.option-text { font-size: 1.05rem; font-weight: 600; text-align: center; }
+.options-text .option { min-height: 76px; }
+.quiz-feedback { display: flex; flex-direction: column; gap: 10px; }
+.option small .hanzi { font-size: 1.1rem; }

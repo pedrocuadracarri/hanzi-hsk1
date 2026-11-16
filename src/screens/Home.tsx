@@ -7,14 +7,9 @@ import { useProgress } from '../lib/useProgress'
 import { useSettings } from '../lib/settings'
 import SpeakerButton from '../components/SpeakerButton'
 import InstallButton from '../components/InstallButton'
+import { readSet } from '../lib/guideProgress'
+import { LESSONS } from '../data/guide'
 
-function guideStarted(): boolean {
-  try {
-    return (JSON.parse(localStorage.getItem('hanzi-guide-read') ?? '[]') as string[]).length > 0
-  } catch {
-    return true
-  }
-}
 
 /** Palabra del día: fija para cada fecha */
 function wordOfDay(today: string) {
@@ -32,7 +27,9 @@ export default function Home() {
   const todayCount = daily[today] ?? 0
   const goalPct = Math.min(100, (todayCount / settings.dailyGoal) * 100)
   const wod = wordOfDay(today)
-  const firstTime = loaded && seen === 0 && !guideStarted()
+  const read = readSet()
+  const firstTime = loaded && seen === 0 && read.size === 0
+  const nextLesson = read.size > 0 ? LESSONS.find((l) => !read.has(l.id)) : undefined
 
   return (
     <main className="screen">
@@ -57,6 +54,17 @@ export default function Home() {
         </Link>
       )}
 
+      {nextLesson && (
+        <Link to={`/aprender/${nextLesson.id}`} className="card wod">
+          <small className="muted">
+            Guía · {read.size} de {LESSONS.length} lecciones
+          </small>
+          <strong>
+            {nextLesson.icon} Sigue con: {nextLesson.title} →
+          </strong>
+        </Link>
+      )}
+
       <section className="card goal">
         <div className="goal-ring" style={{ ['--pct' as string]: `${goalPct}%` }}>
           <span>
@@ -72,7 +80,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Link to={due > 0 ? '/emparejar?modo=meaning' : '/emparejar'} className="btn btn-primary big-cta">
+      <Link to={due > 0 ? '/repaso' : '/emparejar'} className="btn btn-primary big-cta">
         {due > 0 ? `Repasar ${due} pendientes` : seen === 0 ? 'Aprender mis primeras palabras' : 'Aprender palabras nuevas'}
       </Link>
 

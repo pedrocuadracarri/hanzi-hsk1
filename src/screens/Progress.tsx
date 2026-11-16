@@ -144,7 +144,7 @@ export default function Progress() {
       )}
 
       {due.length > 0 && (
-        <Link to="/emparejar?modo=meaning" className="btn btn-primary big-cta">
+        <Link to="/repaso" className="btn btn-primary big-cta">
           Repasar {due.length} pendientes
         </Link>
       )}

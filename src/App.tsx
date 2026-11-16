@@ -13,6 +13,7 @@ import Write from './screens/Write'
 import Tones from './screens/Tones'
 import Guide from './screens/Guide'
 import Settings from './screens/Settings'
+import Review from './screens/Review'
 import TabBar from './components/TabBar'
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/escuchar" element={<Listen />} />
         <Route path="/escribir" element={<Write />} />
         <Route path="/tonos" element={<Tones />} />
+        <Route path="/repaso" element={<Review />} />
         <Route path="/aprender" element={<Guide />} />
         <Route path="/aprender/:id" element={<Guide />} />
         <Route path="/palabras" element={<Words />} />

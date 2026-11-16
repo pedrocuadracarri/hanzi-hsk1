@@ -14,6 +14,14 @@ export interface ExerciseInfo {
 
 export const EXERCISES: ExerciseInfo[] = [
   {
+    id: 'review',
+    title: 'Repaso mixto',
+    description: 'Lo que te toca repasar, con preguntas variadas: significado, carácter, oído y pinyin',
+    path: '/repaso',
+    icon: '🔀',
+    srs: true,
+  },
+  {
     id: 'match',
     title: 'Emparejar',
     description: 'Une cada carácter con su emoji, significado, pinyin o pieza',
