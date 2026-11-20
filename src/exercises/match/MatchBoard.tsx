@@ -25,8 +25,14 @@ interface Props {
 }
 
 export default function MatchBoard({ pairs, rightClass = '', onMatch, onFinish }: Props) {
-  const left = useMemo(() => shuffle(pairs), [pairs])
-  const right = useMemo(() => shuffle(pairs), [pairs])
+  // Barajar una sola vez por ronda (según las palabras), aunque `pairs` se recalcule
+  // al guardar cada acierto: si no, el tablero se reordena tras cada pareja.
+  const ids = pairs.map((p) => p.id).join('|')
+  const leftOrder = useMemo(() => shuffle(pairs.map((p) => p.id)), [ids])
+  const rightOrder = useMemo(() => shuffle(pairs.map((p) => p.id)), [ids])
+  const byId = new Map(pairs.map((p) => [p.id, p]))
+  const left = leftOrder.map((id) => byId.get(id)!).filter(Boolean)
+  const right = rightOrder.map((id) => byId.get(id)!).filter(Boolean)
   const [selLeft, setSelLeft] = useState<string | null>(null)
   const [selRight, setSelRight] = useState<string | null>(null)
   const [matched, setMatched] = useState<Set<string>>(new Set())
