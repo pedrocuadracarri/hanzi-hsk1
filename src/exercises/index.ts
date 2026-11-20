@@ -51,6 +51,16 @@ export const EXERCISES: ExerciseInfo[] = [
     group: 'basico',
   },
   {
+    id: 'pictos',
+    title: '¿Qué dibujo es?',
+    description: 'Del dibujo al carácter: 人 era una persona, 山 tres montañas…',
+    path: '/dibujos',
+    icon: '🖼️',
+    beginner: true,
+    srs: true,
+    group: 'basico',
+  },
+  {
     id: 'listen',
     title: 'Escuchar',
     description: 'Oye una palabra y elige el carácter correcto',

@@ -719,3 +719,19 @@ html, body { line-height: 1.4; }
 /* Presentación de palabras nuevas */
 .intro-actions { display: grid; grid-template-columns: auto 1fr; gap: 10px; width: 100%; }
 .intro-actions .btn { width: auto; }
+
+/* Pictogramas: forma intermedia, en la palabra y ejercicio */
+.picto-old { color: var(--text); }
+.picto-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--muted); }
+.picto-labels .on { color: var(--accent); font-weight: 700; }
+.word-pictos { display: flex; flex-direction: column; gap: 10px; width: 100%; text-align: left; }
+.picto-row { display: flex; gap: 12px; align-items: center; }
+.picto-row .picto-stage { width: 88px; flex: none; }
+.picto-row .picto-hanzi { font-size: 3rem; }
+.picto-row-text { display: flex; flex-direction: column; gap: 2px; line-height: 1.35; }
+.picto-row-text strong .hanzi { font-size: 1.2rem; }
+.picto-prompt { display: grid; place-items: center; min-height: 170px; }
+.picto-big { width: 140px; height: 140px; color: var(--accent); }
+.picto-big-hanzi { font-size: 6rem; line-height: 1; }
+.picto-option { width: 64px; height: 64px; color: var(--accent); }
+.quiz-feedback .picto { width: 100%; max-width: 220px; align-self: center; }

@@ -10,6 +10,8 @@ import VoiceBanner from '../components/VoiceBanner'
 import ExampleSentence from '../components/ExampleSentence'
 import RecordCompare from '../components/RecordCompare'
 import { TonedHanzi, TonedPinyin } from '../components/Toned'
+import { WordPictos } from '../components/Pictographs'
+import { pictosInWord } from '../data/pictos'
 
 export default function CharacterSheet() {
   const { id = '' } = useParams()
@@ -106,6 +108,12 @@ export default function CharacterSheet() {
           )
         )
       })()}
+
+      {pictosInWord(word).length > 0 && (
+        <section className="card">
+          <WordPictos word={word} />
+        </section>
+      )}
 
       <section className="card">
         <h2>Componentes</h2>

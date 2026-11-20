@@ -6,6 +6,7 @@ import { markKnown } from '../lib/storage'
 import SpeakerButton from './SpeakerButton'
 import ExampleSentence from './ExampleSentence'
 import Pieces from './Pieces'
+import { WordPictos } from './Pictographs'
 import { TonedHanzi, TonedPinyin } from './Toned'
 
 interface Props {
@@ -45,6 +46,7 @@ export default function NewWordsIntro({ words, onDone }: Props) {
       </div>
       <div className="intro-meaning">{w.meaning}</div>
       <Pieces word={w} />
+      <WordPictos word={w} />
       <p className="intro-mnemonic">💡 {w.mnemonic}</p>
       <ExampleSentence word={w} />
       <div className="intro-actions">

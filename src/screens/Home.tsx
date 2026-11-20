@@ -34,6 +34,7 @@ const QUICK = [
   { to: '/tarjetas', icon: '🃏', label: 'Tarjetas', ex: 'flashcards' },
   { to: '/escuchar', icon: '👂', label: 'Escuchar', ex: 'listen' },
   { to: '/pares', icon: '👯', label: 'Sonidos', ex: 'pairs' },
+  { to: '/dibujos', icon: '🖼️', label: 'Dibujos', ex: 'pictos' },
   { to: '/tonos', icon: '🎵', label: 'Tonos', ex: 'tones' },
   { to: '/escribir', icon: '✍️', label: 'Escribir', ex: 'write' },
   { to: '/frases', icon: '🧱', label: 'Frases', ex: 'sentences' },
