@@ -762,4 +762,13 @@ a.unit-dot { text-decoration: none; }
 .intro-nav { display: grid; grid-template-columns: 64px 1fr; gap: 10px; width: 100%; }
 .intro .intro-nav .btn { width: 100%; }
 
+/* Filtros de Palabras */
+.filter-chips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+@media (min-width: 420px) { .filter-chips { grid-template-columns: repeat(4, 1fr); } }
+.filter-chip { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 10px; border-radius: 999px; border: 2px solid var(--border); background: var(--surface); font-weight: 600; cursor: pointer; box-shadow: var(--shadow-sm); }
+.filter-chip.on { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.filter-count { font-size: 0.75rem; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: var(--surface-2); color: var(--muted); }
+.filter-chip.on .filter-count { background: var(--accent); color: #fff; }
+.legend.new { border-color: var(--border); }
+
 .quiz-feedback .picto { width: 100%; max-width: 220px; align-self: center; }

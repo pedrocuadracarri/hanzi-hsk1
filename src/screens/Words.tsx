@@ -11,11 +11,45 @@ import { TonedPinyin } from '../components/Toned'
 /** Quita tildes y tonos para buscar sin preocuparse de ellos */
 const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 
+type Filter = 'all' | 'new' | 'learning' | 'learned'
+const FILTER_KEY = 'hanzi-words-filter'
+const FILTERS: { id: Filter; label: string; swatch?: string; empty: string }[] = [
+  { id: 'all', label: 'Todas', empty: 'No hay resultados.' },
+  { id: 'learning', label: 'Vistas', swatch: 'seen', empty: 'Aún no hay palabras vistas sin aprender.' },
+  { id: 'learned', label: 'Aprendidas', swatch: 'learned', empty: 'Aún no has aprendido ninguna: acierta las vistas en el repaso de días distintos.' },
+  { id: 'new', label: 'Sin ver', swatch: 'new', empty: '¡Ya has visto todas!' },
+]
+
+function savedFilter(): Filter {
+  try {
+    const f = localStorage.getItem(FILTER_KEY)
+    return FILTERS.some((x) => x.id === f) ? (f as Filter) : 'all'
+  } catch {
+    return 'all'
+  }
+}
+
 export default function Words() {
   const { progress } = useProgress()
   const hint = usePinyinHint()
   const [q, setQ] = useState('')
-  const [filter, setFilter] = useState<'all' | 'new' | 'learning' | 'learned'>('all')
+  const [filter, setFilterState] = useState<Filter>(savedFilter)
+  const setFilter = (f: Filter) => {
+    setFilterState(f)
+    try {
+      localStorage.setItem(FILTER_KEY, f)
+    } catch {
+      /* sin almacenamiento */
+    }
+  }
+  const stateOf = (id: string): Filter => (!progress[id] ? 'new' : isLearned(progress[id]) ? 'learned' : 'learning')
+  const counts = ALL_WORDS.reduce(
+    (acc, w) => {
+      acc[stateOf(w.id)]++
+      return acc
+    },
+    { all: ALL_WORDS.length, new: 0, learning: 0, learned: 0 } as Record<Filter, number>,
+  )
   const [selecting, setSelecting] = useState(false)
   const [sel, setSel] = useState<Set<string>>(new Set())
   const [msg, setMsg] = useState('')
@@ -76,24 +110,31 @@ export default function Words() {
         value={q}
         onChange={(e) => setQ(e.target.value)}
       />
-      <div className="segmented" role="tablist" aria-label="Filtrar">
-        {(
-          [
-            ['all', 'Todas'],
-            ['new', 'Nuevas'],
-            ['learning', 'En curso'],
-            ['learned', 'Aprendidas'],
-          ] as const
-        ).map(([id, label]) => (
-          <button key={id} role="tab" aria-selected={filter === id} className={filter === id ? 'active' : ''} onClick={() => setFilter(id)}>
-            {label}
+      <div className="filter-chips" role="radiogroup" aria-label="Filtrar palabras">
+        {FILTERS.map((f) => (
+          <button
+            key={f.id}
+            role="radio"
+            aria-checked={filter === f.id}
+            className={`filter-chip ${filter === f.id ? 'on' : ''}`}
+            onClick={() => setFilter(f.id)}
+          >
+            {f.swatch && <span className={`legend ${f.swatch}`} aria-hidden />}
+            {f.label}
+            <span className="filter-count">{counts[f.id]}</span>
           </button>
         ))}
       </div>
       <p className="muted small-left">
-        <span className="legend seen" /> vista · <span className="legend learned" /> aprendida (caja 3+)
+        {filter === 'learning'
+          ? 'Vistas: ya te las presenté, pero aún no las dominas.'
+          : filter === 'learned'
+            ? 'Aprendidas: las has acertado en el repaso varios días (caja 3 o más).'
+            : filter === 'new'
+              ? 'Sin ver: todavía no te las he presentado.'
+              : 'Toca un filtro para ver solo las vistas, las aprendidas o las que te faltan.'}
       </p>
-      {groups.length === 0 && <p className="muted">No hay resultados.</p>}
+      {groups.length === 0 && <p className="muted">{q.trim() ? 'No hay resultados.' : FILTERS.find((f) => f.id === filter)!.empty}</p>}
       {groups.map(([cat, ws]) => (
         <section key={cat}>
           <h2 className="section-title cat-title">
