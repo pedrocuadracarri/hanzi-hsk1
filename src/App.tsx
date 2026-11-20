@@ -17,6 +17,7 @@ import Review from './screens/Review'
 import Sentences from './screens/Sentences'
 import Dialogues from './screens/Dialogues'
 import TypePinyin from './screens/TypePinyin'
+import MinimalPairs from './screens/MinimalPairs'
 import TabBar from './components/TabBar'
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/escuchar" element={<Listen />} />
         <Route path="/escribir" element={<Write />} />
         <Route path="/tonos" element={<Tones />} />
+        <Route path="/pares" element={<MinimalPairs />} />
         <Route path="/repaso" element={<Review />} />
         <Route path="/examen" element={<Review />} />
         <Route path="/frases" element={<Sentences />} />

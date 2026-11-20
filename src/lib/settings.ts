@@ -6,8 +6,12 @@ export interface Settings {
   rate: number
   /** Reproducir audio automáticamente al acertar */
   autoplay: boolean
-  /** Mostrar pinyin bajo el hanzi como ayuda (excepto en ejercicios de pinyin) */
-  pinyinHint: boolean
+  /** Pinyin de ayuda bajo el hanzi: siempre, solo en palabras aún no aprendidas, o nunca */
+  pinyinMode: 'always' | 'learning' | 'never'
+  /** Modo principiante: ruta guiada y ejercicios avanzados bloqueados hasta tener base */
+  beginner: boolean
+  /** Recordatorio diario: hora «HH:MM» o null si está desactivado */
+  reminder: string | null
   /** Respuestas diarias objetivo */
   dailyGoal: number
   /** Tema de color: el del sistema o forzado */
@@ -16,7 +20,7 @@ export interface Settings {
   toneColors: boolean
 }
 
-export const DEFAULT_SETTINGS: Settings = { rate: 0.8, autoplay: true, pinyinHint: true, dailyGoal: 20, theme: 'auto', toneColors: true }
+export const DEFAULT_SETTINGS: Settings = { rate: 0.8, autoplay: true, pinyinMode: 'always', beginner: true, reminder: null, dailyGoal: 20, theme: 'auto', toneColors: true }
 
 const KEY = 'hanzi-settings'
 const listeners = new Set<() => void>()
@@ -24,7 +28,12 @@ const listeners = new Set<() => void>()
 function read(): Settings {
   try {
     const raw = localStorage.getItem(KEY)
-    return raw ? { ...DEFAULT_SETTINGS, ...JSON.parse(raw) } : DEFAULT_SETTINGS
+    if (!raw) return DEFAULT_SETTINGS
+    const saved = JSON.parse(raw)
+    // Migración: el antiguo interruptor pinyinHint pasa a pinyinMode
+    if (saved.pinyinMode === undefined && saved.pinyinHint === false) saved.pinyinMode = 'never'
+    delete saved.pinyinHint
+    return { ...DEFAULT_SETTINGS, ...saved }
   } catch {
     return DEFAULT_SETTINGS
   }

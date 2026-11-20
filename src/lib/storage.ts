@@ -1,7 +1,8 @@
 import { openDB, type DBSchema } from 'idb'
 import type { CardProgress, Streak } from '../types'
 import { toDay } from './dates'
-import { newCard, review } from './srs'
+import { INTERVALS, LEARNED_BOX, newCard, review } from './srs'
+import { addDays } from './dates'
 import { EMPTY_STREAK, touchStreak } from './streak'
 import { mergeSnapshots, type Snapshot } from './snapshot'
 
@@ -50,6 +51,21 @@ export async function recordAnswer(wordId: string, correct: boolean): Promise<Ca
   await tx.done
   notify()
   return updated
+}
+
+/** «Ya me la sé» (p. ej. por Duolingo): entra directamente como aprendida (caja 3),
+ *  sin contar como respuesta del día. Las que ya están más arriba no se tocan. */
+export async function markKnown(wordIds: string[]): Promise<void> {
+  const today = toDay()
+  const db = await dbPromise
+  const tx = db.transaction('progress', 'readwrite')
+  for (const id of wordIds) {
+    const card = (await tx.store.get(id)) ?? newCard(id, today)
+    if (card.box >= LEARNED_BOX) continue
+    await tx.store.put({ ...card, box: LEARNED_BOX, due: addDays(today, INTERVALS[LEARNED_BOX]), lastSeen: today })
+  }
+  await tx.done
+  notify()
 }
 
 export async function exportSnapshot(): Promise<Snapshot> {

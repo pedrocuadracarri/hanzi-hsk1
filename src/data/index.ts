@@ -47,8 +47,15 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   partícula: '🔣 Partículas',
 }
 
-const sortByLearningOrder = (words: Word[]) =>
-  [...words].sort((a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category))
+/** Primeras palabras, en este orden exacto (las de cualquier curso de iniciación) */
+const FIRST = '你 我 他 她 谢谢 再见 一 二 三 四 五 六 七 八 九 十 我们 不客气 对不起 没关系 这 那 请 喂 零'.split(' ')
+
+const rank = (w: Word) => {
+  const i = FIRST.indexOf(w.hanzi)
+  return i >= 0 ? i : FIRST.length + CATEGORY_ORDER.indexOf(w.category)
+}
+
+const sortByLearningOrder = (words: Word[]) => [...words].sort((a, b) => rank(a) - rank(b))
 
 // Para añadir HSK 2: importar hsk2.json y añadirlo aquí.
 export const LEVELS: Record<number, Word[]> = {

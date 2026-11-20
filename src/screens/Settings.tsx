@@ -7,6 +7,7 @@ import { countCachedStrokes, downloadAllStrokes } from '../lib/strokes'
 import { exportSnapshot, importSnapshot, resetProgress } from '../lib/storage'
 import { isSnapshot } from '../lib/snapshot'
 import { getSyncConfig, setSyncConfig, syncNow } from '../lib/sync'
+import { askNotificationPermission, downloadReminderIcs, notificationsSupported, scheduleReminder } from '../lib/reminder'
 
 function OfflineSection() {
   const [cached, setCached] = useState<number | null>(null)
@@ -43,6 +44,48 @@ function OfflineSection() {
       <button className="btn" onClick={download} disabled={busy !== null || cached === total}>
         {cached === total ? '✓ Todo descargado' : 'Descargar todos los trazos'}
       </button>
+      {msg && <p className="small-left">{msg}</p>}
+    </section>
+  )
+}
+
+function ReminderSection() {
+  const s = useSettings()
+  const [time, setTime] = useState(s.reminder ?? '20:00')
+  const [msg, setMsg] = useState('')
+
+  const enable = async () => {
+    updateSettings({ reminder: time })
+    scheduleReminder()
+    const ok = await askNotificationPermission()
+    setMsg(
+      ok
+        ? `✓ Te avisaré a las ${time} si no has llegado al objetivo (con la app abierta o en segundo plano). Para que avise siempre, añádelo también a tu calendario.`
+        : 'El navegador no permite notificaciones: usa el calendario, que funciona siempre.',
+    )
+  }
+  const disable = () => {
+    updateSettings({ reminder: null })
+    scheduleReminder()
+    setMsg('Recordatorio desactivado.')
+  }
+
+  return (
+    <section className="card settings-section">
+      <h2 className="section-title">⏰ Recordatorio diario</h2>
+      <p className="muted small-left">La constancia gana a la intensidad: 15 minutos cada día rinden más que 2 horas el domingo.</p>
+      <label className="field">
+        <span>Hora</span>
+        <input className="search" type="time" value={time} onChange={(e) => setTime(e.target.value || '20:00')} />
+      </label>
+      <button className="btn" onClick={() => downloadReminderIcs(time)}>
+        📅 Añadir a mi calendario (cada día)
+      </button>
+      {notificationsSupported() && (
+        <button className="btn" onClick={s.reminder ? disable : enable}>
+          {s.reminder ? `🔕 Quitar aviso de las ${s.reminder}` : '🔔 Activar aviso en la app'}
+        </button>
+      )}
       {msg && <p className="small-left">{msg}</p>}
     </section>
   )
@@ -245,10 +288,38 @@ export default function Settings() {
       <section className="card settings-section">
         <h2 className="section-title">🎓 Aprendizaje</h2>
         <label className="toggle">
-          <input type="checkbox" checked={s.pinyinHint} onChange={(e) => updateSettings({ pinyinHint: e.target.checked })} />
-          <span>Mostrar pinyin como ayuda bajo los caracteres</span>
+          <input type="checkbox" checked={s.beginner} onChange={(e) => updateSettings({ beginner: e.target.checked })} />
+          <span>
+            <strong>Modo principiante</strong>
+            <br />
+            <small className="muted">Ruta guiada en Inicio y ejercicios avanzados bloqueados hasta que tengas base.</small>
+          </span>
         </label>
-        <p className="muted small-left">Muy útil al principio. Quítalo cuando quieras retarte.</p>
+        <div className="field">
+          <span>Pinyin de ayuda bajo los caracteres</span>
+          <div className="segmented" role="radiogroup" aria-label="Pinyin de ayuda">
+            {(
+              [
+                ['always', 'Siempre'],
+                ['learning', 'Solo nuevas'],
+                ['never', 'Nunca'],
+              ] as const
+            ).map(([id, label]) => (
+              <button
+                key={id}
+                role="radio"
+                aria-checked={s.pinyinMode === id}
+                className={s.pinyinMode === id ? 'active' : ''}
+                onClick={() => updateSettings({ pinyinMode: id })}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <small className="muted">
+            «Solo nuevas» lo quita de las palabras que ya has aprendido (caja 3+): así vas soltando la ayuda poco a poco.
+          </small>
+        </div>
         <label className="toggle">
           <input type="checkbox" checked={s.toneColors} onChange={(e) => updateSettings({ toneColors: e.target.checked })} />
           <span>
@@ -269,6 +340,7 @@ export default function Settings() {
         </div>
       </section>
 
+      <ReminderSection />
       <SyncSection />
       <OfflineSection />
 

@@ -3,7 +3,7 @@ import { ALL_WORDS } from '../data'
 import { buildRound } from '../lib/rounds'
 import { normalizePinyin } from '../lib/pinyin'
 import { speak } from '../lib/speech'
-import { useSettings } from '../lib/settings'
+import { usePinyinHint } from '../lib/pinyinHint'
 import { useWordSession } from '../exercises/useWordSession'
 import ExerciseHeader from '../components/ExerciseHeader'
 import VoiceBanner from '../components/VoiceBanner'
@@ -16,7 +16,7 @@ import { TonedPinyin } from '../components/Toned'
 const QUESTIONS = 6
 
 export default function TypePinyin() {
-  const settings = useSettings()
+  const hint = usePinyinHint()
   const s = useWordSession((progress, today) =>
     buildRound({ words: ALL_WORDS, progress, mode: 'pinyin', today, size: QUESTIONS }),
   )
@@ -59,7 +59,7 @@ export default function TypePinyin() {
       <>
         <ProgressDots total={s.words.length} current={q} results={s.words.map((w) => s.results.get(w.id))} />
         <button className="listen-big" onClick={() => speak(word.hanzi)} aria-label="Escuchar otra vez">
-          {settings.pinyinHint ? <span className="hanzi">{word.hanzi}</span> : '🔊'}
+          {hint(word.id) ? <span className="hanzi">{word.hanzi}</span> : '🔊'}
           <small>
             {word.meaning} · toca para repetir 🔊
           </small>

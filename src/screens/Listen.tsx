@@ -3,7 +3,7 @@ import { ALL_WORDS } from '../data'
 import { buildRound, pickDistractors } from '../lib/rounds'
 import { shuffle } from '../lib/random'
 import { speak } from '../lib/speech'
-import { useSettings } from '../lib/settings'
+import { getSettings } from '../lib/settings'
 import { useWordSession } from '../exercises/useWordSession'
 import ExerciseHeader from '../components/ExerciseHeader'
 import VoiceBanner from '../components/VoiceBanner'
@@ -12,12 +12,34 @@ import RoundResult from '../components/RoundResult'
 import ProgressDots from '../components/ProgressDots'
 import SlowButton from '../components/SlowButton'
 import { TonedPinyin } from '../components/Toned'
+import { usePinyinHint } from '../lib/pinyinHint'
 import { useHotkeys } from '../lib/useHotkeys'
 
 const QUESTIONS = 6
+const MODE_KEY = 'hanzi-listen-mode'
+type ListenMode = 'pinyin' | 'hanzi'
+
+function initialMode(): ListenMode {
+  try {
+    const m = localStorage.getItem(MODE_KEY)
+    if (m === 'pinyin' || m === 'hanzi') return m
+  } catch {
+    /* sin almacenamiento */
+  }
+  return getSettings().beginner ? 'pinyin' : 'hanzi'
+}
 
 export default function Listen() {
-  const settings = useSettings()
+  const hint = usePinyinHint()
+  const [mode, setModeState] = useState<ListenMode>(initialMode)
+  const setMode = (m: ListenMode) => {
+    setModeState(m)
+    try {
+      localStorage.setItem(MODE_KEY, m)
+    } catch {
+      /* sin almacenamiento */
+    }
+  }
   const s = useWordSession((progress, today) =>
     buildRound({ words: ALL_WORDS, progress, mode: 'pinyin', today, size: QUESTIONS }),
   )
@@ -83,13 +105,28 @@ export default function Listen() {
             return (
               <button key={o.id} className={`option ${cls}`} onClick={() => choose(o.id)}>
                 <span className="kbd-hint kbd-corner">{i + 1}</span>
-                <span className="hanzi">{o.hanzi}</span>
-                {(settings.pinyinHint || picked) && (
-                  <small>
-                    <TonedPinyin pinyin={o.pinyin} />
-                  </small>
+                {mode === 'pinyin' ? (
+                  <>
+                    <span className="option-pinyin">
+                      <TonedPinyin pinyin={o.pinyin} />
+                    </span>
+                    {picked && (
+                      <small className="muted">
+                        <span className="hanzi">{o.hanzi}</span> · {o.meaning}
+                      </small>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <span className="hanzi">{o.hanzi}</span>
+                    {(hint(o.id) || picked) && (
+                      <small>
+                        <TonedPinyin pinyin={o.pinyin} />
+                      </small>
+                    )}
+                    {picked && <small className="muted">{o.meaning}</small>}
+                  </>
                 )}
-                {picked && <small className="muted">{o.meaning}</small>}
               </button>
             )
           })}
@@ -105,6 +142,18 @@ export default function Listen() {
   return (
     <main className="screen">
       <ExerciseHeader title="Escuchar" help="Escucha la palabra y elige cuál es." />
+      <div className="segmented" role="radiogroup" aria-label="Opciones en">
+        {(
+          [
+            ['pinyin', 'Elegir pinyin'],
+            ['hanzi', 'Elegir carácter'],
+          ] as const
+        ).map(([id, label]) => (
+          <button key={id} role="radio" aria-checked={mode === id} className={mode === id ? 'active' : ''} onClick={() => setMode(id)}>
+            {label}
+          </button>
+        ))}
+      </div>
       <VoiceBanner />
       {body}
     </main>

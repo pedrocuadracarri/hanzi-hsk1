@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { markKnown } from '../lib/storage'
 import type { Category } from '../types'
 import { ALL_WORDS, CATEGORY_LABELS, CATEGORY_ORDER } from '../data'
 import { isLearned } from '../lib/srs'
 import { useProgress } from '../lib/useProgress'
-import { useSettings } from '../lib/settings'
+import { usePinyinHint } from '../lib/pinyinHint'
 import { TonedPinyin } from '../components/Toned'
 
 /** Quita tildes y tonos para buscar sin preocuparse de ellos */
@@ -12,9 +13,25 @@ const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCa
 
 export default function Words() {
   const { progress } = useProgress()
-  const settings = useSettings()
+  const hint = usePinyinHint()
   const [q, setQ] = useState('')
   const [filter, setFilter] = useState<'all' | 'new' | 'learning' | 'learned'>('all')
+  const [selecting, setSelecting] = useState(false)
+  const [sel, setSel] = useState<Set<string>>(new Set())
+  const [msg, setMsg] = useState('')
+  const toggle = (id: string) =>
+    setSel((s) => {
+      const n = new Set(s)
+      if (n.has(id)) n.delete(id)
+      else n.add(id)
+      return n
+    })
+  const confirmKnown = async () => {
+    await markKnown([...sel])
+    setMsg(`✓ ${sel.size} palabra${sel.size === 1 ? '' : 's'} marcada${sel.size === 1 ? '' : 's'} como aprendida${sel.size === 1 ? '' : 's'}. Volverán a salir en el repaso dentro de unos días para comprobarlo.`)
+    setSel(new Set())
+    setSelecting(false)
+  }
 
   const groups = useMemo(() => {
     const nq = norm(q.trim())
@@ -36,10 +53,22 @@ export default function Words() {
     <main className="screen">
       <div className="title-row">
         <h1 className="title">Palabras</h1>
-        <Link to="/componentes" className="btn btn-sm">
-          🧱 Componentes
-        </Link>
+        <div className="row-gap">
+          <button className={`btn btn-sm ${selecting ? 'btn-active' : ''}`} onClick={() => { setSelecting(!selecting); setSel(new Set()); setMsg('') }}>
+            {selecting ? 'Cancelar' : '✓ Ya me sé…'}
+          </button>
+          <Link to="/componentes" className="btn btn-sm">
+            🧱 Piezas
+          </Link>
+        </div>
       </div>
+      {selecting && (
+        <p className="tip small-left">
+          Toca las palabras que ya conoces (por ejemplo, de Duolingo). Pasarán directamente a <strong>aprendidas</strong> y la app no
+          te las enseñará desde cero.
+        </p>
+      )}
+      {msg && <p className="tip small-left pop">{msg}</p>}
       <input
         className="search"
         type="search"
@@ -71,19 +100,35 @@ export default function Words() {
             <span>
               {CATEGORY_LABELS[cat]} <small className="muted">{ws.length}</small>
             </span>
-            <Link to={`/tarjetas?tema=${encodeURIComponent(cat)}`} className="cat-practice">
-              🃏 Practicar
-            </Link>
+            {selecting ? (
+              <button className="link-btn cat-practice" onClick={() => setSel((s) => new Set([...s, ...ws.map((w) => w.id)]))}>
+                Seleccionar todas
+              </button>
+            ) : (
+              <Link to={`/tarjetas?tema=${encodeURIComponent(cat)}`} className="cat-practice">
+                🃏 Practicar
+              </Link>
+            )}
           </h2>
           <div className="word-grid">
             {ws.map((w) => {
               const p = progress[w.id]
               const cls = p ? (isLearned(p) ? 'learned' : 'seen') : ''
               return (
-                <Link key={w.id} to={`/palabra/${w.id}`} className={`word-cell ${cls}`}>
+                <Link
+                  key={w.id}
+                  to={`/palabra/${w.id}`}
+                  className={`word-cell ${cls} ${sel.has(w.id) ? 'picked' : ''}`}
+                  aria-pressed={selecting ? sel.has(w.id) : undefined}
+                  onClick={(e) => {
+                    if (!selecting) return
+                    e.preventDefault()
+                    toggle(w.id)
+                  }}
+                >
                   {w.emoji && <span className="word-emoji" aria-hidden>{w.emoji}</span>}
                   <span className="hanzi">{w.hanzi}</span>
-                  <small>{settings.pinyinHint ? <TonedPinyin pinyin={w.pinyin} /> : ''}</small>
+                  <small>{hint(w.id) ? <TonedPinyin pinyin={w.pinyin} /> : ''}</small>
                   <small className="word-meaning">{w.meaning}</small>
                 </Link>
               )
@@ -91,6 +136,13 @@ export default function Words() {
           </div>
         </section>
       ))}
+      {selecting && sel.size > 0 && (
+        <div className="action-bar pop">
+          <button className="btn btn-primary" onClick={confirmKnown}>
+            Marcar {sel.size} como ya sabidas
+          </button>
+        </div>
+      )}
     </main>
   )
 }

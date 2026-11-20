@@ -4,7 +4,7 @@ import { getExample, sentenceText, sentenceTokens } from '../data/examples'
 import { buildRound } from '../lib/rounds'
 import { shuffle } from '../lib/random'
 import { speak } from '../lib/speech'
-import { useSettings } from '../lib/settings'
+import { usePinyinHint } from '../lib/pinyinHint'
 import { useHotkeys } from '../lib/useHotkeys'
 import { useWordSession } from '../exercises/useWordSession'
 import ExerciseHeader from '../components/ExerciseHeader'
@@ -18,6 +18,7 @@ const QUESTIONS = 5
 
 /** Pinyin de cada pieza: palabras del temario y algunas piezas sueltas de las frases */
 const EXTRA_PINYIN: Record<string, string> = { 饭: 'fàn', 车: 'chē', 国: 'guó', 天: 'tiān', 这些: 'zhèxiē' }
+const IDS = new Map(ALL_WORDS.map((w) => [w.hanzi, w.id] as [string, string]))
 const PINYIN = new Map<string, string>([...ALL_WORDS.map((w) => [w.hanzi, w.pinyin] as [string, string]), ...Object.entries(EXTRA_PINYIN)])
 
 interface Tile {
@@ -26,7 +27,7 @@ interface Tile {
 }
 
 export default function Sentences() {
-  const settings = useSettings()
+  const hint = usePinyinHint()
   const s = useWordSession((progress, today) =>
     buildRound({ words: ALL_WORDS, progress, mode: 'meaning', today, size: QUESTIONS }),
   )
@@ -91,7 +92,7 @@ export default function Sentences() {
           {placed.map((k) => (
             <button key={k} className="word-tile" onClick={() => remove(k)}>
               <span className="hanzi">{tiles[k].text}</span>
-              {settings.pinyinHint && (
+              {hint(IDS.get(tiles[k].text)) && (
                 <small>
                   <TonedPinyin pinyin={PINYIN.get(tiles[k].text) ?? ''} />
                 </small>
@@ -109,7 +110,7 @@ export default function Sentences() {
               disabled={placed.includes(t.key)}
             >
               <span className="hanzi">{t.text}</span>
-              {settings.pinyinHint && (
+              {hint(IDS.get(t.text)) && (
                 <small>
                   <TonedPinyin pinyin={PINYIN.get(t.text) ?? ''} />
                 </small>

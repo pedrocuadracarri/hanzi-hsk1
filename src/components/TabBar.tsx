@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 const TABS = [
   { to: '/', icon: '🏠', label: 'Inicio', match: [] as string[] },
   { to: '/aprender', icon: '🎓', label: 'Aprender', match: ['/dialogos'] },
-  { to: '/practicar', icon: '🧩', label: 'Practicar', match: ['/repaso', '/examen', '/frases', '/escribir-pinyin', '/emparejar', '/tarjetas', '/escuchar', '/escribir', '/tonos'] },
+  { to: '/practicar', icon: '🧩', label: 'Practicar', match: ['/repaso', '/examen', '/frases', '/escribir-pinyin', '/emparejar', '/tarjetas', '/escuchar', '/escribir', '/tonos', '/pares'] },
   { to: '/palabras', icon: '📖', label: 'Palabras', match: ['/palabra/', '/componentes'] },
   { to: '/progreso', icon: '📈', label: 'Progreso', match: [] },
 ]

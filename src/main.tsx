@@ -4,10 +4,12 @@ import { HashRouter } from 'react-router-dom'
 import { registerSW } from 'virtual:pwa-register'
 import App from './App'
 import { startAutoSync } from './lib/sync'
+import { scheduleReminder } from './lib/reminder'
 import './styles.css'
 
 registerSW({ immediate: true })
 startAutoSync()
+scheduleReminder()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

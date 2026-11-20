@@ -6,7 +6,8 @@ import { ALL_WORDS } from '../data'
 import { buildRound } from '../lib/rounds'
 import { buildQuiz, type QuizKind } from '../lib/quiz'
 import { speak } from '../lib/speech'
-import { getSettings, useSettings } from '../lib/settings'
+import { getSettings } from '../lib/settings'
+import { usePinyinHint } from '../lib/pinyinHint'
 import { useHotkeys } from '../lib/useHotkeys'
 import { useWordSession } from '../exercises/useWordSession'
 import ExerciseHeader from '../components/ExerciseHeader'
@@ -121,7 +122,7 @@ function OptionLabel({ kind, o, reveal, hint }: { kind: QuizKind; o: Word; revea
 }
 
 export default function Review() {
-  const settings = useSettings()
+  const hint = usePinyinHint()
   // Simulacro: 20 palabras al azar de todo el HSK 1, sin presentación ni efecto en el repaso
   const exam = useLocation().pathname === '/examen'
   const s = useWordSession(
@@ -231,7 +232,7 @@ export default function Review() {
             return (
               <button key={o.id} className={`option ${cls}`} onClick={() => choose(o.id)}>
                 <span className="kbd-hint kbd-corner">{i + 1}</span>
-                <OptionLabel kind={kind} o={o} reveal={!!picked} hint={settings.pinyinHint && kind !== 'listen'} />
+                <OptionLabel kind={kind} o={o} reveal={!!picked} hint={hint(o.id) && kind !== 'listen'} />
               </button>
             )
           })}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { Word } from '../types'
 import { speak } from '../lib/speech'
 import { getSettings } from '../lib/settings'
+import { markKnown } from '../lib/storage'
 import SpeakerButton from './SpeakerButton'
 import ExampleSentence from './ExampleSentence'
 import Pieces from './Pieces'
@@ -22,6 +23,11 @@ export default function NewWordsIntro({ words, onDone }: Props) {
   }, [w])
 
   const last = i === words.length - 1
+  const advance = () => (last ? onDone() : setI(i + 1))
+  const known = () => {
+    void markKnown([w.id])
+    advance()
+  }
   return (
     <div className="intro card pop" key={w.id}>
       <div className="intro-top">
@@ -41,9 +47,14 @@ export default function NewWordsIntro({ words, onDone }: Props) {
       <Pieces word={w} />
       <p className="intro-mnemonic">💡 {w.mnemonic}</p>
       <ExampleSentence word={w} />
-      <button className="btn btn-primary" onClick={() => (last ? onDone() : setI(i + 1))}>
-        {last ? '¡A practicar!' : 'Siguiente'}
-      </button>
+      <div className="intro-actions">
+        <button className="btn" onClick={known} title="La conoces de antes (p. ej. de Duolingo): pasa directamente a aprendida">
+          ✓ Ya la sé
+        </button>
+        <button className="btn btn-primary" onClick={advance}>
+          {last ? '¡A practicar!' : 'Siguiente'}
+        </button>
+      </div>
     </div>
   )
 }

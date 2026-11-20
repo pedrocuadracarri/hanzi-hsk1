@@ -12,7 +12,13 @@ export interface ExerciseInfo {
   srs: boolean
   /** Sección en la lista de Practicar */
   group: 'basico' | 'oido' | 'uso'
+  /** En modo principiante, palabras aprendidas necesarias para desbloquearlo */
+  unlockAt?: number
 }
+
+/** ¿Bloqueado en modo principiante con estas palabras aprendidas? */
+export const isLocked = (e: ExerciseInfo, learned: number, beginner: boolean) =>
+  beginner && (e.unlockAt ?? 0) > learned
 
 export const EXERCISES: ExerciseInfo[] = [
   {
@@ -50,6 +56,7 @@ export const EXERCISES: ExerciseInfo[] = [
     description: 'Oye una palabra y elige el carácter correcto',
     path: '/escuchar',
     icon: '👂',
+    beginner: true,
     srs: true,
     group: 'oido',
   },
@@ -61,6 +68,7 @@ export const EXERCISES: ExerciseInfo[] = [
     icon: '✍️',
     srs: true,
     group: 'uso',
+    unlockAt: 10,
   },
   {
     id: 'type-pinyin',
@@ -70,6 +78,7 @@ export const EXERCISES: ExerciseInfo[] = [
     icon: '⌨️',
     srs: true,
     group: 'oido',
+    unlockAt: 25,
   },
   {
     id: 'sentences',
@@ -79,6 +88,7 @@ export const EXERCISES: ExerciseInfo[] = [
     icon: '🧱',
     srs: true,
     group: 'uso',
+    unlockAt: 15,
   },
   {
     id: 'exam',
@@ -88,6 +98,17 @@ export const EXERCISES: ExerciseInfo[] = [
     icon: '🏅',
     srs: false,
     group: 'uso',
+    unlockAt: 60,
+  },
+  {
+    id: 'pairs',
+    title: 'Pares de sonidos',
+    description: '¿zh o z? ¿an o ang? Distingue los sonidos que más confunden al empezar',
+    path: '/pares',
+    icon: '👯',
+    beginner: true,
+    srs: false,
+    group: 'oido',
   },
   {
     id: 'tones',

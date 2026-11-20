@@ -26,11 +26,17 @@ Estado de Hanzi HSK 1 y lo que viene. Prioridad de arriba abajo dentro de cada b
 - Revisadas las entradas `needsReview`.
 - **Lecturas graduadas**, lección **Hacer preguntas**, botón 🐢 **Despacio**, ejercicio **Escribir pinyin**, fórmula visual de piezas y «Tu camino a B1» en Progreso.
 - Ejercicios agrupados por objetivo, tarjetas por tema, «Practicar a escribirla» desde la ficha y colores de tono en todos los ejercicios.
+- **Modo principiante** (v5): ruta de 30 unidades de 5 palabras en Inicio, un único «Siguiente paso» recomendado y ejercicios avanzados bloqueados hasta tener base (Escribir 10, Frases 15, Escribir pinyin 25, Simulacro 60 palabras aprendidas).
+- **Pares de sonidos** (`/pares`): zh/z, ch/c, sh/s, q/ch, x/sh, j/zh, u/ü, i/ü, an/ang, en/eng, in/ing y aspiradas.
+- **Escuchar por pinyin**: elige entre opciones en pinyin o en caracteres.
+- **«Ya me la sé»**: marcar palabras conocidas (p. ej. de Duolingo) desde Palabras o al presentarlas.
+- **Pinyin de ayuda por niveles**: siempre, solo en palabras no aprendidas o nunca.
+- **Recordatorio diario**: evento diario en el calendario (.ics) y aviso local si la app está abierta.
+- Nuevo orden de las primeras palabras (你 我 他 她 谢谢 再见, números…) y rediseño de la interfaz.
 
 ## 🔜 Siguiente
 
-- **Escuchar por pinyin**: variante que muestre pinyin en vez de caracteres para quien aún no lee hanzi.
-- **Recordatorio diario** opcional (notificación de la PWA) si no has llegado al objetivo.
+- Notificación push real (con servidor) para que el recordatorio avise aunque la app esté cerrada.
 
 ## 🎯 Hacia B1 (HSK 3–4)
 

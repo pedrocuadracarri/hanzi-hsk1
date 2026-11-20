@@ -5,13 +5,15 @@ import { ALL_WORDS } from '../data'
 import { answerFor, buildRound } from '../lib/rounds'
 import { buildComponentIndex } from '../lib/components'
 import { shuffle } from '../lib/random'
-import { useSettings } from '../lib/settings'
+import { usePinyinHint } from '../lib/pinyinHint'
 import MatchBoard, { type MatchPair } from '../exercises/match/MatchBoard'
 import { useWordSession } from '../exercises/useWordSession'
 import VoiceBanner from '../components/VoiceBanner'
 import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import ExerciseHeader from '../components/ExerciseHeader'
+import { UNITS } from '../lib/path'
+import type { Word } from '../types'
 
 type Mode = MatchMode | 'component'
 
@@ -24,20 +26,20 @@ const MODES: { id: Mode; label: string }[] = [
 
 const COMPONENTS = buildComponentIndex(ALL_WORDS).slice(0, 80)
 
-function MatchWords({ mode }: { mode: MatchMode }) {
-  const settings = useSettings()
-  const s = useWordSession((progress, today) => buildRound({ words: ALL_WORDS, progress, mode, today }), [mode])
+function MatchWords({ mode, pool = ALL_WORDS }: { mode: MatchMode; pool?: Word[] }) {
+  const hint = usePinyinHint()
+  const s = useWordSession((progress, today) => buildRound({ words: pool, progress, mode, today }), [mode, pool])
 
   const pairs: MatchPair[] = useMemo(
     () =>
       s.words.map((w) => ({
         id: w.id,
         left: w.hanzi,
-        leftSub: mode !== 'pinyin' && settings.pinyinHint ? w.pinyin : undefined,
+        leftSub: mode !== 'pinyin' && hint(w.id) ? w.pinyin : undefined,
         right: answerFor(w, mode),
         speak: w.hanzi,
       })),
-    [s.words, mode, settings.pinyinHint],
+    [s.words, mode, hint],
   )
 
   if (s.stage === 'loading') return null
@@ -101,6 +103,9 @@ export default function Match() {
   // ?modo=meaning fuerza un modo (p. ej. el repaso, que necesita todas las palabras, no solo las que tienen emoji)
   const [params] = useSearchParams()
   const forced = params.get('modo')
+  // ?unidad=3: solo las palabras de esa unidad de la ruta (modo significado: todas lo tienen)
+  const unitParam = params.get('unidad')
+  const unit = unitParam !== null ? UNITS[Number(unitParam)] : undefined
   const [mode, setModeState] = useState<Mode>(isMode(forced) ? forced : savedMode)
   const setMode = (m: Mode) => {
     setModeState(m)
@@ -112,7 +117,17 @@ export default function Match() {
   }
   return (
     <main className="screen">
-      <ExerciseHeader title="Emparejar" help="Toca un carácter y después su pareja." />
+      <ExerciseHeader
+        title={unit ? `Unidad ${Number(unitParam) + 1}` : 'Emparejar'}
+        help={unit ? 'Conoce las palabras nuevas y empareja cada carácter con su significado.' : 'Toca un carácter y después su pareja.'}
+      />
+      {unit ? (
+        <>
+          <VoiceBanner />
+          <MatchWords mode="meaning" pool={unit} />
+        </>
+      ) : (
+        <>
       <div className="segmented" role="tablist" aria-label="Modo">
         {MODES.map((m) => (
           <button
@@ -128,6 +143,8 @@ export default function Match() {
       </div>
       <VoiceBanner />
       {mode === 'component' ? <MatchComponents /> : <MatchWords key={mode} mode={mode} />}
+        </>
+      )}
     </main>
   )
 }
