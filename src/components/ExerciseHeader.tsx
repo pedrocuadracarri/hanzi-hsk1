@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useUnitParam } from '../lib/path'
 
 interface Props {
   title: string
@@ -6,9 +7,10 @@ interface Props {
 }
 
 export default function ExerciseHeader({ title, help }: Props) {
+  const unit = useUnitParam()
   return (
     <header className="ex-header">
-      <Link to="/practicar" className="back" aria-label="Volver a ejercicios">
+      <Link to={unit ? `/unidad/${unit.index}` : '/practicar'} className="back" aria-label={unit ? 'Volver a la unidad' : 'Volver a ejercicios'}>
         ←
       </Link>
       <div>

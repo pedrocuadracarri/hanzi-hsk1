@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom'
 import type { CardProgress, Word } from '../types'
 import { ALL_WORDS } from '../data'
 import { isLearned } from './srs'
@@ -28,4 +29,35 @@ export function unitStatus(i: number, progress: Record<string, CardProgress>): U
   if (learned === total) return 'learned'
   if (seen === total) return 'seen'
   return i === currentUnitIndex(progress) ? 'current' : 'locked'
+}
+
+/** ?unidad=3 en la URL de un ejercicio: practicar solo esa unidad */
+export function useUnitParam(): { index: number; words: Word[] } | undefined {
+  const raw = useSearchParams()[0].get('unidad')
+  const index = raw === null ? NaN : Number(raw)
+  return UNITS[index] ? { index, words: UNITS[index] } : undefined
+}
+
+/** Pasos de cada unidad ya hechos alguna vez (solo este dispositivo) */
+export type UnitStep = 'conocer' | 'emparejar' | 'escuchar' | 'tarjetas'
+const STEPS_KEY = 'hanzi-unit-steps'
+
+function readSteps(): Record<string, string[]> {
+  try {
+    return JSON.parse(localStorage.getItem(STEPS_KEY) ?? '{}')
+  } catch {
+    return {}
+  }
+}
+
+export const unitSteps = (i: number) => new Set(readSteps()[i] ?? [])
+
+export function markUnitStep(i: number, step: string) {
+  const all = readSteps()
+  all[i] = [...new Set([...(all[i] ?? []), step])]
+  try {
+    localStorage.setItem(STEPS_KEY, JSON.stringify(all))
+  } catch {
+    /* sin almacenamiento */
+  }
 }

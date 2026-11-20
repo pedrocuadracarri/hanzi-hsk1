@@ -6,6 +6,7 @@ import { useProgress } from '../lib/useProgress'
 import { useSettings } from '../lib/settings'
 import { visibleStreak } from '../lib/streak'
 import { toDay } from '../lib/dates'
+import { markUnitStep, useUnitParam } from '../lib/path'
 
 interface Props {
   words: Word[]
@@ -17,7 +18,11 @@ const CHEERS = ['¡Muy bien!', '¡Genial!', '¡Sigue así!', '加油! (¡ánimo!
 
 export default function RoundResult({ words, results, onNext }: Props) {
   const { pathname } = useLocation()
-  useEffect(() => markDoneToday(pathname), [pathname])
+  const unit = useUnitParam()
+  useEffect(() => {
+    markDoneToday(pathname)
+    if (unit) markUnitStep(unit.index, pathname.slice(1))
+  }, [pathname, unit?.index])
   const { daily, streak } = useProgress()
   const { dailyGoal } = useSettings()
   const today = toDay()
@@ -63,9 +68,15 @@ export default function RoundResult({ words, results, onNext }: Props) {
       <button className="btn btn-primary" onClick={onNext}>
         Siguiente ronda
       </button>
-      <Link to="/practicar" className="btn btn-center">
-        Otro ejercicio
-      </Link>
+      {unit ? (
+        <Link to={`/unidad/${unit.index}`} className="btn btn-center">
+          ← Volver a la unidad {unit.index + 1}
+        </Link>
+      ) : (
+        <Link to="/practicar" className="btn btn-center">
+          Otro ejercicio
+        </Link>
+      )}
     </div>
   )
 }

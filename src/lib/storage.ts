@@ -53,6 +53,22 @@ export async function recordAnswer(wordId: string, correct: boolean): Promise<Ca
   return updated
 }
 
+/** Palabras presentadas (vistas en su tarjeta de presentación): pasan a «en curso»
+ *  para no perder lo visto si sales a mitad. No cuentan como respuesta. */
+export async function markSeen(wordIds: string[]): Promise<void> {
+  const today = toDay()
+  const db = await dbPromise
+  const tx = db.transaction('progress', 'readwrite')
+  let changed = false
+  for (const id of wordIds) {
+    if (await tx.store.get(id)) continue
+    await tx.store.put(newCard(id, today))
+    changed = true
+  }
+  await tx.done
+  if (changed) notify()
+}
+
 /** «Ya me la sé» (p. ej. por Duolingo): entra directamente como aprendida (caja 3),
  *  sin contar como respuesta del día. Las que ya están más arriba no se tocan. */
 export async function markKnown(wordIds: string[]): Promise<void> {

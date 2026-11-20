@@ -12,7 +12,7 @@ import VoiceBanner from '../components/VoiceBanner'
 import NewWordsIntro from '../components/NewWordsIntro'
 import RoundResult from '../components/RoundResult'
 import ExerciseHeader from '../components/ExerciseHeader'
-import { UNITS } from '../lib/path'
+import { useUnitParam } from '../lib/path'
 import type { Word } from '../types'
 
 type Mode = MatchMode | 'component'
@@ -104,8 +104,7 @@ export default function Match() {
   const [params] = useSearchParams()
   const forced = params.get('modo')
   // ?unidad=3: solo las palabras de esa unidad de la ruta (modo significado: todas lo tienen)
-  const unitParam = params.get('unidad')
-  const unit = unitParam !== null ? UNITS[Number(unitParam)] : undefined
+  const unit = useUnitParam()
   const [mode, setModeState] = useState<Mode>(isMode(forced) ? forced : savedMode)
   const setMode = (m: Mode) => {
     setModeState(m)
@@ -118,13 +117,13 @@ export default function Match() {
   return (
     <main className="screen">
       <ExerciseHeader
-        title={unit ? `Unidad ${Number(unitParam) + 1}` : 'Emparejar'}
+        title={unit ? `Emparejar · unidad ${unit.index + 1}` : 'Emparejar'}
         help={unit ? 'Conoce las palabras nuevas y empareja cada carácter con su significado.' : 'Toca un carácter y después su pareja.'}
       />
       {unit ? (
         <>
           <VoiceBanner />
-          <MatchWords mode="meaning" pool={unit} />
+          <MatchWords mode="meaning" pool={unit.words} />
         </>
       ) : (
         <>

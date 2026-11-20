@@ -19,6 +19,7 @@ import Dialogues from './screens/Dialogues'
 import TypePinyin from './screens/TypePinyin'
 import MinimalPairs from './screens/MinimalPairs'
 import Pictos from './screens/Pictos'
+import Unit from './screens/Unit'
 import TabBar from './components/TabBar'
 
 export default function App() {
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/tonos" element={<Tones />} />
         <Route path="/pares" element={<MinimalPairs />} />
         <Route path="/dibujos" element={<Pictos />} />
+        <Route path="/unidad/:n" element={<Unit />} />
         <Route path="/repaso" element={<Review />} />
         <Route path="/examen" element={<Review />} />
         <Route path="/frases" element={<Sentences />} />

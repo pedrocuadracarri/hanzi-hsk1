@@ -13,6 +13,7 @@ import ProgressDots from '../components/ProgressDots'
 import SlowButton from '../components/SlowButton'
 import { TonedPinyin } from '../components/Toned'
 import { usePinyinHint } from '../lib/pinyinHint'
+import { useUnitParam } from '../lib/path'
 import { useHotkeys } from '../lib/useHotkeys'
 
 const QUESTIONS = 6
@@ -40,8 +41,10 @@ export default function Listen() {
       /* sin almacenamiento */
     }
   }
-  const s = useWordSession((progress, today) =>
-    buildRound({ words: ALL_WORDS, progress, mode: 'pinyin', today, size: QUESTIONS }),
+  const unit = useUnitParam()
+  const s = useWordSession(
+    (progress, today) => buildRound({ words: unit?.words ?? ALL_WORDS, progress, mode: 'pinyin', today, size: QUESTIONS }),
+    [unit?.index],
   )
   const [q, setQ] = useState(0)
   const [picked, setPicked] = useState<string | null>(null)
@@ -141,7 +144,7 @@ export default function Listen() {
 
   return (
     <main className="screen">
-      <ExerciseHeader title="Escuchar" help="Escucha la palabra y elige cuál es." />
+      <ExerciseHeader title={unit ? `Escuchar · unidad ${unit.index + 1}` : 'Escuchar'} help="Escucha la palabra y elige cuál es." />
       <div className="segmented" role="radiogroup" aria-label="Opciones en">
         {(
           [

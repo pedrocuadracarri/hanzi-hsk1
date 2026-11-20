@@ -13,14 +13,16 @@ import ExampleSentence from '../components/ExampleSentence'
 import Pieces from '../components/Pieces'
 import { TonedPinyin } from '../components/Toned'
 import { useHotkeys } from '../lib/useHotkeys'
+import { useUnitParam } from '../lib/path'
 
 export default function Flashcards() {
   // ?tema=comida: solo palabras de ese tema
   const tema = useSearchParams()[0].get('tema')
-  const pool = tema ? ALL_WORDS.filter((w) => w.category === tema) : ALL_WORDS
+  const unit = useUnitParam()
+  const pool = unit ? unit.words : tema ? ALL_WORDS.filter((w) => w.category === tema) : ALL_WORDS
   const s = useWordSession(
     (progress, today) => buildRound({ words: pool, progress, mode: 'meaning', today, size: 10 }),
-    [tema],
+    [tema, unit?.index],
     { intro: false },
   )
   const [i, setI] = useState(0)
@@ -57,7 +59,7 @@ export default function Flashcards() {
   return (
     <main className="screen">
       <ExerciseHeader
-        title={tema && tema in CATEGORY_LABELS ? `Tarjetas · ${CATEGORY_LABELS[tema as keyof typeof CATEGORY_LABELS]}` : 'Tarjetas'}
+        title={unit ? `Tarjetas · unidad ${unit.index + 1}` : tema && tema in CATEGORY_LABELS ? `Tarjetas · ${CATEGORY_LABELS[tema as keyof typeof CATEGORY_LABELS]}` : 'Tarjetas'}
         help="¿Recuerdas qué significa? Piénsalo, gira la tarjeta y sé sincero."
       />
       {s.stage === 'done' && <RoundResult words={s.words} results={s.results} onNext={s.restart} />}

@@ -53,7 +53,10 @@ function UnitPath({ progress }: { progress: Parameters<typeof unitStatus>[1] }) 
   const cur = currentUnitIndex(progress)
   const ref = useRef<HTMLOListElement>(null)
   useEffect(() => {
-    ref.current?.querySelector('.unit-current')?.scrollIntoView({ inline: 'center', block: 'nearest' })
+    // Centrar la unidad actual moviendo solo la pista (scrollIntoView movería también la página)
+    const track = ref.current
+    const dot = track?.querySelector<HTMLElement>('.unit-current')
+    if (track && dot) track.scrollLeft = dot.offsetLeft - track.clientWidth / 2 + dot.offsetWidth / 2
   }, [cur])
   const unit = UNITS[cur]
   const st = unitStats(unit, progress)
@@ -75,7 +78,7 @@ function UnitPath({ progress }: { progress: Parameters<typeof unitStatus>[1] }) 
             ))}
           </div>
         </div>
-        <Link to={`/emparejar?unidad=${cur}`} className="btn btn-sm btn-primary">
+        <Link to={`/unidad/${cur}`} className="btn btn-sm btn-primary">
           {st.seen === 0 ? 'Empezar' : st.seen < st.total ? 'Seguir' : 'Repasar'}
         </Link>
       </div>
@@ -83,14 +86,21 @@ function UnitPath({ progress }: { progress: Parameters<typeof unitStatus>[1] }) 
         {UNITS.map((u, i) => {
           const s = unitStatus(i, progress)
           return (
-            <li key={i} className={`unit-dot unit-${s}`} title={`Unidad ${i + 1}: ${u.map((w) => w.hanzi).join(' ')}`}>
-              {s === 'learned' ? '✓' : i + 1}
+            <li key={i}>
+              <Link
+                to={`/unidad/${i}`}
+                className={`unit-dot unit-${s}`}
+                title={`Unidad ${i + 1}: ${u.map((w) => w.hanzi).join(' ')}`}
+                aria-label={`Unidad ${i + 1}`}
+              >
+                {s === 'learned' ? '✓' : i + 1}
+              </Link>
             </li>
           )
         })}
       </ol>
       <p className="muted small-left">
-        Una unidad = 5 palabras. Se completan (✓) cuando las aciertas varios días seguidos en el repaso.
+        Toca cualquier unidad para abrirla, repetirla o adelantarte. Se completan (✓) al acertar sus palabras en el repaso.
       </p>
     </section>
   )
@@ -127,7 +137,7 @@ export default function Home() {
   else if (due > 0)
     step = { to: '/repaso', icon: '🔁', title: `Repasar ${due} ${due === 1 ? 'palabra' : 'palabras'}`, why: 'Lo primero, repasar: así no se te olvida lo que ya has visto.' }
   else if (unitLeft && settings.beginner)
-    step = { to: `/emparejar?unidad=${cur}`, icon: '✨', title: `Unidad ${cur + 1}: palabras nuevas`, why: UNITS[cur].map((w) => w.hanzi).join(' · ') }
+    step = { to: `/unidad/${cur}`, icon: '✨', title: `Unidad ${cur + 1}: palabras nuevas`, why: UNITS[cur].map((w) => w.hanzi).join(' · ') }
   else if (unitLeft)
     step = { to: '/emparejar', icon: '✨', title: 'Aprender palabras nuevas', why: 'No tienes repasos pendientes: buen momento para avanzar.' }
   else if (!done.has('/pares'))
@@ -139,7 +149,7 @@ export default function Home() {
       ? { to: '/repaso', label: `Repasar ${due} pendientes`, ok: false }
       : { to: '/repaso', label: 'Repaso mixto', ok: done.has('/repaso') },
     settings.beginner
-      ? { to: `/emparejar?unidad=${cur}`, label: `Unidad ${cur + 1}: 5 palabras`, ok: done.has('/emparejar') }
+      ? { to: `/unidad/${cur}`, label: `Unidad ${cur + 1}: 5 palabras`, ok: done.has('/emparejar') }
       : { to: '/emparejar', label: 'Aprender 5 palabras nuevas', ok: done.has('/emparejar') },
     { to: '/escuchar', label: 'Escuchar y elegir', ok: done.has('/escuchar') },
     unlocked('sentences') && !settings.beginner
