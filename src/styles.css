@@ -543,7 +543,7 @@ section > .section-title { margin: 8px 0; }
 .bubble { display: flex; flex-direction: column; gap: 2px; max-width: 85%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 18px; background: var(--surface); text-align: left; cursor: pointer; position: relative; transition: border-color 0.2s, box-shadow 0.2s; }
 .bubble-A { align-self: flex-start; border-bottom-left-radius: 4px; }
 .bubble-B { align-self: flex-end; border-bottom-right-radius: 4px; background: var(--sel-bg); }
-.bubble.speaking { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.bubble.speaking, .word-cell.speaking {border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
 .bubble-who { font-size: 0.7rem; font-weight: 700; color: var(--muted); }
 .bubble-zh { font-size: 1.35rem; }
 .dialogue-q { display: flex; flex-direction: column; gap: 10px; }

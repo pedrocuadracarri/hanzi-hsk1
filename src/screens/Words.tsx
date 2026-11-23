@@ -7,11 +7,14 @@ import { isLearned } from '../lib/srs'
 import { useProgress } from '../lib/useProgress'
 import { usePinyinHint } from '../lib/pinyinHint'
 import { TonedPinyin } from '../components/Toned'
+import { speakAll } from '../lib/speech'
 
 /** Quita tildes y tonos para buscar sin preocuparse de ellos */
 const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
 
-type Filter = 'all' | 'new' | 'learning' | 'learned'
+const COUNT = '零 一 二 三 四 五 六 七 八 九 十'.split(' ')
+
+type Filter ='all' | 'new' | 'learning' | 'learned'
 const FILTER_KEY = 'hanzi-words-filter'
 const FILTERS: { id: Filter; label: string; swatch?: string; empty: string }[] = [
   { id: 'all', label: 'Todas', empty: 'No hay resultados.' },
@@ -53,6 +56,7 @@ export default function Words() {
   const [selecting, setSelecting] = useState(false)
   const [sel, setSel] = useState<Set<string>>(new Set())
   const [msg, setMsg] = useState('')
+  const [counting, setCounting] = useState<string | null>(null)
   const toggle = (id: string) =>
     setSel((s) => {
       const n = new Set(s)
@@ -146,9 +150,16 @@ export default function Words() {
                 Seleccionar todas
               </button>
             ) : (
-              <Link to={`/tarjetas?tema=${encodeURIComponent(cat)}`} className="cat-practice">
-                🃏 Practicar
-              </Link>
+              <span className="row-gap">
+                {cat === 'número' && (
+                  <button className="link-btn cat-practice" onClick={() => speakAll(COUNT, (i) => setCounting(i === null ? null : COUNT[i]))}>
+                    🔊 Escuchar 0–10
+                  </button>
+                )}
+                <Link to={`/tarjetas?tema=${encodeURIComponent(cat)}`} className="cat-practice">
+                  🃏 Practicar
+                </Link>
+              </span>
             )}
           </h2>
           <div className="word-grid">
@@ -159,7 +170,7 @@ export default function Words() {
                 <Link
                   key={w.id}
                   to={`/palabra/${w.id}`}
-                  className={`word-cell ${cls} ${sel.has(w.id) ? 'picked' : ''}`}
+                  className={`word-cell ${cls} ${sel.has(w.id) ? 'picked' : ''} ${counting === w.hanzi ? 'speaking' : ''}`}
                   aria-pressed={selecting ? sel.has(w.id) : undefined}
                   onClick={(e) => {
                     if (!selecting) return
