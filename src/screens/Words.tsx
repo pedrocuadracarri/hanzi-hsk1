@@ -8,6 +8,7 @@ import { useProgress } from '../lib/useProgress'
 import { usePinyinHint } from '../lib/pinyinHint'
 import { TonedPinyin } from '../components/Toned'
 import { speakAll } from '../lib/speech'
+import SpeakerButton from '../components/SpeakerButton'
 
 /** Quita tildes y tonos para buscar sin preocuparse de ellos */
 const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
@@ -178,6 +179,7 @@ export default function Words() {
                     toggle(w.id)
                   }}
                 >
+                  {!selecting && <SpeakerButton text={w.hanzi} />}
                   {w.emoji && <span className="word-emoji" aria-hidden>{w.emoji}</span>}
                   <span className="hanzi">{w.hanzi}</span>
                   <small>{hint(w.id) ? <TonedPinyin pinyin={w.pinyin} /> : ''}</small>

@@ -13,6 +13,7 @@ export default function SpeakerButton({ text, size = 'sm' }: Props) {
       aria-label={`Escuchar ${text}`}
       onClick={(e) => {
         e.stopPropagation()
+        e.preventDefault()
         speak(text)
       }}
     >
